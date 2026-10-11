@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KuroLabs AI — Autonomous Agentic Software & Intelligence Studio</title>
+  <meta name="description" content="Next-generation autonomous developer agents, interactive puzzle-piece capability markets, and creative AI suites by KuroLabs.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="cyber-theme">
+
+  <!-- Ambient Glow Orbs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+  <canvas id="ambientCanvas"></canvas>
+
+  <!-- Sticky Navbar -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="brand-group" id="catEasterEggBtn" title="Click me!">
+        <div class="brand-avatar">
+          <svg viewBox="0 0 32 32" width="24" height="24" fill="none">
+            <rect x="2" y="2" width="28" height="28" rx="6" stroke="#00ffcc" stroke-width="2" fill="#040810"/>
+            <circle cx="7" cy="8" r="1.5" fill="#00ffcc"/>
+            <circle cx="12" cy="8" r="1.5" fill="#00ffcc"/>
+            <!-- Cute Kuro Cat silhouette -->
+            <path d="M9 22V16L12 19L16 17L20 19L23 16V22" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="18" r="1" fill="#00ffcc"/>
+            <circle cx="20" cy="18" r="1" fill="#00ffcc"/>
+            <path d="M6 26H11" stroke="#00ffcc" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-name">
+          KURO<span class="accent-text">LABS</span>
+          <span class="tag-version">AI</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="#products">Products</a>
+        <a href="#assembler">Agent Builder</a>
+        <a href="#healing-lab">Self-Healing</a>
+        <a href="#market">Capability Hub</a>
+        <a href="#terminal-suite">Live CLI</a>
+        <a href="#setup-gen">Quick Setup</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Out of the Box: Web Audio Cyber SFX Toggle -->
+        <button class="btn-sfx" id="sfxToggleBtn" title="Toggle Cyber Audio Synthesizer">
+          <span id="sfxIcon">🔊</span>
+          <span id="sfxLabel">SFX: ON</span>
+        </button>
+        <button class="btn-ghost" id="openSubmitPieceBtn">+ Publish Piece</button>
+        <button class="btn-glow" id="openInstallModalBtn">Get KuroCode</button>
+        <a href="https://github.com/kuroLabs-ai/KuroCodeAgent" target="_blank" rel="noopener" class="icon-link-btn" title="KuroCodeAgent GitHub Repository">
+          <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Interactive Cat Dialogue Speech Bubble -->
+  <div id="catBubble" class="cat-bubble">
+    <span id="catBubbleText">"Nya! I'm Kuro. Ready to inspect code and heal servers."</span>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-block">
+      <div class="hero-badge-pill">
+        <span class="live-ping"></span>
+        <span class="badge-text">KuroLabs v0.2.0 Autonomous Release &bull; MIT Open-Source</span>
+      </div>
+
+      <h1 class="hero-main-title">
+        The Autonomous Agent <br>
+        <span class="text-gradient-cyan">That Fixes Its Own Code</span>
+      </h1>
+
+      <p class="hero-description">
+        KuroCode is an open-source, Level-2 autonomous system engineer and desktop companion. Powered by AST-verified execution guards, zero-shot self-healing, encrypted DPAPI vaults, and a plug-and-play capability store.
+      </p>
+
+      <div class="hero-action-dock">
+        <button class="btn-cta-primary" id="heroInstallBtn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Install KuroCode
+        </button>
+
+        <div class="quick-command-box" id="quickCopyBox" title="Click to copy repository clone command">
+          <span class="terminal-prompt">$</span>
+          <span class="command-text" id="commandText">git clone https://github.com/kuroLabs-ai/KuroCodeAgent.git</span>
+          <button class="copy-trigger" aria-label="Copy command">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span class="copy-tooltip">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Feature Pills -->
+      <div class="platform-strip">
+        <a href="#healing-lab" class="platform-tag interactive">🩺 Self-Healing Subsystem</a>
+        <a href="#assembler" class="platform-tag interactive">🧩 Modular Puzzle Store</a>
+        <a href="#terminal-suite" class="platform-tag interactive">🔒 Windows DPAPI & AST Guard</a>
+        <a href="https://github.com/kuroLabs-ai/hub" target="_blank" rel="noopener" class="platform-tag interactive">🌐 Community GitHub Hub</a>
+      </div>
+    </section>
+
+    <!-- Products & Programs Suite -->
+    <section id="products" class="section-container">
+      <div class="section-title-wrapper">
+        <div class="subtitle-badge">PRODUCT MATRIX</div>
+        <h2 class="section-headline">The KuroLabs Software Suite</h2>
+        <p class="section-subtext">Engineered from ground up with modular architecture, strict security gates, and local data ownership.</p>
+        
+        <div class="product-toolbar">
+          <div class="category-tabs" id="productFilterTabs">
+            <button class="tab-btn active" data-product-filter="all">All Programs</button>
+            <button class="tab-btn" data-product-filter="agent">Agents</button>
+            <button class="tab-btn" data-product-filter="hub">Marketplace</button>
+            <button class="tab-btn" data-product-filter="creative">Creative AI</button>
+          </div>
+          <button class="btn-outline-cyan" id="openAddProductModalBtn">+ Add Program</button>
+        </div>
+      </div>
+
+      <div class="products-showcase-grid" id="productsGrid">
+        <!-- Rendered dynamically by app.js from PRODUCTS_DATA -->
+      </div>
+    </section>
+
+    <!-- OUT OF THE BOX IDEA 1: Interactive Agent Rig Assembler -->
+    <section id="assembler" class="section-container dark-wrapper">
+      <div class="section-title-wrapper">
+        <div class="subtitle-badge">OUT-OF-THE-BOX INNOVATION</div>
+        <h2 class="section-headline">Interactive Agent Rig Builder</h2>
+        <p class="section-subtext">Assemble your tailored AI agent build by snapping puzzle pieces into the runtime slots below.</p>
+      </div>
+
+      <div class="rig-builder-deck">
+        <div class="rig-shelf">
+          <div class="shelf-title">AVAILABLE CAPABILITIES (CLICK TO SNAP)</div>
+          <div class="shelf-chips" id="shelfPieces">
+            <!-- Dynamically populated pieces -->
+          </div>
+        </div>
+
+        <div class="rig-chassis">
+          <div class="chassis-header">
+            <div class="chassis-name">
+              <span class="accent-text">&lt;KuroAgent /&gt;</span> ACTIVE RUNTIME RIG
+            </div>
+            <button class="btn-clear-rig" id="clearRigBtn">Reset Slots</button>
+          </div>
+
+          <div class="rig-slots" id="rigSlots">
+            <!-- Dynamic active slots -->
+          </div>
+
+          <div class="rig-metrics-bar">
+            <div class="metric-item">
+              <span class="metric-lbl">Autonomy Level:</span>
+              <span class="metric-val" id="metricAutonomy">Level 2.0</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-lbl">Active Capabilities:</span>
+              <span class="metric-val" id="metricCount">0 Pieces</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-lbl">AST Security Status:</span>
+              <span class="metric-val green" id="metricSecurity">Sandboxed (Safe)</span>
+            </div>
+          </div>
+
+          <div class="rig-export-box">
+            <div class="rig-export-label">Generated 1-Click Launch Command:</div>
+            <div class="rig-code-row">
+              <code id="rigGeneratedCmd">kuro</code>
+              <button class="btn-copy-code" id="copyRigCmdBtn">Copy Launch Command</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUT OF THE BOX IDEA 2: Live Breakdown & Self-Healing Simulator -->
+    <section id="healing-lab" class="section-container">
+      <div class="section-title-wrapper">
+        <div class="subtitle-badge">AUTONOMOUS STABILITY LAB</div>
+        <h2 class="section-headline">Live Self-Healing Breakdown Demo</h2>
+        <p class="section-subtext">Click any simulated breakdown scenario to watch KuroCode diagnose, patch, and recover automatically in real-time.</p>
+      </div>
+
+      <div class="healing-lab-deck">
+        <div class="scenario-buttons">
+          <button class="scenario-btn active" data-scenario="missing_dep">
+            <span class="scenario-icon">📦</span>
+            <div>
+              <div class="sc-title">Missing Package</div>
+              <div class="sc-sub">ModuleNotFoundError: No module named 'jwt'</div>
+            </div>
+          </button>
+          <button class="scenario-btn" data-scenario="syntax_error">
+            <span class="scenario-icon">⚡</span>
+            <div>
+              <div class="sc-title">Syntax & AST Bug</div>
+              <div class="sc-sub">IndentationError: unexpected indent in tool</div>
+            </div>
+          </button>
+          <button class="scenario-btn" data-scenario="disk_wipe">
+            <span class="scenario-icon">🛡️</span>
+            <div>
+              <div class="sc-title">Malicious Code Attempt</div>
+              <div class="sc-sub">Dangerous os.system('rmdir /s') intercepted</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="healing-screen">
+          <div class="healing-status-bar">
+            <div class="healing-phase" id="healingPhaseText">STATUS: IDLE &bull; READY FOR STRESS TEST</div>
+            <button class="btn-trigger-fault" id="triggerFaultBtn">Inject Fault & Watch Self-Healing</button>
+          </div>
+
+          <div class="healing-log-box" id="healingLogBox">
+            <div class="heal-line dim">Select a scenario above and click "Inject Fault" to observe Kuro's diagnosis loop...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Terminal Lab Simulator -->
+    <section id="terminal-suite" class="section-container dark-wrapper">
+      <div class="section-title-wrapper">
+        <div class="subtitle-badge">HANDS-ON SIMULATOR</div>
+        <h2 class="section-headline">Interactive Terminal Console</h2>
+        <p class="section-subtext">Execute agent slash commands, inspect the catalog, and query system telemetry directly in your browser.</p>
+      </div>
+
+      <div class="terminal-deck">
+        <div class="deck-sidebar">
+          <div class="sidebar-header">PRESET WORKFLOWS</div>
+          <button class="preset-btn active" data-cmd="/store list">
+            <span class="preset-icon">🧩</span>
+            <div>
+              <div class="preset-name">Browse Capability Market</div>
+              <div class="preset-sub">/store list</div>
+            </div>
+          </button>
+          <button class="preset-btn" data-cmd="/store update">
+            <span class="preset-icon">🌐</span>
+            <div>
+              <div class="preset-name">Sync GitHub Hub</div>
+              <div class="preset-sub">/store update</div>
+            </div>
+          </button>
+          <button class="preset-btn" data-cmd="/store install regex_tester">
+            <span class="preset-icon">⚡</span>
+            <div>
+              <div class="preset-name">1-Click Snap Tool</div>
+              <div class="preset-sub">/store install regex_tester</div>
+            </div>
+          </button>
+          <button class="preset-btn" data-cmd="/heal status">
+            <span class="preset-icon">🩺</span>
+            <div>
+              <div class="preset-name">Healing Engine Diagnostics</div>
+              <div class="preset-sub">/heal status</div>
+            </div>
+          </button>
+          <button class="preset-btn" data-cmd="/system">
+            <span class="preset-icon">💻</span>
+            <div>
+              <div class="preset-name">Hardware Telemetry</div>
+              <div class="preset-sub">/system</div>
+            </div>
+          </button>
+          <button class="preset-btn" data-cmd="/help">
+            <span class="preset-icon">❓</span>
+            <div>
+              <div class="preset-name">Full CLI Help</div>
+              <div class="preset-sub">/help</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="terminal-console">
+          <div class="console-bar">
+            <div class="console-dots">
+              <span class="dot d-red"></span>
+              <span class="dot d-yellow"></span>
+              <span class="dot d-green"></span>
+            </div>
+            <div class="console-tab active">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="4 17 10 11 4 5"></polyline>
+                <line x1="12" y1="19" x2="20" y2="19"></line>
+              </svg>
+              kurocode-session &bull; bash
+            </div>
+            <div class="console-status">
+              <span class="live-dot"></span> Sandbox Strict
+            </div>
+          </div>
+
+          <div class="console-viewport" id="terminalOutput">
+            <!-- Console outputs stream here -->
+          </div>
+
+          <div class="console-input-dock">
+            <span class="console-prompt">kuro &gt;</span>
+            <input type="text" id="terminalInput" placeholder="Type /store list, /heal status, or any command..." autocomplete="off">
+            <button id="terminalExecBtn" class="console-run-btn">Execute</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Capability Market & Puzzle Store -->
+    <section id="market" class="section-container">
+      <div class="section-title-wrapper">
+        <div class="subtitle-badge">COMMUNITY EXTENSIONS</div>
+        <h2 class="section-headline">Capability Market & Puzzle Store</h2>
+        <p class="section-subtext">Snap in Tools, Plugins, Skills, and Integrations on the fly. No compilation or restart required.</p>
+      </div>
+
+      <div class="store-toolbar">
+        <div class="store-category-filters" id="storeFilterButtons">
+          <button class="filter-pill active" data-type="all">All Pieces (<span id="countAll">0</span>)</button>
+          <button class="filter-pill" data-type="tool">🔧 Tools (<span id="countTools">0</span>)</button>
+          <button class="filter-pill" data-type="plugin">🔌 Plugins (<span id="countPlugins">0</span>)</button>
+          <button class="filter-pill" data-type="skill">🧠 Skills (<span id="countSkills">0</span>)</button>
+          <button class="filter-pill" data-type="integration">🌐 Integrations (<span id="countIntegs">0</span>)</button>
+        </div>
+
+        <div class="store-search-bar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="storeSearchInput" placeholder="Search puzzle pieces by keyword or tag...">
+        </div>
+      </div>
+
+      <div class="pieces-catalog-grid" id="marketPiecesGrid">
+        <!-- Rendered dynamically by app.js from STORE_PIECES_DATA -->
+      </div>
+    </section>
+
+    <!-- OUT OF THE BOX IDEA 3: Interactive Environment Generator -->
+    <section id="setup-gen" class="section-container dark-wrapper">
+      <div class="section-title-wrapper">
+        <div class="subtitle-badge">DEVELOPER UTILITY</div>
+        <h2 class="section-headline">1-Click Environment Setup Generator</h2>
+        <p class="section-subtext">Customize your deployment configuration and instantly generate a ready-to-run `.env` file & startup script.</p>
+      </div>
+
+      <div class="setup-generator-deck">
+        <div class="generator-controls">
+          <div class="control-row">
+            <label class="ctrl-label">Target Operating System</label>
+            <div class="ctrl-options" id="osOptions">
+              <button class="ctrl-btn active" data-val="windows">Windows (PowerShell / CMD)</button>
+              <button class="ctrl-btn" data-val="linux">Linux (Ubuntu / Debian / Arch)</button>
+              <button class="ctrl-btn" data-val="macos">macOS (Zsh / Homebrew)</button>
+            </div>
+          </div>
+
+          <div class="control-row">
+            <label class="ctrl-label">Default LLM Provider</label>
+            <div class="ctrl-options" id="providerOptions">
+              <button class="ctrl-btn active" data-val="gemini">Google Gemini (Recommended Free Tier)</button>
+              <button class="ctrl-btn" data-val="groq">Groq (Ultra-Fast Llama-3)</button>
+              <button class="ctrl-btn" data-val="ollama">Ollama (100% Offline / Local)</button>
+              <button class="ctrl-btn" data-val="openrouter">OpenRouter (Any Model)</button>
+            </div>
+          </div>
+
+          <div class="control-row">
+            <label class="ctrl-label">Security & Safe Mode</label>
+            <div class="ctrl-options" id="safetyOptions">
+              <button class="ctrl-btn active" data-val="strict">Strict Safe Mode (Confirm Risky Actions)</button>
+              <button class="ctrl-btn" data-val="dev">Developer Mode (Fast Iteration)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="generator-preview">
+          <div class="gen-preview-header">
+            <span>Generated Configuration (.env & terminal command)</span>
+            <button class="btn-copy-code" id="copyEnvBtn">Copy Configuration</button>
+          </div>
+          <pre id="generatedEnvBox" class="gen-code-view"></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Modal: Install KuroCode -->
+  <div class="modal-overlay" id="installModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span class="cyan-icon">⚡</span> Install KuroCode Agent
+        </div>
+        <button class="modal-close-btn" id="closeInstallModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">Choose your preferred installation method from the official KuroLabs repository:</p>
+
+        <div class="install-method-tabs" id="installTabs">
+          <button class="tab-switch active" data-tab="pip">pip (Python)</button>
+          <button class="tab-switch" data-tab="binary">Windows Binary (.exe)</button>
+          <button class="tab-switch" data-tab="source">Source (Developer)</button>
+        </div>
+
+        <div class="install-tab-content active" id="tabContentPip">
+          <div class="code-box">
+            <code>pip install -e .</code>
+            <button class="btn-copy-code" data-copy="pip install -e .">Copy</button>
+          </div>
+          <div class="code-box">
+            <code>kuro</code>
+            <button class="btn-copy-code" data-copy="kuro">Copy</button>
+          </div>
+          <p class="tab-hint">Installs the command-line utility globally onto your machine.</p>
+        </div>
+
+        <div class="install-tab-content" id="tabContentBinary">
+          <p class="tab-info">Pre-compiled standalone console application built with PyInstaller.</p>
+          <a href="https://github.com/kuroLabs-ai/KuroCodeAgent" target="_blank" rel="noopener" class="btn-download-exe">
+            <span>Download Kuro.exe (v0.2.0)</span>
+            <span class="size-badge">Windows x64 &bull; Standalone</span>
+          </a>
+        </div>
+
+        <div class="install-tab-content" id="tabContentSource">
+          <div class="code-box">
+            <code>git clone https://github.com/kuroLabs-ai/KuroCodeAgent.git</code>
+            <button class="btn-copy-code" data-copy="git clone https://github.com/kuroLabs-ai/KuroCodeAgent.git">Copy</button>
+          </div>
+          <div class="code-box">
+            <code>cd KuroCodeAgent && pip install -r requirements.txt</code>
+            <button class="btn-copy-code" data-copy="cd KuroCodeAgent && pip install -r requirements.txt">Copy</button>
+          </div>
+          <div class="code-box">
+            <code>python main.py</code>
+            <button class="btn-copy-code" data-copy="python main.py">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Modal: Publish Capability to Hub -->
+  <div class="modal-overlay" id="publishModal">
+    <div class="modal-window wide">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span class="cyan-icon">🧩</span> Publish Capability to KuroLabs Hub
+        </div>
+        <button class="modal-close-btn" id="closePublishModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">Generate an entry for <a href="https://github.com/kuroLabs-ai/hub" target="_blank" rel="noopener">kuroLabs-ai/hub</a> with a dedicated source file on your branch:</p>
+        
+        <form id="publishPieceForm" class="publish-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pieceName">Piece Identifier (Name)</label>
+              <input type="text" id="pieceName" placeholder="e.g. redis_client" required>
+            </div>
+            <div class="form-group">
+              <label for="pieceType">Category</label>
+              <select id="pieceType">
+                <option value="tool">Tool (Single Python function)</option>
+                <option value="plugin">Plugin (Modular package)</option>
+                <option value="skill">Skill (Workflow procedure)</option>
+                <option value="integration">Integration (External API connector)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pieceDesc">Description</label>
+            <input type="text" id="pieceDesc" placeholder="e.g. Redis cache connection and key-value inspection utility" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pieceFilePath">Source File Path on Branch</label>
+              <input type="text" id="pieceFilePath" placeholder="e.g. tools/redis_client.py" required>
+            </div>
+            <div class="form-group">
+              <label for="pieceAuthor">Author / GitHub Handle</label>
+              <input type="text" id="pieceAuthor" placeholder="e.g. YourName" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pieceTags">Tags (comma separated)</label>
+            <input type="text" id="pieceTags" placeholder="e.g. database, redis, cache, utility">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-cta-primary">Generate Catalog Blueprint &amp; Snap</button>
+          </div>
+        </form>
+
+        <div class="preview-box" id="blueprintPreviewBox" style="display: none;">
+          <div class="preview-header">
+            <span>Generated catalog.json Blueprint</span>
+            <button class="btn-copy-blueprint" id="copyBlueprintBtn">Copy JSON</button>
+          </div>
+          <pre id="blueprintJsonCode"></pre>
+          <p class="preview-help">Paste this into <a href="https://github.com/kuroLabs-ai/hub/blob/main/catalog.json" target="_blank" rel="noopener">catalog.json</a> and submit a Pull Request to <strong>@kuroLabs-ai/hub</strong>!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Modal: Add New Product -->
+  <div class="modal-overlay" id="addProductModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span class="cyan-icon">📦</span> Add Ecosystem Product
+        </div>
+        <button class="modal-close-btn" id="closeAddProductModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">Define a new tool or program to display in the KuroLabs Product Matrix:</p>
+
+        <form id="addProductForm" class="publish-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prodName">Product Name</label>
+              <input type="text" id="prodName" placeholder="e.g. KuroVision" required>
+            </div>
+            <div class="form-group">
+              <label for="prodCategory">Category</label>
+              <select id="prodCategory">
+                <option value="agent">Agent / Autonomous Intelligence</option>
+                <option value="hub">Marketplace / Tooling Hub</option>
+                <option value="creative">Creative AI / Multimedia Studio</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="prodDesc">Summary</label>
+            <input type="text" id="prodDesc" placeholder="e.g. Multi-modal screen reasoning and OCR agent" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prodVersion">Version</label>
+              <input type="text" id="prodVersion" placeholder="v1.0.0" value="v0.1.0">
+            </div>
+            <div class="form-group">
+              <label for="prodStatus">Status Badge</label>
+              <input type="text" id="prodStatus" placeholder="Beta, Stable, Preview" value="Early Preview">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="prodRepoUrl">GitHub / Landing URL</label>
+            <input type="url" id="prodRepoUrl" placeholder="https://github.com/kuroLabs-ai/..." required>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-cta-primary">Snap Product Into Matrix</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- High-End Futuristic Footer -->
+  <footer class="footer-block">
+    <div class="footer-inner">
+      <div class="footer-branding">
+        <div class="brand-group">
+          <div class="brand-name">
+            KURO<span class="accent-text">LABS</span>
+          </div>
+        </div>
+        <p class="footer-bio">
+          Building the open foundation for autonomous agentic software, modular capabilities, and next-gen human-AI engineering.
+        </p>
+        <div class="footer-legal">&copy; 2026 KuroLabs AI. Open-source under MIT License.</div>
+      </div>
+
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h4>REPOSITORIES</h4>
+          <a href="https://github.com/kuroLabs-ai/KuroCodeAgent" target="_blank" rel="noopener">KuroCodeAgent</a>
+          <a href="https://github.com/kuroLabs-ai/hub" target="_blank" rel="noopener">Capability Hub</a>
+          <a href="https://github.com/kuroLabs-ai" target="_blank" rel="noopener">All Repositories</a>
+        </div>
+        <div class="footer-col">
+          <h4>LAB SUITE</h4>
+          <a href="#assembler">Agent Rig Builder</a>
+          <a href="#healing-lab">Self-Healing Lab</a>
+          <a href="#setup-gen">Environment Generator</a>
+        </div>
+        <div class="footer-col">
+          <h4>COMMUNITY</h4>
+          <a href="https://github.com/kuroLabs-ai/hub#contributing-a-new-puzzle-piece" id="footerPublishLink" target="_blank" rel="noopener">Submit a Puzzle Piece</a>
+          <a href="https://github.com/kuroLabs-ai/KuroCodeAgent/issues" target="_blank" rel="noopener">Report Issue</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
