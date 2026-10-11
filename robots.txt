@@ -1,0 +1,34 @@
+# ========================================================
+# KuroLabs AI — Search Engine Robots Policy
+# Website: https://kurolabs-ai.github.io
+# ========================================================
+
+User-agent: *
+Allow: /
+Disallow: /logs/
+Disallow: /*.json$
+
+# Search engine crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /assets/
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Canonical Sitemap URL
+Sitemap: https://kurolabs-ai.github.io/sitemap.xml
