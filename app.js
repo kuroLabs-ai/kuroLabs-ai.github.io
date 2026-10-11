@@ -1,13 +1,14 @@
 /**
  * KuroLabs AI — Enterprise Web Portal Application
- * 100% Vanilla JavaScript (Zero External Dependencies)
- * Fully Compatible with GitHub Pages (Vanilla HTML5 / CSS3 / ES6)
+ * Engineered with Vanilla ES6 + Tailwind CSS + Lucide Icons + Web Audio API
+ * Fully Compatible with GitHub Pages (Zero Build Step Required)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initAmbientCanvas();
   initAudioSynthesizer();
   initCatEasterEgg();
+  initMobileMenu();
   initProductMatrix();
   initAgentRigBuilder();
   initSelfHealingLab();
@@ -16,7 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initSetupGenerator();
   initModals();
   initClipboardUtils();
+  refreshIcons();
 });
+
+function refreshIcons() {
+  if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    window.lucide.createIcons();
+  }
+}
 
 /* ─────────────────────────────────────────────────────────────
    1. Dynamic Ambient Grid / Particle Canvas
@@ -35,14 +43,14 @@ function initAmbientCanvas() {
   });
 
   const particles = [];
-  const count = Math.min(50, Math.floor(w / 30));
+  const count = Math.min(45, Math.floor(w / 35));
 
   for (let i = 0; i < count; i++) {
     particles.push({
       x: Math.random() * w,
       y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.35,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
       r: Math.random() * 1.5 + 0.5,
     });
   }
@@ -57,8 +65,8 @@ function initAmbientCanvas() {
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 130) {
-          ctx.strokeStyle = `rgba(0, 255, 204, ${0.12 * (1 - dist / 130)})`;
+        if (dist < 120) {
+          ctx.strokeStyle = `rgba(6, 182, 212, ${0.12 * (1 - dist / 120)})`;
           ctx.lineWidth = 0.6;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
@@ -78,7 +86,7 @@ function initAmbientCanvas() {
       if (p.y < 0) p.y = h;
       if (p.y > h) p.y = 0;
 
-      ctx.fillStyle = 'rgba(0, 255, 204, 0.45)';
+      ctx.fillStyle = 'rgba(6, 182, 212, 0.45)';
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fill();
@@ -167,26 +175,27 @@ function playCyberSound(type = 'click') {
 
 function initAudioSynthesizer() {
   const toggleBtn = document.getElementById('sfxToggleBtn');
-  const icon = document.getElementById('sfxIcon');
   const label = document.getElementById('sfxLabel');
   if (!toggleBtn) return;
 
   toggleBtn.addEventListener('click', () => {
     sfxEnabled = !sfxEnabled;
+    const iconContainer = toggleBtn.querySelector('i');
     if (sfxEnabled) {
       toggleBtn.classList.remove('sfx-muted');
-      if (icon) icon.textContent = '🔊';
+      if (iconContainer) iconContainer.setAttribute('data-lucide', 'volume-2');
       if (label) label.textContent = 'SFX: ON';
       playCyberSound('click');
     } else {
       toggleBtn.classList.add('sfx-muted');
-      if (icon) icon.textContent = '🔇';
+      if (iconContainer) iconContainer.setAttribute('data-lucide', 'volume-x');
       if (label) label.textContent = 'SFX: OFF';
     }
+    refreshIcons();
   });
 
-  // Attach subtle click SFX to buttons and tabs
-  document.querySelectorAll('button, .tab-btn, .tab-switch, .filter-pill, .platform-tag').forEach((btn) => {
+  // Attach click sound to interactive elements
+  document.querySelectorAll('button, .tab-btn, .tab-switch, .filter-pill').forEach((btn) => {
     btn.addEventListener('click', () => {
       if (btn.id !== 'sfxToggleBtn') {
         playCyberSound('click');
@@ -199,17 +208,17 @@ function initAudioSynthesizer() {
    3. Cat Dialogue Easter Egg
    ───────────────────────────────────────────────────────────── */
 const CAT_QUOTES = [
-  "Nya! I'm Kuro. Ready to inspect code and heal servers.",
-  "Purr... AST syntax tree verified. Zero malicious tokens detected!",
-  "Did someone say DPAPI vault? Your API keys are locked tight with me, nya!",
-  "Level 2 autonomy active: I write code, run tests, and fix bugs while you drink boba.",
-  "Need a custom tool? Snap it from the Capability Market or build your own!",
-  "Git checkpoints guard your repository — every file edit is 100% reversible!",
-  "Zero hallucination policy: If code breaks, self-healing diagnostics patch it instantly."
+  "Nya! I'm Kuro. Ready to inspect code, run tests, and heal servers.",
+  "AST syntax tree verified. Zero malicious tokens or unsafe imports detected!",
+  "Windows DPAPI vault active: Your credentials are encrypted hardware-level.",
+  "Level 2 autonomy: I write code, auto-commit rollback points, and fix bugs.",
+  "Need an extra capability? Snap it instantly from the Capability Store!",
+  "Git checkpoints guard your repository — every single change is reversible.",
+  "Zero hallucination policy: If code breaks, self-healing diagnostic loops patch it."
 ];
 
 function initCatEasterEgg() {
-  const avatar = document.querySelector('.brand-avatar');
+  const avatar = document.getElementById('catEasterEggBtn');
   const bubble = document.getElementById('catBubble');
   const text = document.getElementById('catBubbleText');
   if (!avatar || !bubble || !text) return;
@@ -218,7 +227,10 @@ function initCatEasterEgg() {
   let timer = null;
 
   avatar.addEventListener('click', (e) => {
-    e.preventDefault();
+    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/')) {
+      // Allow easter egg click without redirecting immediately
+      e.preventDefault();
+    }
     playCyberSound('beep');
     quoteIdx = (quoteIdx + 1) % CAT_QUOTES.length;
     text.textContent = `"${CAT_QUOTES[quoteIdx]}"`;
@@ -232,6 +244,20 @@ function initCatEasterEgg() {
 }
 
 /* ─────────────────────────────────────────────────────────────
+   3.1 Mobile Menu Drawer
+   ───────────────────────────────────────────────────────────── */
+function initMobileMenu() {
+  const btn = document.getElementById('mobileMenuBtn');
+  const menu = document.getElementById('mobileMenu');
+  if (!btn || !menu) return;
+
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+    playCyberSound('click');
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────
    4. Modular Product Matrix (Easily Add New Programs)
    ───────────────────────────────────────────────────────────── */
 const PRODUCTS_DATA = [
@@ -241,8 +267,8 @@ const PRODUCTS_DATA = [
     category: 'agent',
     version: 'v0.2.0',
     status: 'Stable Release',
-    statusClass: 'status-stable',
-    icon: '⚡',
+    statusClass: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+    iconName: 'terminal',
     desc: 'Local-first autonomous coding companion with ReAct 2.0 loop, multi-model fallback router, and automatic Git checkpoints.',
     bullets: [
       'AST-verified runtime execution guard',
@@ -258,15 +284,15 @@ const PRODUCTS_DATA = [
     category: 'hub',
     version: 'v1.0.0',
     status: 'Official Hub',
-    statusClass: 'status-hub',
-    icon: '🧩',
+    statusClass: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+    iconName: 'boxes',
     desc: 'Community marketplace where developers and agents snap in Tools, Plugins, Skills, and Integrations like puzzle pieces.',
     bullets: [
       '1-click installation: /store install <name>',
-      'Separate source files with GitHub branch resolving',
+      'Modular source files with GitHub branch resolving',
       'Community Pull Request workflow & catalog sync',
     ],
-    primaryAction: { label: 'Browse Market', url: '#market' },
+    primaryAction: { label: 'Browse Market', url: 'store.html' },
     secondaryAction: { label: 'Hub Repo', url: 'https://github.com/kuroLabs-ai/hub' },
   },
   {
@@ -275,16 +301,16 @@ const PRODUCTS_DATA = [
     category: 'creative',
     version: 'v0.1.0',
     status: 'Private Beta',
-    statusClass: 'status-beta',
-    icon: '🎬',
+    statusClass: 'bg-violet-500/10 text-violet-400 border-violet-500/20',
+    iconName: 'sparkles',
     desc: 'Next-generation AI creative studio for procedural video editing, automated motion graphics, and multimodal timeline orchestration.',
     bullets: [
       'Autonomous video timeline generation from prompts',
       'Multi-track audio, speech synthesis & visual layering',
       'Direct integration with KuroCode developer toolchains',
     ],
-    primaryAction: { label: 'Waitlist', action: 'waitlist' },
-    secondaryAction: { label: 'Overview', url: '#architecture' },
+    primaryAction: { label: 'Join Waitlist', action: 'waitlist' },
+    secondaryAction: { label: 'Overview', url: 'docs.html' },
   },
 ];
 
@@ -301,35 +327,41 @@ function initProductMatrix() {
 
     filtered.forEach((p) => {
       const card = document.createElement('div');
-      card.className = 'product-matrix-card';
+      card.className = 'group relative rounded-2xl bg-slate-900/60 border border-white/[0.08] hover:border-cyan-500/30 p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-950/20';
 
       const bulletsHtml = p.bullets
-        .map((b) => `<li><span class="bullet-check">✔</span> ${escapeHtml(b)}</li>`)
+        .map((b) => `<li class="flex items-start gap-2 text-xs text-slate-300"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5"></i> <span>${escapeHtml(b)}</span></li>`)
         .join('');
 
       let primaryBtnHtml = '';
       if (p.primaryAction.action === 'installModal') {
-        primaryBtnHtml = `<button class="btn-card-primary open-install-modal">${escapeHtml(p.primaryAction.label)}</button>`;
+        primaryBtnHtml = `<button class="open-install-modal w-full py-2 px-3 text-xs font-semibold rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 hover:border-cyan-500/50 transition-all font-mono">${escapeHtml(p.primaryAction.label)}</button>`;
       } else if (p.primaryAction.action === 'waitlist') {
-        primaryBtnHtml = `<button class="btn-card-primary waitlist-btn">Join Waitlist</button>`;
+        primaryBtnHtml = `<button class="waitlist-btn w-full py-2 px-3 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-white/10 transition-all font-mono">Join Waitlist</button>`;
       } else {
-        primaryBtnHtml = `<a href="${p.primaryAction.url}" class="btn-card-primary">${escapeHtml(p.primaryAction.label)}</a>`;
+        primaryBtnHtml = `<a href="${p.primaryAction.url}" class="w-full text-center py-2 px-3 text-xs font-semibold rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 hover:border-cyan-500/50 transition-all font-mono">${escapeHtml(p.primaryAction.label)}</a>`;
       }
 
       card.innerHTML = `
-        <div class="card-top-row">
-          <div class="product-icon-frame">${p.icon}</div>
-          <div class="product-badge-group">
-            <span class="status-chip ${p.statusClass}">${p.status}</span>
-            <span class="version-chip">${p.version}</span>
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-10 h-10 rounded-xl bg-slate-800/80 border border-white/10 flex items-center justify-center text-cyan-400 group-hover:border-cyan-500/40 group-hover:scale-105 transition-all">
+              <i data-lucide="${p.iconName || 'box'}" class="w-5 h-5"></i>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded-full border ${p.statusClass}">${p.status}</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-slate-800/60 border border-white/10 text-slate-400">${p.version}</span>
+            </div>
           </div>
+          <h3 class="text-lg font-semibold text-white tracking-tight group-hover:text-cyan-300 transition-colors">${escapeHtml(p.name)}</h3>
+          <p class="text-xs text-slate-400 mt-2 mb-4 leading-relaxed">${escapeHtml(p.desc)}</p>
+          <ul class="space-y-2 mb-6">${bulletsHtml}</ul>
         </div>
-        <h3 class="card-product-name">${escapeHtml(p.name)}</h3>
-        <p class="card-product-desc">${escapeHtml(p.desc)}</p>
-        <ul class="card-bullets">${bulletsHtml}</ul>
-        <div class="card-bottom-actions">
+        <div class="flex items-center gap-2 pt-4 border-t border-white/[0.06]">
           ${primaryBtnHtml}
-          <a href="${p.secondaryAction.url}" target="_blank" rel="noopener" class="btn-card-secondary">${escapeHtml(p.secondaryAction.label)}</a>
+          <a href="${p.secondaryAction.url}" target="_blank" rel="noopener" class="py-2 px-3 text-xs font-medium rounded-lg bg-slate-800/40 hover:bg-slate-800 text-slate-400 hover:text-white border border-white/10 transition-all flex items-center justify-center">
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
         </div>
       `;
 
@@ -343,17 +375,22 @@ function initProductMatrix() {
 
     grid.querySelectorAll('.waitlist-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
-        btn.textContent = 'Added to Waitlist ✔';
-        btn.style.borderColor = 'var(--green)';
-        btn.style.color = 'var(--green)';
+        btn.textContent = 'Waitlist Joined ✔';
+        btn.classList.add('text-emerald-400', 'border-emerald-500/40');
       });
     });
+
+    refreshIcons();
   }
 
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
-      tabs.forEach((t) => t.classList.remove('active'));
-      tab.classList.add('active');
+      tabs.forEach((t) => {
+        t.classList.remove('active', 'bg-cyan-500/10', 'text-cyan-300', 'border-cyan-500/30');
+        t.classList.add('text-slate-400', 'border-transparent');
+      });
+      tab.classList.add('active', 'bg-cyan-500/10', 'text-cyan-300', 'border-cyan-500/30');
+      tab.classList.remove('text-slate-400', 'border-transparent');
       activeCategory = tab.getAttribute('data-product-filter') || 'all';
       render();
     });
@@ -363,17 +400,17 @@ function initProductMatrix() {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   5. Interactive Agent Rig Builder (#assembler)
+   5. Interactive Agent Rig Builder (#assembler & builder.html)
    ───────────────────────────────────────────────────────────── */
 const RIG_SHELF_DATA = [
-  { id: 'git_checkpoints', name: 'Git Auto-Checkpoints', type: 'Tool', desc: 'Atomic rollback points for every file modification.', delta: 0.3, flag: '--git-guard' },
-  { id: 'ast_guard', name: 'AST Execution Sandbox', type: 'Security', desc: 'Pre-flight AST syntax parser intercepting dangerous imports.', delta: 0.4, flag: '--ast-strict' },
-  { id: 'self_healing', name: 'Auto-Healing Loop', type: 'Skill', desc: 'Autonomous exception diagnosis & dependency installer.', delta: 0.5, flag: '--auto-heal' },
-  { id: 'json_inspector', name: 'JSON Inspector', type: 'Tool', desc: 'Syntax validation and schema inspector utility.', delta: 0.2, flag: '--tools json_inspector' },
-  { id: 'dpapi_vault', name: 'Windows DPAPI Vault', type: 'Security', desc: 'Hardware-bound AES-256 encrypted credential store.', delta: 0.3, flag: '--dpapi' },
-  { id: 'code_metrics', name: 'Code Quality Auditor', type: 'Plugin', desc: 'AST code complexity & maintainability index calculator.', delta: 0.2, flag: '--plugins code_metrics' },
-  { id: 'hash_calculator', name: 'Cryptographic Hasher', type: 'Tool', desc: 'Multi-algorithm MD5/SHA256 integrity verifier.', delta: 0.2, flag: '--tools hash_calculator' },
-  { id: 'docker_sandbox', name: 'Docker Isolation', type: 'Integration', desc: 'Containerized ephemeral environment execution bridge.', delta: 0.4, flag: '--docker' },
+  { id: 'git_checkpoints', name: 'Git Auto-Checkpoints', type: 'Tool', desc: 'Atomic rollback points created before file writes.', delta: 0.3, flag: '--git-guard', icon: 'git-commit' },
+  { id: 'ast_guard', name: 'AST Execution Sandbox', type: 'Security', desc: 'Pre-flight AST syntax parser intercepting dangerous calls.', delta: 0.4, flag: '--ast-strict', icon: 'shield-check' },
+  { id: 'self_healing', name: 'Auto-Healing Loop', type: 'Skill', desc: 'Autonomous exception diagnosis & dependency installer.', delta: 0.5, flag: '--auto-heal', icon: 'activity' },
+  { id: 'json_inspector', name: 'JSON Inspector', type: 'Tool', desc: 'High-speed syntax validation and schema inspector.', delta: 0.2, flag: '--tools json_inspector', icon: 'file-json' },
+  { id: 'dpapi_vault', name: 'Windows DPAPI Vault', type: 'Security', desc: 'Hardware-bound AES-256 encrypted credential store.', delta: 0.3, flag: '--dpapi', icon: 'key' },
+  { id: 'code_metrics', name: 'Code Quality Auditor', type: 'Plugin', desc: 'AST code complexity & maintainability index calculator.', delta: 0.2, flag: '--plugins code_metrics', icon: 'bar-chart-2' },
+  { id: 'hash_calculator', name: 'Cryptographic Hasher', type: 'Tool', desc: 'Multi-algorithm MD5/SHA256 integrity verifier.', delta: 0.2, flag: '--tools hash_calculator', icon: 'hash' },
+  { id: 'docker_sandbox', name: 'Docker Isolation', type: 'Integration', desc: 'Containerized ephemeral environment execution bridge.', delta: 0.4, flag: '--docker', icon: 'box' },
 ];
 
 function initAgentRigBuilder() {
@@ -388,8 +425,8 @@ function initAgentRigBuilder() {
 
   if (!shelf || !slots) return;
 
-  // Active snapped pieces
-  let snappedIds = new Set(['git_checkpoints', 'ast_guard']);
+  // Active snapped pieces (default starting rig)
+  let snappedIds = new Set(['git_checkpoints', 'ast_guard', 'self_healing']);
 
   function update() {
     // 1. Render shelf chips
@@ -397,13 +434,27 @@ function initAgentRigBuilder() {
     RIG_SHELF_DATA.forEach((item) => {
       const isSnapped = snappedIds.has(item.id);
       const chip = document.createElement('div');
-      chip.className = `shelf-chip ${isSnapped ? 'snapped' : ''}`;
+      chip.className = `p-3 rounded-xl border transition-all flex items-center justify-between cursor-pointer ${
+        isSnapped
+          ? 'bg-cyan-950/20 border-cyan-500/40 text-cyan-200'
+          : 'bg-slate-900/60 border-white/[0.08] hover:border-cyan-500/30 text-slate-300 hover:bg-slate-800/60'
+      }`;
+
       chip.innerHTML = `
-        <div class="chip-meta">
-          <span class="chip-name">${escapeHtml(item.name)}</span>
-          <span class="chip-type">${item.type} &bull; +${item.delta} Autonomy</span>
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-lg bg-slate-800 flex items-center justify-center text-cyan-400">
+            <i data-lucide="${item.icon || 'puzzle'}" class="w-3.5 h-3.5"></i>
+          </div>
+          <div>
+            <div class="text-xs font-semibold text-white tracking-tight">${escapeHtml(item.name)}</div>
+            <div class="text-[10px] text-slate-400 font-mono">${item.type} &bull; +${item.delta} Autonomy</div>
+          </div>
         </div>
-        <span class="chip-add-icon">${isSnapped ? '✓' : '+'}</span>
+        <div class="w-6 h-6 rounded-md flex items-center justify-center text-xs font-mono ${
+          isSnapped ? 'bg-cyan-500/20 text-cyan-400' : 'bg-slate-800 text-slate-400'
+        }">
+          ${isSnapped ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : '<i data-lucide="plus" class="w-3.5 h-3.5"></i>'}
+        </div>
       `;
 
       if (!isSnapped) {
@@ -424,9 +475,10 @@ function initAgentRigBuilder() {
     slots.innerHTML = '';
     if (snappedIds.size === 0) {
       slots.innerHTML = `
-        <div class="slot-placeholder">
-          <div>Empty Chassis Slots</div>
-          <div style="margin-top: 6px; font-size: 0.75rem;">Click capabilities from the left shelf to snap them into KuroAgent!</div>
+        <div class="col-span-full p-8 rounded-xl border border-dashed border-white/10 text-center text-slate-400">
+          <i data-lucide="cpu" class="w-8 h-8 text-slate-500 mx-auto mb-2"></i>
+          <div class="font-medium text-slate-300 text-sm">Chassis Slots Empty</div>
+          <div class="text-xs text-slate-500 mt-1">Click capabilities on the left shelf to snap them into your active KuroAgent rig!</div>
         </div>
       `;
     } else {
@@ -435,16 +487,23 @@ function initAgentRigBuilder() {
         if (!item) return;
 
         const card = document.createElement('div');
-        card.className = 'rig-slot-card';
+        card.className = 'p-3.5 rounded-xl bg-slate-900/90 border border-cyan-500/30 flex flex-col justify-between shadow-lg shadow-cyan-950/10 hover:border-cyan-400/50 transition-all';
         card.innerHTML = `
-          <div class="slot-card-top">
-            <span class="slot-card-name">${escapeHtml(item.name)}</span>
-            <button class="slot-remove-btn" title="Unsnap capability" data-id="${item.id}">&times;</button>
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-xs font-bold text-white tracking-tight flex items-center gap-1.5">
+                <i data-lucide="${item.icon || 'puzzle'}" class="w-3.5 h-3.5 text-cyan-400"></i>
+                ${escapeHtml(item.name)}
+              </span>
+              <button class="slot-remove-btn text-slate-400 hover:text-rose-400 p-1" title="Unsnap capability" data-id="${item.id}">
+                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            <p class="text-[11px] text-slate-400 leading-snug mb-3">${escapeHtml(item.desc)}</p>
           </div>
-          <p class="slot-card-desc">${escapeHtml(item.desc)}</p>
-          <div class="slot-card-foot">
-            <span>[SLOT ACTIVE]</span>
-            <span>+${item.delta} LVL</span>
+          <div class="flex items-center justify-between pt-2 border-t border-white/[0.06] text-[10px] font-mono">
+            <span class="text-cyan-400 font-semibold">[ACTIVE SLOT]</span>
+            <span class="text-slate-300">+${item.delta} LVL</span>
           </div>
         `;
 
@@ -470,40 +529,49 @@ function initAgentRigBuilder() {
     if (metricSecurity) {
       if (snappedIds.has('ast_guard') || snappedIds.has('dpapi_vault')) {
         metricSecurity.textContent = 'Sandboxed (Safe)';
-        metricSecurity.className = 'metric-val green';
+        metricSecurity.className = 'text-xs font-mono font-bold text-emerald-400';
       } else {
         metricSecurity.textContent = 'Elevated Privileges';
-        metricSecurity.className = 'metric-val';
+        metricSecurity.className = 'text-xs font-mono font-bold text-amber-400';
       }
     }
 
     // 4. Generate CLI launch command
+    let cmd = 'kuro';
     const flags = [];
     snappedIds.forEach((id) => {
       const item = RIG_SHELF_DATA.find((x) => x.id === id);
       if (item && item.flag) flags.push(item.flag);
     });
+    if (flags.length > 0) {
+      cmd += ' ' + flags.join(' ');
+    }
+    if (generatedCmd) generatedCmd.textContent = cmd;
 
-    const cmdStr = flags.length ? `kuro ${flags.join(' ')}` : 'kuro';
-    if (generatedCmd) generatedCmd.textContent = cmdStr;
+    refreshIcons();
   }
 
   if (clearBtn) {
     clearBtn.addEventListener('click', () => {
       snappedIds.clear();
-      playCyberSound('click');
+      playCyberSound('fault');
       update();
     });
   }
 
   if (copyCmdBtn) {
     copyCmdBtn.addEventListener('click', () => {
-      const txt = generatedCmd.textContent;
-      copyText(txt);
-      copyCmdBtn.textContent = 'Copied!';
-      setTimeout(() => {
-        copyCmdBtn.textContent = 'Copy Launch Command';
-      }, 1500);
+      if (generatedCmd) {
+        copyText(generatedCmd.textContent);
+        playCyberSound('click');
+        const oldText = copyCmdBtn.innerHTML;
+        copyCmdBtn.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5"></i> Copied!';
+        refreshIcons();
+        setTimeout(() => {
+          copyCmdBtn.innerHTML = oldText;
+          refreshIcons();
+        }, 1500);
+      }
     });
   }
 
@@ -511,42 +579,42 @@ function initAgentRigBuilder() {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   6. Live Self-Healing Breakdown Demo (#healing-lab)
+   6. Live Breakdown & Self-Healing Simulator
    ───────────────────────────────────────────────────────────── */
-const HEALING_SCENARIOS = {
+const SCENARIOS = {
   missing_dep: {
-    title: 'Missing Package Injection',
+    title: 'Missing Package Error',
+    sub: 'ModuleNotFoundError: No module named jwt',
     steps: [
-      { text: '[STRESS TEST] Injecting python task requiring unregistered module `PyJWT`...', cls: 'dim', sound: 'beep', delay: 200 },
-      { text: '[RUNTIME FAULT] ModuleNotFoundError: No module named \'jwt\' (Exit Code 1)', cls: 'fault', sound: 'fault', delay: 700 },
-      { text: '[KURO DIAGNOSTICS] Traceback classified: MISSING_DEPENDENCY -> Target: \'PyJWT\'', cls: 'diag', sound: 'beep', delay: 1300 },
-      { text: '[AST SAFETY] Verifying PyPI integrity and virtual environment sandbox...', cls: 'dim', sound: 'beep', delay: 1900 },
-      { text: '[AUTONOMOUS REPAIR] Executing: `pip install PyJWT` in isolated sandbox...', cls: 'patch', sound: 'heal', delay: 2600 },
-      { text: '[VERIFICATION] Re-executing failed payload with newly registered library...', cls: 'dim', sound: 'beep', delay: 3300 },
-      { text: '✔ [SELF-HEALING COMPLETE] Process restored with Exit Code 0 in 1.42s (0 human intervention)', cls: 'success', sound: 'heal', delay: 4100 },
+      { type: 'err', text: '[Runtime Fault] ModuleNotFoundError: No module named "jwt" detected in tools/auth_token.py' },
+      { type: 'warn', text: '[Diagnostician] Kuro AST Engine classified fault: DEPENDENCY_MISSING' },
+      { type: 'info', text: '[Rollback Engine] Creating atomic Git checkpoint: pre_heal_dep_checkpoint_0x9f1a' },
+      { type: 'info', text: '[Auto-Repair] Resolving PyPI dependency: pip install pyjwt cryptography' },
+      { type: 'ok', text: '[Sandbox Verify] Test suite re-run: 14 tests PASSED (0 failures)' },
+      { type: 'ok', text: '[Autonomous Recovery] State healed successfully in 1.42s &bull; Resuming execution loop.' },
     ],
   },
   syntax_error: {
-    title: 'Syntax & AST Anomaly Injection',
+    title: 'Syntax & AST Bug',
+    sub: 'IndentationError: unexpected indent in tool',
     steps: [
-      { text: '[STRESS TEST] Injecting malformed indentation into tools/json_inspector.py...', cls: 'dim', sound: 'beep', delay: 200 },
-      { text: '[RUNTIME FAULT] IndentationError: unexpected indent at line 42 (AST parsing failed)', cls: 'fault', sound: 'fault', delay: 700 },
-      { text: '[KURO DIAGNOSTICS] AST Syntax Guard isolated token misalignment at column index 8', cls: 'diag', sound: 'beep', delay: 1300 },
-      { text: '[GIT CHECKPOINT] Creating atomic rollback branch `heal/ast-auto-fix-42`...', cls: 'dim', sound: 'beep', delay: 1900 },
-      { text: '[AUTONOMOUS REPAIR] Synthesizing AST normalization patch & re-indenting block...', cls: 'patch', sound: 'heal', delay: 2600 },
-      { text: '[LINTER VALIDATION] ast.parse() passed without errors. Pytest execution: 12/12 PASS', cls: 'dim', sound: 'beep', delay: 3300 },
-      { text: '✔ [SELF-HEALING COMPLETE] Tool source successfully auto-repaired and merged!', cls: 'success', sound: 'heal', delay: 4100 },
+      { type: 'err', text: '[AST Parser Fault] IndentationError at tools/calculator.py line 42: unexpected indent' },
+      { type: 'warn', text: '[Diagnostician] Kuro AST Engine classified fault: SYNTAX_INDENTATION_PARSE_FAIL' },
+      { type: 'info', text: '[Rollback Engine] Restoring pristine file state from git checkpoint: commit 3a9e201' },
+      { type: 'info', text: '[Code Synthesis] Running AST re-indentation autofix on AST grammar tree' },
+      { type: 'ok', text: '[Sandbox Verify] Syntax tree validated with ast.parse() &bull; Clean syntax tree confirmed' },
+      { type: 'ok', text: '[Autonomous Recovery] Code repaired automatically &bull; Resuming task execution.' },
     ],
   },
   disk_wipe: {
-    title: 'Malicious Command Intercept Injection',
+    title: 'Malicious Code Attempt',
+    sub: 'Dangerous os.system("rmdir /s") intercepted',
     steps: [
-      { text: '[STRESS TEST] Injecting untrusted prompt attempting `os.system("rmdir /s /q .")`...', cls: 'dim', sound: 'beep', delay: 200 },
-      { text: '[SECURITY ALARM] AST Safety Gate tripped! Banned syscall detected: `os.system`', cls: 'fault', sound: 'fault', delay: 700 },
-      { text: '[KURO SHIELD] Execution HALTED immediately before syscall reached kernel layer', cls: 'diag', sound: 'beep', delay: 1300 },
-      { text: '[QUARANTINE] Agent sandbox locked. Malicious payload isolated in /quarantine/vault.log', cls: 'patch', sound: 'beep', delay: 2000 },
-      { text: '[STATE ROLLBACK] Worktree verified intact against SHA-256 Git root checkpoint', cls: 'dim', sound: 'beep', delay: 2700 },
-      { text: '✔ [SAFETY GUARD ACTIVE] Threat neutralized. Zero files altered or lost.', cls: 'success', sound: 'heal', delay: 3500 },
+      { type: 'err', text: '[Security Alert] Untrusted script requested: os.system("rmdir /s /q C:\\Users\\...")' },
+      { type: 'warn', text: '[AST Sandbox] Forbidden AST Token detected: Call(os.system) with destructive shell args' },
+      { type: 'warn', text: '[Policy Enforcer] Execution blocked immediately. Violation code: SEC_AST_DANGEROUS_CALL' },
+      { type: 'info', text: '[Telemetry Dispatch] Incident logged in security ledger &bull; Agent session isolated' },
+      { type: 'ok', text: '[System Protected] Zero filesystem modifications permitted &bull; Host integrity preserved.' },
     ],
   },
 };
@@ -559,18 +627,22 @@ function initSelfHealingLab() {
 
   if (!triggerBtn || !logBox) return;
 
-  let activeScenarioKey = 'missing_dep';
+  let activeScenario = 'missing_dep';
   let isRunning = false;
 
   scenarioBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       if (isRunning) return;
-      scenarioBtns.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeScenarioKey = btn.getAttribute('data-scenario') || 'missing_dep';
-      playCyberSound('click');
-      phaseText.innerHTML = `STATUS: READY &bull; SCENARIO [${activeScenarioKey.toUpperCase()}]`;
-      logBox.innerHTML = `<div class="heal-line dim">Scenario selected: <strong>${HEALING_SCENARIOS[activeScenarioKey].title}</strong>. Click "Inject Fault" to observe Kuro's diagnosis loop...</div>`;
+      scenarioBtns.forEach((b) => {
+        b.classList.remove('active', 'border-cyan-500/40', 'bg-cyan-950/20');
+        b.classList.add('border-white/[0.08]', 'bg-slate-900/60');
+      });
+      btn.classList.add('active', 'border-cyan-500/40', 'bg-cyan-950/20');
+      btn.classList.remove('border-white/[0.08]', 'bg-slate-900/60');
+
+      activeScenario = btn.getAttribute('data-scenario') || 'missing_dep';
+      logBox.innerHTML = `<div class="heal-line dim">Scenario selected: <strong class="text-white">${SCENARIOS[activeScenario].title}</strong>. Click "Inject Fault" below to trigger Kuro's diagnosis loop...</div>`;
+      if (phaseText) phaseText.innerHTML = '<span class="text-cyan-400 font-semibold font-mono">STATUS: IDLE &bull; READY FOR STRESS TEST</span>';
     });
   });
 
@@ -578,104 +650,130 @@ function initSelfHealingLab() {
     if (isRunning) return;
     isRunning = true;
     triggerBtn.disabled = true;
-    triggerBtn.textContent = 'Self-Healing in Progress...';
-    phaseText.innerHTML = '<span class="live-dot" style="background: var(--rose);"></span> RUNNING FAULT DIAGNOSIS LOOP...';
+    triggerBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+    playCyberSound('fault');
     logBox.innerHTML = '';
+    if (phaseText) phaseText.innerHTML = '<span class="text-rose-400 font-semibold font-mono animate-pulse">STATUS: FAULT INJECTED &bull; DIAGNOSTIC LOOP RUNNING...</span>';
 
-    const scenario = HEALING_SCENARIOS[activeScenarioKey];
-    scenario.steps.forEach((step, idx) => {
-      setTimeout(() => {
-        const line = document.createElement('div');
-        line.className = `heal-line ${step.cls}`;
-        line.innerHTML = step.text;
-        logBox.appendChild(line);
-        logBox.scrollTop = logBox.scrollHeight;
-        if (step.sound) playCyberSound(step.sound);
+    const steps = SCENARIOS[activeScenario].steps;
+    let stepIndex = 0;
 
-        if (idx === scenario.steps.length - 1) {
-          isRunning = false;
-          triggerBtn.disabled = false;
-          triggerBtn.textContent = 'Inject Fault & Watch Self-Healing';
-          phaseText.innerHTML = '<span class="live-dot" style="background: var(--green);"></span> RECOVERY SUCCESS &bull; SYSTEM STABLE';
-        }
-      }, step.delay);
-    });
+    function nextStep() {
+      if (stepIndex >= steps.length) {
+        isRunning = false;
+        triggerBtn.disabled = false;
+        triggerBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        if (phaseText) phaseText.innerHTML = '<span class="text-emerald-400 font-semibold font-mono">STATUS: FAULT RESOLVED &bull; ALL SYSTEMS RESTORED (100%)</span>';
+        playCyberSound('heal');
+        return;
+      }
+
+      const st = steps[stepIndex];
+      const line = document.createElement('div');
+      line.className = `heal-line ${st.type}`;
+      
+      let icon = 'info';
+      if (st.type === 'err') icon = 'alert-triangle';
+      if (st.type === 'warn') icon = 'alert-circle';
+      if (st.type === 'ok') icon = 'check-circle-2';
+
+      line.innerHTML = `<i data-lucide="${icon}" class="w-3.5 h-3.5 flex-shrink-0 mt-0.5"></i> <span>${st.text}</span>`;
+      logBox.appendChild(line);
+      logBox.scrollTop = logBox.scrollHeight;
+      refreshIcons();
+
+      stepIndex++;
+      setTimeout(nextStep, 550);
+    }
+
+    nextStep();
   });
 }
 
 /* ─────────────────────────────────────────────────────────────
-   7. Capability Market & Store Pieces (Loadable from catalog.json)
+   7. Capability Market & Puzzle Store
    ───────────────────────────────────────────────────────────── */
 const STORE_PIECES_DATA = [
   {
     name: 'json_inspector',
     type: 'tool',
-    desc: 'Fast JSON formatter, syntax validator, and schema inspector.',
-    tags: ['json', 'formatter', 'validator'],
+    desc: 'Fast JSON formatter, syntax validator, and schema validator utility.',
+    tags: ['json', 'format', 'parser', 'utility'],
     filePath: 'tools/json_inspector.py',
+    author: 'kuroLabs-ai',
   },
   {
     name: 'hash_calculator',
     type: 'tool',
     desc: 'Compute MD5, SHA1, SHA256, or SHA512 cryptographic checksums.',
-    tags: ['crypto', 'sha256', 'hash'],
+    tags: ['crypto', 'sha256', 'hash', 'security'],
     filePath: 'tools/hash_calculator.py',
+    author: 'kuroLabs-ai',
   },
   {
     name: 'regex_tester',
     type: 'tool',
     desc: 'Tests regular expressions against candidate text with match groups.',
-    tags: ['regex', 'pattern', 'text'],
+    tags: ['regex', 'pattern', 'text', 'testing'],
     filePath: 'tools/regex_tester.py',
+    author: 'kuroLabs-ai',
   },
   {
     name: 'currency_converter',
     type: 'tool',
     desc: 'Calculates foreign exchange conversions using baseline currency ratios.',
-    tags: ['finance', 'currency', 'math'],
+    tags: ['finance', 'currency', 'math', 'rates'],
     filePath: 'tools/currency_converter.py',
+    author: 'kuroLabs-ai',
   },
   {
     name: 'code_metrics',
     type: 'plugin',
     desc: 'Analyzes Python source files to calculate lines of code and function count.',
-    tags: ['metrics', 'analysis', 'code-quality'],
+    tags: ['metrics', 'analysis', 'code-quality', 'audit'],
     filePath: 'plugins/code_metrics/main.py',
+    author: 'kuroLabs-ai',
   },
   {
     name: 'dependency_guard',
     type: 'plugin',
     desc: 'Scans requirements.txt to flag unpinned or vulnerable packages.',
-    tags: ['dependencies', 'security', 'pip'],
+    tags: ['dependencies', 'security', 'pip', 'safety'],
     filePath: 'plugins/dependency_guard/main.py',
+    author: 'kuroLabs-ai',
   },
   {
     name: 'tdd_refactoring',
     type: 'skill',
     desc: 'Test-Driven Development refactoring routine (Red -> Green -> Refactor -> Verify).',
-    tags: ['tdd', 'testing', 'refactor'],
+    tags: ['tdd', 'testing', 'refactor', 'workflow'],
     filePath: 'skills/tdd_refactoring/SKILL.md',
+    author: 'kuroLabs-ai',
   },
   {
     name: 'security_audit',
     type: 'skill',
     desc: 'Automated security inspection checking AST dangerous calls, secrets, and permissions.',
-    tags: ['security', 'audit', 'ast'],
+    tags: ['security', 'audit', 'ast', 'sandbox'],
     filePath: 'skills/security_audit/SKILL.md',
+    author: 'kuroLabs-ai',
   },
   {
     name: 'gitlab',
     type: 'integration',
     desc: 'GitLab REST API connector for repository inspection, issue tracking, and CI/CD pipelines.',
-    tags: ['gitlab', 'vcs', 'ci-cd'],
+    tags: ['gitlab', 'vcs', 'ci-cd', 'devops'],
     filePath: 'kurocode.integrations.gitlab',
+    author: 'community',
   },
   {
     name: 'slack',
     type: 'integration',
     desc: 'Slack Webhook connector for dispatching operational alerts and team notifications.',
-    tags: ['slack', 'notifications', 'alerts'],
+    tags: ['slack', 'notifications', 'alerts', 'chatops'],
     filePath: 'kurocode.integrations.slack',
+    author: 'community',
   },
 ];
 
@@ -703,6 +801,21 @@ function initStoreMarket() {
     if (elIntegs) elIntegs.textContent = STORE_PIECES_DATA.filter((p) => p.type === 'integration').length;
   }
 
+  function getBadgeConfig(type) {
+    switch (type) {
+      case 'tool':
+        return { label: 'TOOL', icon: 'wrench', cls: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30' };
+      case 'plugin':
+        return { label: 'PLUGIN', icon: 'plug', cls: 'bg-violet-500/10 text-violet-400 border-violet-500/30' };
+      case 'skill':
+        return { label: 'SKILL', icon: 'brain', cls: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' };
+      case 'integration':
+        return { label: 'INTEG', icon: 'network', cls: 'bg-amber-500/10 text-amber-400 border-amber-500/30' };
+      default:
+        return { label: 'PIECE', icon: 'puzzle', cls: 'bg-slate-800 text-slate-300 border-white/10' };
+    }
+  }
+
   function render() {
     grid.innerHTML = '';
     const q = searchQuery.toLowerCase().trim();
@@ -719,30 +832,52 @@ function initStoreMarket() {
     });
 
     if (filtered.length === 0) {
-      grid.innerHTML = `<div class="term-entry dim" style="grid-column: 1/-1; text-align: center; padding: 48px;">No puzzle pieces match '${escapeHtml(q)}'. Click '+ Publish Piece' to add it!</div>`;
+      grid.innerHTML = `
+        <div class="col-span-full py-16 text-center text-slate-400">
+          <i data-lucide="search-x" class="w-10 h-10 mx-auto text-slate-600 mb-2"></i>
+          <p class="text-sm">No puzzle pieces found matching "<span class="text-white">${escapeHtml(q)}</span>".</p>
+          <button id="emptyStatePublishBtn" class="mt-3 px-3.5 py-1.5 text-xs rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20 transition-all font-mono">
+            + Publish this Capability
+          </button>
+        </div>
+      `;
+      const btn = document.getElementById('emptyStatePublishBtn');
+      if (btn) btn.addEventListener('click', () => openModal('publishModal'));
+      refreshIcons();
       return;
     }
 
     filtered.forEach((p) => {
+      const badge = getBadgeConfig(p.type);
       const card = document.createElement('div');
-      card.className = 'piece-card';
+      card.className = 'group rounded-2xl bg-slate-900/60 border border-white/[0.08] hover:border-cyan-500/40 p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:shadow-cyan-950/20';
 
       const tagsHtml = p.tags
-        .map((t) => `<span class="tag-pill">#${escapeHtml(t)}</span>`)
+        .slice(0, 3)
+        .map((t) => `<span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-800/80 border border-white/10 text-slate-400">#${escapeHtml(t)}</span>`)
         .join('');
 
       card.innerHTML = `
-        <div class="piece-top">
-          <span class="piece-badge badge-${p.type}">${p.type.toUpperCase()}</span>
-          <span class="dim" style="font-size: 0.72rem; font-family: var(--font-mono);">${p.filePath.split('/')[0]}</span>
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full border flex items-center gap-1.5 ${badge.cls}">
+              <i data-lucide="${badge.icon}" class="w-3 h-3"></i>
+              ${badge.label}
+            </span>
+            <span class="text-[11px] font-mono text-slate-500">${escapeHtml(p.filePath.split('/')[0])}</span>
+          </div>
+          <h4 class="text-base font-semibold text-white tracking-tight group-hover:text-cyan-300 transition-colors">${escapeHtml(p.name)}</h4>
+          <p class="text-xs text-slate-400 mt-1.5 mb-4 leading-relaxed line-clamp-2">${escapeHtml(p.desc)}</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">${tagsHtml}</div>
         </div>
-        <h4 class="piece-title">${escapeHtml(p.name)}</h4>
-        <p class="piece-desc">${escapeHtml(p.desc)}</p>
-        <div class="piece-tags-row">${tagsHtml}</div>
-        <button class="piece-snap-btn" data-name="${p.name}">
-          <span>/store install ${p.name}</span>
-          <span class="copy-tooltip">Snap</span>
-        </button>
+        <div class="pt-3 border-t border-white/[0.06]">
+          <button class="piece-snap-btn w-full py-2 px-3 text-xs font-mono font-medium rounded-lg bg-slate-800/80 hover:bg-cyan-500/10 text-slate-300 hover:text-cyan-300 border border-white/10 hover:border-cyan-500/30 transition-all flex items-center justify-between group/btn" data-name="${p.name}">
+            <span class="truncate">/store install ${p.name}</span>
+            <span class="copy-tooltip text-[10px] px-1.5 py-0.5 rounded bg-slate-700 text-slate-300 flex items-center gap-1">
+              <i data-lucide="copy" class="w-3 h-3"></i> Snap
+            </span>
+          </button>
+        </div>
       `;
 
       grid.appendChild(card);
@@ -755,23 +890,30 @@ function initStoreMarket() {
         copyText(`/store install ${name}`);
         playCyberSound('click');
         const tip = btn.querySelector('.copy-tooltip');
-        tip.textContent = 'Copied!';
-        tip.style.color = '#03060d';
-        tip.style.background = 'var(--green)';
+        tip.innerHTML = '<i data-lucide="check" class="w-3 h-3 text-emerald-400"></i> Copied!';
+        tip.classList.add('bg-emerald-950/80', 'text-emerald-300', 'border', 'border-emerald-500/40');
+        refreshIcons();
         setTimeout(() => {
-          tip.textContent = 'Snap';
-          tip.style.color = '';
-          tip.style.background = '';
+          tip.innerHTML = '<i data-lucide="copy" class="w-3 h-3"></i> Snap';
+          tip.classList.remove('bg-emerald-950/80', 'text-emerald-300', 'border', 'border-emerald-500/40');
+          refreshIcons();
         }, 1500);
       });
     });
+
+    refreshIcons();
   }
 
   filterPills.forEach((pill) => {
     pill.addEventListener('click', () => {
-      filterPills.forEach((p) => p.classList.remove('active'));
-      pill.classList.add('active');
+      filterPills.forEach((p) => {
+        p.classList.remove('active', 'bg-cyan-500/10', 'text-cyan-300', 'border-cyan-500/30');
+        p.classList.add('text-slate-400', 'border-white/10', 'bg-slate-900/60');
+      });
+      pill.classList.add('active', 'bg-cyan-500/10', 'text-cyan-300', 'border-cyan-500/30');
+      pill.classList.remove('text-slate-400', 'border-white/10', 'bg-slate-900/60');
       currentCategory = pill.getAttribute('data-type') || 'all';
+      playCyberSound('click');
       render();
     });
   });
@@ -908,8 +1050,8 @@ function initTerminalLab() {
 
   presets.forEach((btn) => {
     btn.addEventListener('click', () => {
-      presets.forEach((p) => p.classList.remove('active'));
-      btn.classList.add('active');
+      presets.forEach((p) => p.classList.remove('active', 'border-cyan-500/40', 'bg-cyan-950/20'));
+      btn.classList.add('active', 'border-cyan-500/40', 'bg-cyan-950/20');
       const cmd = btn.getAttribute('data-cmd');
       if (cmd) {
         input.value = cmd;
@@ -920,7 +1062,7 @@ function initTerminalLab() {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   9. 1-Click Environment Setup Generator (#setup-gen)
+   9. 1-Click Environment Setup Generator (#setup-gen & docs.html)
    ───────────────────────────────────────────────────────────── */
 function initSetupGenerator() {
   const osBtns = document.querySelectorAll('#osOptions .ctrl-btn');
@@ -1016,8 +1158,12 @@ function initSetupGenerator() {
   function bindGroup(buttons, callback) {
     buttons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        buttons.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
+        buttons.forEach((b) => {
+          b.classList.remove('active', 'border-cyan-500/40', 'bg-cyan-950/20', 'text-cyan-300');
+          b.classList.add('border-white/[0.08]', 'bg-slate-900/60', 'text-slate-400');
+        });
+        btn.classList.add('active', 'border-cyan-500/40', 'bg-cyan-950/20', 'text-cyan-300');
+        btn.classList.remove('border-white/[0.08]', 'bg-slate-900/60', 'text-slate-400');
         playCyberSound('click');
         callback(btn.getAttribute('data-val'));
         compileConfig();
@@ -1033,9 +1179,12 @@ function initSetupGenerator() {
     copyBtn.addEventListener('click', () => {
       copyText(preview.textContent);
       playCyberSound('click');
-      copyBtn.textContent = 'Copied!';
+      const old = copyBtn.innerHTML;
+      copyBtn.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5"></i> Copied!';
+      refreshIcons();
       setTimeout(() => {
-        copyBtn.textContent = 'Copy Configuration';
+        copyBtn.innerHTML = old;
+        refreshIcons();
       }, 1500);
     });
   }
@@ -1051,6 +1200,7 @@ function openModal(id) {
   if (el) {
     el.classList.add('open');
     playCyberSound('click');
+    refreshIcons();
   }
 }
 
@@ -1104,14 +1254,17 @@ function initModals() {
   const installTabs = document.querySelectorAll('#installTabs .tab-switch');
   installTabs.forEach((tab) => {
     tab.addEventListener('click', () => {
-      installTabs.forEach((t) => t.classList.remove('active'));
-      tab.classList.add('active');
+      installTabs.forEach((t) => {
+        t.classList.remove('active', 'border-cyan-500/40', 'bg-cyan-950/20', 'text-cyan-300');
+        t.classList.add('border-white/[0.08]', 'bg-slate-900/60', 'text-slate-400');
+      });
+      tab.classList.add('active', 'border-cyan-500/40', 'bg-cyan-950/20', 'text-cyan-300');
+      tab.classList.remove('border-white/[0.08]', 'bg-slate-900/60', 'text-slate-400');
       const target = tab.getAttribute('data-tab');
 
-      document.querySelectorAll('.install-tab-content').forEach((c) => c.classList.remove('active'));
-      if (target === 'pip') document.getElementById('tabContentPip').classList.add('active');
-      if (target === 'binary') document.getElementById('tabContentBinary').classList.add('active');
-      if (target === 'source') document.getElementById('tabContentSource').classList.add('active');
+      document.querySelectorAll('.install-tab-content').forEach((c) => c.classList.add('hidden'));
+      const targetEl = document.getElementById(`tabContent${target.charAt(0).toUpperCase() + target.slice(1)}`);
+      if (targetEl) targetEl.classList.remove('hidden');
     });
   });
 
@@ -1149,8 +1302,8 @@ function initModals() {
         },
       };
 
-      jsonCode.textContent = JSON.stringify(blueprint, null, 2);
-      previewBox.style.display = 'block';
+      if (jsonCode) jsonCode.textContent = JSON.stringify(blueprint, null, 2);
+      if (previewBox) previewBox.classList.remove('hidden');
       playCyberSound('heal');
 
       // Also dynamically add to local market list immediately!
@@ -1160,6 +1313,7 @@ function initModals() {
         desc: desc,
         tags: tags,
         filePath: filePath,
+        author: author,
       });
       initStoreMarket();
     });
@@ -1167,12 +1321,17 @@ function initModals() {
 
   if (copyBlueprintBtn) {
     copyBlueprintBtn.addEventListener('click', () => {
-      copyText(jsonCode.textContent);
-      playCyberSound('click');
-      copyBlueprintBtn.textContent = 'Copied!';
-      setTimeout(() => {
-        copyBlueprintBtn.textContent = 'Copy JSON';
-      }, 1500);
+      if (jsonCode) {
+        copyText(jsonCode.textContent);
+        playCyberSound('click');
+        const old = copyBlueprintBtn.innerHTML;
+        copyBlueprintBtn.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5"></i> Copied!';
+        refreshIcons();
+        setTimeout(() => {
+          copyBlueprintBtn.innerHTML = old;
+          refreshIcons();
+        }, 1500);
+      }
     });
   }
 
@@ -1194,8 +1353,8 @@ function initModals() {
         category: category,
         version: version,
         status: status,
-        statusClass: 'status-custom',
-        icon: '📦',
+        statusClass: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
+        iconName: 'box',
         desc: desc,
         bullets: ['Custom community product', 'Integrated with KuroLabs ecosystem'],
         primaryAction: { label: 'Explore', url: repoUrl },
@@ -1207,7 +1366,6 @@ function initModals() {
       addProdForm.reset();
       playCyberSound('heal');
 
-      // Scroll to products
       const pSec = document.getElementById('products');
       if (pSec) pSec.scrollIntoView({ behavior: 'smooth' });
     });
@@ -1225,10 +1383,14 @@ function initClipboardUtils() {
       copyText(text);
       playCyberSound('click');
       const tip = quickCopyBox.querySelector('.copy-tooltip');
-      tip.textContent = 'Copied!';
-      setTimeout(() => {
-        tip.textContent = 'Copy';
-      }, 1500);
+      if (tip) {
+        tip.innerHTML = '<i data-lucide="check" class="w-3 h-3 text-emerald-400"></i> Copied';
+        refreshIcons();
+        setTimeout(() => {
+          tip.innerHTML = '<i data-lucide="copy" class="w-3 h-3"></i> Copy';
+          refreshIcons();
+        }, 1500);
+      }
     });
   }
 
@@ -1238,10 +1400,12 @@ function initClipboardUtils() {
       if (text) {
         copyText(text);
         playCyberSound('click');
-        const old = btn.textContent;
-        btn.textContent = 'Copied!';
+        const old = btn.innerHTML;
+        btn.innerHTML = '<i data-lucide="check" class="w-3 h-3 text-emerald-400"></i> Copied';
+        refreshIcons();
         setTimeout(() => {
-          btn.textContent = old;
+          btn.innerHTML = old;
+          refreshIcons();
         }, 1500);
       }
     });
