@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation & Setup Guide — KuroLabs AI</title>
+  <meta name="description" content="Official documentation for KuroCodeAgent installation, CLI slash commands, Store runtime, and Capability Hub authoring.">
+  <meta name="keywords" content="KuroCodeAgent documentation, KuroLabs setup guide, slash commands, Store runtime, Hub catalog schema">
+  <meta name="author" content="KuroLabs AI">
+  <meta name="theme-color" content="#070909">
+  <link rel="canonical" href="https://kurolabs-ai.github.io/docs/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KuroLabs AI">
+  <meta property="og:url" content="https://kurolabs-ai.github.io/docs/">
+  <meta property="og:title" content="Documentation & Setup Guide — KuroLabs AI">
+  <meta property="og:description" content="Official documentation for KuroCodeAgent installation, CLI slash commands, Store runtime, and Capability Hub authoring.">
+  <meta property="og:image" content="https://kurolabs-ai.github.io/assets/favicon.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Documentation & Setup Guide — KuroLabs AI">
+  <meta name="twitter:description" content="Official documentation for KuroCodeAgent installation, CLI slash commands, Store runtime, and Capability Hub authoring.">
+  <meta name="twitter:image" content="https://kurolabs-ai.github.io/assets/favicon.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: '#070909',
+            surface: { DEFAULT: '#0d1211', hover: '#121a17' },
+            accent: { DEFAULT: '#00e5b0', hover: '#22f5c5' },
+            text: '#f3f6f5',
+            muted: '#9aa9a3',
+            dim: '#5c6a65',
+            border: { DEFAULT: '#24312d', hover: '#384d46' },
+            warning: '#f5c451',
+            danger: '#ff6868'
+          },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+            mono: ['ui-monospace', '"Cascadia Code"', '"JetBrains Mono"', 'SFMono-Regular', '"Segoe UI Mono"', 'Menlo', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body class="bg-bg text-text bg-tech-grid min-h-screen flex flex-col">
+
+  <!-- Navbar Mount -->
+  <div id="navbar-mount"></div>
+
+  <!-- Main Content -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Sticky Sidebar Navigation (Left) -->
+      <aside class="lg:col-span-3">
+        <div class="sticky top-24 space-y-6">
+          
+          <!-- Docs Search -->
+          <div class="relative">
+            <input type="text" id="docs-search" placeholder="Search documentation..." 
+                   class="input-control text-xs pl-8" aria-label="Search docs">
+            <svg class="w-3.5 h-3.5 text-muted absolute left-2.5 top-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+
+          <!-- Navigation Links -->
+          <nav class="space-y-1 text-xs font-mono" aria-label="Documentation Index">
+            <a href="#kurocode-quickstart" class="docs-nav-link block py-1.5 text-muted hover:text-accent transition-colors">
+              1. Quickstart & Setup
+            </a>
+            <a href="#env-config" class="docs-nav-link block py-1.5 text-muted hover:text-accent transition-colors">
+              2. Configuration & Vault
+            </a>
+            <a href="#cli-reference" class="docs-nav-link block py-1.5 text-muted hover:text-accent transition-colors">
+              3. Interactive CLI Commands
+            </a>
+            <a href="#store-runtime" class="docs-nav-link block py-1.5 text-muted hover:text-accent transition-colors">
+              4. The Store Runtime
+            </a>
+            <a href="#hub-architecture" class="docs-nav-link block py-1.5 text-muted hover:text-accent transition-colors">
+              5. Hub Registry & Schema
+            </a>
+            <a href="#authoring-guide" class="docs-nav-link block py-1.5 text-muted hover:text-accent transition-colors">
+              6. Authoring Capabilities
+            </a>
+            <a href="#troubleshooting" class="docs-nav-link block py-1.5 text-muted hover:text-accent transition-colors">
+              7. Troubleshooting & FAQ
+            </a>
+          </nav>
+
+          <!-- Useful Links Box -->
+          <div class="p-4 rounded-lg bg-surface border border-border space-y-2 text-xs">
+            <span class="text-dim font-mono uppercase block text-[10px]">External Repositories</span>
+            <a href="https://github.com/kurolabs-ai/KuroCodeAgent" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline block font-mono">
+              KuroCodeAgent ↗
+            </a>
+            <a href="https://github.com/kurolabs-ai/hub" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline block font-mono">
+              Capability Hub ↗
+            </a>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- Main Docs Content (Right) -->
+      <article class="lg:col-span-9 space-y-16">
+        
+        <!-- Header -->
+        <div class="space-y-3 border-b border-border pb-8">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-xs font-mono text-accent">
+            <span class="w-2 h-2 rounded-full bg-accent"></span>
+            Technical Documentation
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-text">
+            KuroLabs Documentation & Setup
+          </h1>
+          <p class="text-base text-muted leading-relaxed">
+            Complete technical guide for deploying KuroCodeAgent, configuring multi-model API vaults, managing capabilities via the Store runtime, and publishing puzzle pieces to the Capability Hub.
+          </p>
+        </div>
+
+        <!-- Section 1: Quickstart & Setup -->
+        <section id="kurocode-quickstart" class="doc-section space-y-6">
+          <h2 class="text-2xl font-bold text-text flex items-center gap-2">
+            <span class="text-accent font-mono">01.</span> Quickstart & Environment Setup
+          </h2>
+          <p class="text-sm text-muted leading-relaxed">
+            KuroCodeAgent (<code class="text-accent font-mono">kurocode v0.2.0</code>) is a local-first autonomous AI coding agent and desktop system engineer. It requires Python 3.10+ and operates with zero cloud telemetry. When paired with Ollama, it functions 100% offline.
+          </p>
+
+          <div class="code-block-wrapper terminal-window">
+            <div class="terminal-header">
+              <span class="text-xs font-mono text-muted">Installation Commands (Windows / Linux / macOS)</span>
+              <button class="doc-copy-btn text-xs font-mono text-accent hover:underline">Copy</button>
+            </div>
+            <div class="terminal-body">
+              <pre class="text-xs font-mono text-text overflow-x-auto"><code># 1. Clone the repository
+git clone https://github.com/kurolabs-ai/KuroCodeAgent.git
+cd KuroCodeAgent
+
+# 2. Create and activate a Python virtual environment
+python -m venv venv
+
+# On Windows (PowerShell):
+.\venv\Scripts\activate
+
+# On Linux / macOS (bash/zsh):
+source venv/bin/activate
+
+# 3. Install in development mode
+pip install -e .
+
+# 4. Launch KuroCode interactive REPL
+kuro</code></pre>
+            </div>
+          </div>
+
+          <!-- Dual Interface & Standalone Executable Build -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+            <div class="surface-card p-6 space-y-3">
+              <span class="badge badge-tool text-xs">Dual Interface Support</span>
+              <h3 class="text-sm font-bold text-text">CLI REPL & Desktop Assistant</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                KuroCode supports both an interactive terminal REPL (powered by Prompt-Toolkit and Rich) and a multi-modal desktop assistant with voice synthesis (<code class="font-mono text-dim">edge-tts</code>), voice input (<code class="font-mono text-dim">SpeechRecognition</code>), and visual screen capture (<code class="font-mono text-dim">Pillow</code>).
+              </p>
+            </div>
+
+            <div class="surface-card p-6 space-y-3">
+              <span class="badge badge-skill text-xs">Standalone Binary Packaging</span>
+              <h3 class="text-sm font-bold text-text">PyInstaller .exe Build</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Compile KuroCode into a standalone Windows binary with zero external runtime dependencies:
+              </p>
+              <pre class="p-2.5 rounded bg-bg border border-border text-[11px] font-mono text-accent overflow-x-auto"><code>python build/build_exe.py --mode console
+# Binary generated at: dist/KuroConsole/KuroConsole.exe</code></pre>
+            </div>
+          </div>
+
+          <!-- Test Suite Coverage -->
+          <div class="surface-card p-5 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono text-accent font-bold">Comprehensive Test Suite (60/60 Passing)</span>
+              <span class="badge badge-status-available text-[10px]">100% Pass Rate</span>
+            </div>
+            <p class="text-xs text-muted">
+              Execute unit and integration tests across healing, evolution, store sync, and AST safety:
+            </p>
+            <pre class="p-2.5 rounded bg-bg border border-border text-xs font-mono text-text overflow-x-auto"><code>python -m pytest tests -v</code></pre>
+          </div>
+        </section>
+
+        <!-- Section 2: Configuration & Encrypted Vault -->
+        <section id="env-config" class="doc-section space-y-6">
+          <h2 class="text-2xl font-bold text-text flex items-center gap-2">
+            <span class="text-accent font-mono">02.</span> Configuration & Encrypted Vault
+          </h2>
+          <p class="text-sm text-muted leading-relaxed">
+            KuroCode supports multi-model task routing across Google Gemini, Groq (Llama-3), OpenRouter, and local offline Ollama endpoints. Credentials can be secured using the zero-footprint hardware vault or a standard <code class="font-mono">.env</code> file.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="surface-card p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="text-base font-bold text-text">Method A: Hardware Vault</h3>
+                <span class="badge badge-status-available text-[10px]">Zero Disk Footprint</span>
+              </div>
+              <p class="text-xs text-muted">
+                Encrypts secrets using Windows DPAPI (or OS keyring on Linux/macOS) directly inside the running terminal:
+              </p>
+              <pre class="p-3 rounded bg-bg border border-border text-xs font-mono text-accent overflow-x-auto"><code>kuro &gt; /vault set GEMINI_API_KEY AIzaSy... "Google Gemini API Key"
+kuro &gt; /vault set GROQ_API_KEY gsk_... "Groq Cloud Key"
+kuro &gt; /vault list
+kuro &gt; /vault migrate</code></pre>
+            </div>
+
+            <div class="surface-card p-6 space-y-3">
+              <h3 class="text-base font-bold text-text">Method B: Local .env File</h3>
+              <p class="text-xs text-muted">
+                Create a <code>.env</code> file in the project directory using template variables:
+              </p>
+              <pre class="p-3 rounded bg-bg border border-border text-xs font-mono text-text overflow-x-auto"><code>KURO_PROVIDER=gemini
+GEMINI_API_KEY=your_gemini_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
+OLLAMA_BASE_URL=http://localhost:11434/v1
+KURO_SAFE_MODE=true</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Interactive CLI Slash Commands Reference -->
+        <section id="cli-reference" class="doc-section space-y-6">
+          <h2 class="text-2xl font-bold text-text flex items-center gap-2">
+            <span class="text-accent font-mono">03.</span> Interactive CLI Commands Reference
+          </h2>
+          <p class="text-sm text-muted leading-relaxed">
+            KuroCode features an extensive suite of slash commands for capability management, self-healing, evolutionary improvement, security gates, and system telemetry:
+          </p>
+
+          <div class="surface-card p-6 overflow-x-auto">
+            <table class="w-full text-left text-xs font-mono border-collapse">
+              <thead>
+                <tr class="border-b border-border text-muted">
+                  <th class="py-2.5 px-3">Command</th>
+                  <th class="py-2.5 px-3">Category</th>
+                  <th class="py-2.5 px-3">Description</th>
+                  <th class="py-2.5 px-3">Example</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border/60">
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/store update</td>
+                  <td class="py-2.5 px-3 text-dim">Store</td>
+                  <td class="py-2.5 px-3 text-text">Sync latest capabilities from kurolabs-ai/hub</td>
+                  <td class="py-2.5 px-3 text-muted">/store update</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/store list</td>
+                  <td class="py-2.5 px-3 text-dim">Store</td>
+                  <td class="py-2.5 px-3 text-text">Browse all available & installed puzzle pieces</td>
+                  <td class="py-2.5 px-3 text-muted">/store list</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/store search &lt;q&gt;</td>
+                  <td class="py-2.5 px-3 text-dim">Store</td>
+                  <td class="py-2.5 px-3 text-text">Search capabilities by keyword or tag</td>
+                  <td class="py-2.5 px-3 text-muted">/store search crypto</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/store install &lt;t|url&gt;</td>
+                  <td class="py-2.5 px-3 text-dim">Store</td>
+                  <td class="py-2.5 px-3 text-text">1-click hot-install tool, plugin, skill, or web URL</td>
+                  <td class="py-2.5 px-3 text-muted">/store install regex_tester</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/store remove &lt;n&gt;</td>
+                  <td class="py-2.5 px-3 text-dim">Store</td>
+                  <td class="py-2.5 px-3 text-text">Unplug and delete an installed puzzle piece</td>
+                  <td class="py-2.5 px-3 text-muted">/store remove regex_tester</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/store info &lt;n&gt;</td>
+                  <td class="py-2.5 px-3 text-dim">Store</td>
+                  <td class="py-2.5 px-3 text-text">Inspect metadata and blueprint for a piece</td>
+                  <td class="py-2.5 px-3 text-muted">/store info json_inspector</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/tool create &lt;n&gt; &lt;c&gt;</td>
+                  <td class="py-2.5 px-3 text-dim">Tools</td>
+                  <td class="py-2.5 px-3 text-text">Dynamically synthesize a Python tool</td>
+                  <td class="py-2.5 px-3 text-muted">/tool create echo def echo(x): return x</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/heal status</td>
+                  <td class="py-2.5 px-3 text-dim">Healing</td>
+                  <td class="py-2.5 px-3 text-text">View active self-healing diagnosis status</td>
+                  <td class="py-2.5 px-3 text-muted">/heal status</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/heal repair &lt;tool&gt;</td>
+                  <td class="py-2.5 px-3 text-dim">Healing</td>
+                  <td class="py-2.5 px-3 text-text">Trigger automatic tool error diagnosis & repair</td>
+                  <td class="py-2.5 px-3 text-muted">/heal repair json_inspector</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/evolve propose</td>
+                  <td class="py-2.5 px-3 text-dim">Evolution</td>
+                  <td class="py-2.5 px-3 text-text">Assess performance bottlenecks and propose upgrades</td>
+                  <td class="py-2.5 px-3 text-muted">/evolve propose</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/evolve history</td>
+                  <td class="py-2.5 px-3 text-dim">Evolution</td>
+                  <td class="py-2.5 px-3 text-text">View immutable self-improvement ledger</td>
+                  <td class="py-2.5 px-3 text-muted">/evolve history</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/vault list</td>
+                  <td class="py-2.5 px-3 text-dim">Security</td>
+                  <td class="py-2.5 px-3 text-text">View encrypted credentials in DPAPI vault</td>
+                  <td class="py-2.5 px-3 text-muted">/vault list</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/vault set &lt;k&gt; &lt;v&gt;</td>
+                  <td class="py-2.5 px-3 text-dim">Security</td>
+                  <td class="py-2.5 px-3 text-text">Encrypt and store sensitive credential</td>
+                  <td class="py-2.5 px-3 text-muted">/vault set GROQ_KEY gsk_...</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/safe &lt;on|off&gt;</td>
+                  <td class="py-2.5 px-3 text-dim">Security</td>
+                  <td class="py-2.5 px-3 text-text">Toggle Safe Mode confirmation gate</td>
+                  <td class="py-2.5 px-3 text-muted">/safe off</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/system</td>
+                  <td class="py-2.5 px-3 text-dim">Telemetry</td>
+                  <td class="py-2.5 px-3 text-text">Inspect live CPU, RAM, Disk, and OS metrics</td>
+                  <td class="py-2.5 px-3 text-muted">/system</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/top</td>
+                  <td class="py-2.5 px-3 text-dim">Telemetry</td>
+                  <td class="py-2.5 px-3 text-text">List top running processes and memory usage</td>
+                  <td class="py-2.5 px-3 text-muted">/top</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/screen</td>
+                  <td class="py-2.5 px-3 text-dim">Vision</td>
+                  <td class="py-2.5 px-3 text-text">Capture desktop screenshot for AI visual analysis</td>
+                  <td class="py-2.5 px-3 text-muted">/screen</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/see &lt;path&gt;</td>
+                  <td class="py-2.5 px-3 text-dim">Vision</td>
+                  <td class="py-2.5 px-3 text-text">Analyze image file with multi-modal LLM</td>
+                  <td class="py-2.5 px-3 text-muted">/see chart.png explain trends</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/search &lt;query&gt;</td>
+                  <td class="py-2.5 px-3 text-dim">Web</td>
+                  <td class="py-2.5 px-3 text-text">Live web search via DuckDuckGo / Wikipedia</td>
+                  <td class="py-2.5 px-3 text-muted">/search Python 3.13 features</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/browse &lt;url&gt;</td>
+                  <td class="py-2.5 px-3 text-dim">Web</td>
+                  <td class="py-2.5 px-3 text-text">Headless web browser automation & scraping</td>
+                  <td class="py-2.5 px-3 text-muted">/browse https://news.ycombinator.com</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/plan &lt;goal&gt;</td>
+                  <td class="py-2.5 px-3 text-dim">Planning</td>
+                  <td class="py-2.5 px-3 text-text">Generate hierarchical task execution plan</td>
+                  <td class="py-2.5 px-3 text-muted">/plan Refactor database layer</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/undo</td>
+                  <td class="py-2.5 px-3 text-dim">Rollback</td>
+                  <td class="py-2.5 px-3 text-text">Roll back last automated file modifications</td>
+                  <td class="py-2.5 px-3 text-muted">/undo</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/clear</td>
+                  <td class="py-2.5 px-3 text-dim">Memory</td>
+                  <td class="py-2.5 px-3 text-text">Reset active conversation memory buffer</td>
+                  <td class="py-2.5 px-3 text-muted">/clear</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 text-accent font-bold">/help</td>
+                  <td class="py-2.5 px-3 text-dim">Help</td>
+                  <td class="py-2.5 px-3 text-text">Display complete CLI command reference</td>
+                  <td class="py-2.5 px-3 text-muted">/help</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Section 4: The Store Runtime Architecture -->
+        <section id="store-runtime" class="doc-section space-y-6">
+          <h2 class="text-2xl font-bold text-text flex items-center gap-2">
+            <span class="text-accent font-mono">04.</span> The Store Runtime Architecture
+          </h2>
+          <p class="text-sm text-muted leading-relaxed">
+            The Store engine (<code class="text-accent font-mono">src/kurocode/store/manager.py</code>) is the internal subsystem inside KuroCodeAgent responsible for discovering, downloading, validating, and hot-registering capabilities at runtime.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="surface-card p-6 space-y-3">
+              <h4 class="text-sm font-bold text-text font-mono">Core Store Responsibilities</h4>
+              <ul class="space-y-2 text-xs text-muted list-disc list-inside leading-relaxed">
+                <li><strong>Remote Sync:</strong> Fetches and parses <code>catalog.json</code> from <code>kurolabs-ai/hub</code> via urllib.</li>
+                <li><strong>Pre-Execution AST Inspection:</strong> All Python files downloaded from URLs are scanned by <code>sandbox_guard</code> before execution.</li>
+                <li><strong>Hot-Reloading:</strong> Registers new callables directly into the active ReAct tool registry without restarting the session.</li>
+                <li><strong>URL Installation:</strong> Supports direct installation from arbitrary raw GitHub or web URLs via <code>/store install &lt;url&gt;</code>.</li>
+              </ul>
+            </div>
+
+            <div class="surface-card p-6 space-y-3">
+              <h4 class="text-sm font-bold text-text font-mono">Store Execution Lifecycle</h4>
+              <ol class="space-y-2 text-xs text-muted list-decimal list-inside leading-relaxed">
+                <li>User executes <code>/store install &lt;name&gt;</code> in REPL.</li>
+                <li>StoreManager resolves item from in-memory catalog or raw Hub path.</li>
+                <li>Payload is parsed (Tool, Plugin, Skill, or Integration).</li>
+                <li>AST safety gate verifies signature and calls.</li>
+                <li>Item is registered and marked <code>installed: true</code> in local SQLite/JSON ledger.</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Capability Hub Registry & Schema -->
+        <section id="hub-architecture" class="doc-section space-y-6">
+          <h2 class="text-2xl font-bold text-text flex items-center gap-2">
+            <span class="text-accent font-mono">05.</span> Capability Hub Registry & Schema Reference
+          </h2>
+          <p class="text-sm text-muted leading-relaxed">
+            The official community registry (<a href="https://github.com/kurolabs-ai/hub" class="text-accent underline" target="_blank">kurolabs-ai/hub</a>) maintains the decentralized capability catalog. Standalone source files live in <code class="font-mono text-dim">tools/</code>, <code class="font-mono text-dim">plugins/</code>, and <code class="font-mono text-dim">skills/</code>.
+          </p>
+
+          <!-- Schema Table -->
+          <div class="surface-card p-6 overflow-x-auto space-y-4">
+            <h4 class="text-sm font-bold text-text font-mono">catalog.json Schema Specification</h4>
+            <table class="w-full text-left text-xs font-mono border-collapse">
+              <thead>
+                <tr class="border-b border-border text-muted">
+                  <th class="py-2 px-3">Field</th>
+                  <th class="py-2 px-3">Type</th>
+                  <th class="py-2 px-3">Required</th>
+                  <th class="py-2 px-3">Description</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border/60">
+                <tr>
+                  <td class="py-2 px-3 text-accent font-bold">id</td>
+                  <td class="py-2 px-3 text-dim">string</td>
+                  <td class="py-2 px-3 text-warning">Yes</td>
+                  <td class="py-2 px-3 text-text">Unique ID prefixed by type (e.g. <code>tool_hash_calculator</code>, <code>skill_tdd_refactoring</code>)</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 text-accent font-bold">name</td>
+                  <td class="py-2 px-3 text-dim">string</td>
+                  <td class="py-2 px-3 text-warning">Yes</td>
+                  <td class="py-2 px-3 text-text">Human-readable identifier used for <code>/store install &lt;name&gt;</code></td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 text-accent font-bold">item_type</td>
+                  <td class="py-2 px-3 text-dim">string</td>
+                  <td class="py-2 px-3 text-warning">Yes</td>
+                  <td class="py-2 px-3 text-text">One of: <code>"tool"</code>, <code>"plugin"</code>, <code>"skill"</code>, <code>"integration"</code></td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 text-accent font-bold">description</td>
+                  <td class="py-2 px-3 text-dim">string</td>
+                  <td class="py-2 px-3 text-warning">Yes</td>
+                  <td class="py-2 px-3 text-text">Brief description of capabilities and behavior</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 text-accent font-bold">version</td>
+                  <td class="py-2 px-3 text-dim">string</td>
+                  <td class="py-2 px-3 text-warning">Yes</td>
+                  <td class="py-2 px-3 text-text">Semantic version string (e.g. <code>"1.0.0"</code>)</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 text-accent font-bold">author</td>
+                  <td class="py-2 px-3 text-dim">string</td>
+                  <td class="py-2 px-3 text-warning">Yes</td>
+                  <td class="py-2 px-3 text-text">GitHub username or team organization</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 text-accent font-bold">tags</td>
+                  <td class="py-2 px-3 text-dim">string[]</td>
+                  <td class="py-2 px-3 text-warning">Yes</td>
+                  <td class="py-2 px-3 text-text">Search keywords for <code>/store search &lt;query&gt;</code></td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 text-accent font-bold">file_path</td>
+                  <td class="py-2 px-3 text-dim">string</td>
+                  <td class="py-2 px-3 text-muted">Optional</td>
+                  <td class="py-2 px-3 text-text">Relative path from repo root (e.g. <code>tools/my_tool.py</code>)</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 text-accent font-bold">payload</td>
+                  <td class="py-2 px-3 text-dim">object</td>
+                  <td class="py-2 px-3 text-warning">Yes</td>
+                  <td class="py-2 px-3 text-text">Type-specific metadata (<code>entrypoint</code>, <code>manifest_path</code>, <code>steps</code>, <code>connector_module</code>, <code>required_env</code>)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Code Example: Multi-type schema records -->
+          <div class="code-block-wrapper terminal-window">
+            <div class="terminal-header">
+              <span class="text-xs font-mono text-muted">Example catalog.json Entries (Tools, Plugins, Skills, Integrations)</span>
+              <button class="doc-copy-btn text-xs font-mono text-accent hover:underline">Copy</button>
+            </div>
+            <div class="terminal-body">
+              <pre class="text-xs font-mono text-text overflow-x-auto"><code>[
+  {
+    "id": "tool_json_inspector",
+    "name": "json_inspector",
+    "item_type": "tool",
+    "description": "Fast JSON formatter, syntax validator, and schema inspector.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": ["json", "formatting", "parser", "utility"],
+    "file_path": "tools/json_inspector.py",
+    "payload": {
+      "entrypoint": "json_inspector"
+    }
+  },
+  {
+    "id": "plugin_code_metrics",
+    "name": "code_metrics",
+    "item_type": "plugin",
+    "description": "Analyzes Python source files to calculate lines of code and function count.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": ["metrics", "analysis", "code-quality"],
+    "file_path": "plugins/code_metrics/main.py",
+    "payload": {
+      "manifest_path": "plugins/code_metrics/plugin.json"
+    }
+  },
+  {
+    "id": "skill_tdd_refactoring",
+    "name": "tdd_refactoring",
+    "item_type": "skill",
+    "description": "Test-Driven Development refactoring routine (Red -> Green -> Refactor -> Verify).",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": ["tdd", "testing", "refactor", "workflow"],
+    "file_path": "skills/tdd_refactoring/SKILL.md",
+    "payload": {
+      "steps": [
+        "Write failing unit test.",
+        "Make minimal change to pass.",
+        "Refactor cleanly.",
+        "Verify with full test suite."
+      ]
+    }
+  },
+  {
+    "id": "integration_gitlab",
+    "name": "gitlab",
+    "item_type": "integration",
+    "description": "GitLab REST API connector for repository inspection, issue tracking, and CI/CD pipelines.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": ["gitlab", "vcs", "ci-cd", "devops"],
+    "payload": {
+      "connector_module": "kurocode.integrations.gitlab",
+      "required_env": ["GITLAB_TOKEN", "GITLAB_URL"]
+    }
+  }
+]</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: Authoring & Contributing Guide -->
+        <section id="authoring-guide" class="doc-section space-y-6">
+          <h2 class="text-2xl font-bold text-text flex items-center gap-2">
+            <span class="text-accent font-mono">06.</span> Authoring & Contributing Capabilities
+          </h2>
+          <p class="text-sm text-muted leading-relaxed">
+            Follow the standardized 5-step contribution workflow from <a href="https://github.com/kurolabs-ai/hub" class="text-accent underline" target="_blank">kurolabs-ai/hub</a> to publish your capability:
+          </p>
+
+          <!-- Contribution Workflow Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="surface-card p-5 space-y-3">
+              <span class="badge badge-tool">Option A: Python Tool</span>
+              <h4 class="text-sm font-bold text-text">tools/&lt;name&gt;.py</h4>
+              <p class="text-xs text-muted leading-relaxed">
+                Self-contained Python module returning a dictionary:
+              </p>
+              <pre class="p-2 rounded bg-bg border border-border text-[11px] font-mono text-accent overflow-x-auto"><code>def my_tool(arg: str) -&gt; dict:
+    try:
+        res = compute(arg)
+        return {"success": True, "data": res}
+    except Exception as e:
+        return {"success": False, "error": str(e)}</code></pre>
+            </div>
+
+            <div class="surface-card p-5 space-y-3">
+              <span class="badge badge-plugin">Option B: Modular Plugin</span>
+              <h4 class="text-sm font-bold text-text">plugins/&lt;name&gt;/</h4>
+              <p class="text-xs text-muted leading-relaxed">
+                Package containing <code>plugin.json</code> manifest and <code>main.py</code>:
+              </p>
+              <pre class="p-2 rounded bg-bg border border-border text-[11px] font-mono text-text overflow-x-auto"><code>{
+  "name": "my_plugin",
+  "version": "1.0.0",
+  "description": "Custom plugin",
+  "entrypoint": "main.py"
+}</code></pre>
+            </div>
+
+            <div class="surface-card p-5 space-y-3">
+              <span class="badge badge-skill">Option C: Procedural Skill</span>
+              <h4 class="text-sm font-bold text-text">skills/&lt;name&gt;/SKILL.md</h4>
+              <p class="text-xs text-muted leading-relaxed">
+                Markdown procedure with YAML frontmatter:
+              </p>
+              <pre class="p-2 rounded bg-bg border border-border text-[11px] font-mono text-warning overflow-x-auto"><code>---
+name: my_routine
+version: 1.0.0
+description: Routine
+author: YourUsername
+tags: [workflow]
+---
+# Routine Steps...</code></pre>
+            </div>
+          </div>
+
+          <!-- Step-by-step PR workflow -->
+          <div class="p-6 rounded-lg bg-surface border border-border text-xs text-muted space-y-4">
+            <h4 class="text-sm font-bold text-text font-mono">5-Step Pull Request Workflow</h4>
+            <ol class="space-y-2 list-decimal list-inside font-mono">
+              <li><strong class="text-text">Fork &amp; Clone:</strong> <code>git clone https://github.com/&lt;your-user&gt;/hub.git</code></li>
+              <li><strong class="text-text">Create Branch:</strong> <code>git checkout -b feat/add-&lt;capability-name&gt;</code></li>
+              <li><strong class="text-text">Author Capability:</strong> Add file in <code>tools/</code>, <code>plugins/</code>, or <code>skills/</code>.</li>
+              <li><strong class="text-text">Update catalog.json:</strong> Append entry matching the schema above.</li>
+              <li><strong class="text-text">Open PR:</strong> Submit PR to <code>kurolabs-ai/hub:main</code>. Once merged, it is immediately discoverable in KuroCode!</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- Section 7: Troubleshooting & FAQ -->
+        <section id="troubleshooting" class="doc-section space-y-6">
+          <h2 class="text-2xl font-bold text-text flex items-center gap-2">
+            <span class="text-accent font-mono">07.</span> Troubleshooting & Frequently Asked Questions
+          </h2>
+
+          <div class="space-y-4 text-xs">
+            <div class="surface-card p-5 space-y-2">
+              <h4 class="text-sm font-bold text-text">Q: Can I use KuroCodeAgent without an internet connection?</h4>
+              <p class="text-muted leading-relaxed">
+                Yes. Set <code>KURO_PROVIDER=ollama</code> and configure your local Ollama endpoint (e.g. <code>http://localhost:11434/v1</code>). All AST parsing, self-healing diagnostics, and code execution run 100% locally with zero external network calls.
+              </p>
+            </div>
+
+            <div class="surface-card p-5 space-y-2">
+              <h4 class="text-sm font-bold text-text">Q: How does the AST Safety Sandbox protect my operating system?</h4>
+              <p class="text-muted leading-relaxed">
+                Before executing any Python or shell code, KuroCode parses the Abstract Syntax Tree (<code class="font-mono text-dim">ast.parse</code>) to verify that prohibited calls (such as destructive system formatting, unpinned file wipes, or arbitrary token abuse) are intercepted before kernel execution. You can toggle safety prompts using <code class="font-mono text-accent">/safe off</code> when running inside an isolated VM.
+              </p>
+            </div>
+
+            <div class="surface-card p-5 space-y-2">
+              <h4 class="text-sm font-bold text-text">Q: How do I install capabilities directly from a custom URL?</h4>
+              <p class="text-muted leading-relaxed">
+                Execute <code class="font-mono text-accent">/store install &lt;raw_url&gt;</code>. KuroCode downloads the file, validates the Python code through the AST safety guard, generates an entrypoint function, and hot-registers it into the active session without requiring a restart.
+              </p>
+            </div>
+
+            <div class="surface-card p-5 space-y-2">
+              <h4 class="text-sm font-bold text-text">Q: How do I report a vulnerability or issue?</h4>
+              <p class="text-muted leading-relaxed">
+                Open an issue or Pull Request at the <a href="https://github.com/kurolabs-ai/KuroCodeAgent/issues" class="text-accent underline" target="_blank">KuroCodeAgent Issues Tracker</a> or submit security disclosures via GitHub Advisories.
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- Footer Mount -->
+  <div id="footer-mount"></div>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { renderNavbar } from '../js/components/navbar.js';
+    import { renderFooter } from '../js/components/footer.js';
+    import { initDocsPage } from '../js/pages/docs.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNavbar('docs');
+      renderFooter();
+      initDocsPage();
+    });
+  </script>
+</body>
+</html>

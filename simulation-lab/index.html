@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulation Lab — KuroLabs AI</title>
+  <meta name="description" content="Interactive browser-based sandbox simulation demonstrating KuroCodeAgent self-healing diagnostics, AST safety gates, and dynamic Store snapping.">
+  <meta name="keywords" content="AI agent simulation, self-healing code demo, AST sandbox test, KuroLabs Simulation Lab">
+  <meta name="author" content="KuroLabs AI">
+  <meta name="theme-color" content="#070909">
+  <link rel="canonical" href="https://kurolabs-ai.github.io/simulation-lab/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KuroLabs AI">
+  <meta property="og:url" content="https://kurolabs-ai.github.io/simulation-lab/">
+  <meta property="og:title" content="Simulation Lab — KuroLabs AI">
+  <meta property="og:description" content="Interactive browser-based sandbox simulation demonstrating KuroCodeAgent self-healing diagnostics, AST safety gates, and dynamic Store snapping.">
+  <meta property="og:image" content="https://kurolabs-ai.github.io/assets/favicon.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Simulation Lab — KuroLabs AI">
+  <meta name="twitter:description" content="Interactive browser-based sandbox simulation demonstrating KuroCodeAgent self-healing diagnostics, AST safety gates, and dynamic Store snapping.">
+  <meta name="twitter:image" content="https://kurolabs-ai.github.io/assets/favicon.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: '#070909',
+            surface: { DEFAULT: '#0d1211', hover: '#121a17' },
+            accent: { DEFAULT: '#00e5b0', hover: '#22f5c5' },
+            text: '#f3f6f5',
+            muted: '#9aa9a3',
+            dim: '#5c6a65',
+            border: { DEFAULT: '#24312d', hover: '#384d46' },
+            warning: '#f5c451',
+            danger: '#ff6868'
+          },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+            mono: ['ui-monospace', '"Cascadia Code"', '"JetBrains Mono"', 'SFMono-Regular', '"Segoe UI Mono"', 'Menlo', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body class="bg-bg text-text bg-tech-grid min-h-screen flex flex-col">
+
+  <!-- Navbar Mount -->
+  <div id="navbar-mount"></div>
+
+  <!-- Main Content -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full space-y-10">
+    
+    <!-- Header & Prominent Disclaimer -->
+    <div class="space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-xs font-mono text-accent">
+        <span class="w-2 h-2 rounded-full bg-accent"></span>
+        Runtime Simulation
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-text">
+        Simulation Lab
+      </h1>
+
+      <p class="text-base text-muted max-w-3xl leading-relaxed">
+        Step through simulated runtime scenarios to understand how KuroCodeAgent isolates bugs, enforces AST safety rules, and hot-snaps modular capabilities in real time.
+      </p>
+
+      <!-- Prominent Non-Destructive Sandbox Disclaimer -->
+      <div class="p-4 rounded-lg bg-surface border border-warning/40 flex items-start gap-3 text-xs text-muted max-w-3xl">
+        <span class="text-warning font-mono font-bold text-sm">⚠</span>
+        <div>
+          <strong class="text-text">Browser Sandbox Notice:</strong> This interactive lab is an isolated demonstration of KuroCodeAgent's internal logic. It runs entirely inside your browser and does not execute Python code on, or modify, your actual computer.
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls Bar -->
+    <div class="surface-card p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3 w-full md:w-auto">
+        <label for="sim-scenario-select" class="text-xs font-mono text-muted shrink-0">Scenario:</label>
+        <select id="sim-scenario-select" class="input-control text-xs font-mono py-2.5 sm:w-80">
+          <option value="healing">Self-Healing Test Suite Diagnosis</option>
+          <option value="security">AST Security Intercept & Neutralization</option>
+          <option value="store">Dynamic Capability Hot-Snapping</option>
+        </select>
+      </div>
+
+      <div class="flex items-center gap-2 w-full md:w-auto justify-end">
+        <button id="sim-play-btn" class="btn-primary text-xs font-mono py-2 px-4">
+          <span class="font-bold">▶</span> Run Simulation
+        </button>
+        <button id="sim-step-btn" class="btn-secondary text-xs font-mono py-2 px-3">
+          Step Next →
+        </button>
+        <button id="sim-reset-btn" class="btn-outline text-xs font-mono py-2 px-3">
+          Reset
+        </button>
+        <button id="sim-speed-toggle" class="btn-outline text-xs font-mono py-2 px-3">
+          Speed: 1x
+        </button>
+      </div>
+    </div>
+
+    <!-- Scenario Description & Step Progress -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-4 rounded-lg bg-[#080d0c] border border-border text-xs">
+      <span id="sim-scenario-desc" class="text-muted">Loading scenario description...</span>
+      <span id="sim-step-indicator" class="font-mono text-accent font-bold shrink-0">Step 1 of 3</span>
+    </div>
+
+    <!-- Simulation Dashboard (2-Column) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Cognitive Loop (Thinking, Action, AST Gate) -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- Cognitive Thought Stream -->
+        <div class="surface-card p-6 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono uppercase tracking-wider text-accent font-semibold">ReAct 2.0 Thought Stream</span>
+            <span class="text-[10px] font-mono text-dim">Cognitive Core</span>
+          </div>
+          <p id="sim-thought-stream" class="text-xs font-mono text-text leading-relaxed p-3 rounded bg-bg border border-border">
+            Initializing cognitive loop...
+          </p>
+        </div>
+
+        <!-- Executed Action -->
+        <div class="surface-card p-6 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono uppercase tracking-wider text-muted font-semibold">Subsystem Action</span>
+            <span id="sim-ast-gate"></span>
+          </div>
+          <code id="sim-action" class="block text-xs font-mono text-accent p-3 rounded bg-bg border border-border overflow-x-auto">
+            kuro &gt; action
+          </code>
+        </div>
+
+        <!-- Code Patch Diff Viewer (Visible on healing) -->
+        <div id="sim-diff-section" class="surface-card p-6 space-y-3 hidden">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono uppercase tracking-wider text-warning font-semibold">Atomic Patch Diff</span>
+            <span class="text-[10px] font-mono text-dim">Git Checkpoint</span>
+          </div>
+          <pre id="sim-diff-content" class="text-[11px] font-mono text-text p-3 rounded bg-[#030605] border border-border overflow-x-auto"></pre>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Live Simulated Terminal Stream -->
+      <div class="lg:col-span-7">
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <div class="flex items-center gap-2">
+              <span class="terminal-dot bg-danger"></span>
+              <span class="terminal-dot bg-warning"></span>
+              <span class="terminal-dot bg-accent"></span>
+              <span class="text-xs font-mono text-muted ml-2">sandbox-repl ~ live-stream</span>
+            </div>
+            <span class="text-[10px] font-mono text-accent">SIMULATION MODE</span>
+          </div>
+
+          <div class="terminal-body min-h-[380px] space-y-2">
+            <div id="sim-terminal-output" class="space-y-1.5 font-mono text-xs">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer Mount -->
+  <div id="footer-mount"></div>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { renderNavbar } from '../js/components/navbar.js';
+    import { renderFooter } from '../js/components/footer.js';
+    import { initSimulationLabPage } from '../js/pages/simulation-lab.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNavbar('simulation-lab');
+      renderFooter();
+      initSimulationLabPage();
+    });
+  </script>
+</body>
+</html>

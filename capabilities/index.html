@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capability Hub — Decentralized Agent Registry | KuroLabs</title>
+  <meta name="description" content="Browse, search, and inspect modular tools, plugins, skills, and integrations from the official kurolabs-ai/hub capability registry.">
+  <meta name="keywords" content="Capability Hub, AI agent plugins, Python agent tools, agent skills, KuroLabs Hub, kurolabs-ai/hub">
+  <meta name="author" content="KuroLabs AI">
+  <meta name="theme-color" content="#070909">
+  <link rel="canonical" href="https://kurolabs-ai.github.io/capabilities/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KuroLabs AI">
+  <meta property="og:url" content="https://kurolabs-ai.github.io/capabilities/">
+  <meta property="og:title" content="Capability Hub — Decentralized Agent Registry | KuroLabs">
+  <meta property="og:description" content="Browse, search, and inspect modular tools, plugins, skills, and integrations from the official kurolabs-ai/hub capability registry.">
+  <meta property="og:image" content="https://kurolabs-ai.github.io/assets/favicon.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Capability Hub — Decentralized Agent Registry | KuroLabs">
+  <meta name="twitter:description" content="Browse, search, and inspect modular tools, plugins, skills, and integrations from the official kurolabs-ai/hub capability registry.">
+  <meta name="twitter:image" content="https://kurolabs-ai.github.io/assets/favicon.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: '#070909',
+            surface: { DEFAULT: '#0d1211', hover: '#121a17' },
+            accent: { DEFAULT: '#00e5b0', hover: '#22f5c5' },
+            text: '#f3f6f5',
+            muted: '#9aa9a3',
+            dim: '#5c6a65',
+            border: { DEFAULT: '#24312d', hover: '#384d46' },
+            warning: '#f5c451',
+            danger: '#ff6868'
+          },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+            mono: ['ui-monospace', '"Cascadia Code"', '"JetBrains Mono"', 'SFMono-Regular', '"Segoe UI Mono"', 'Menlo', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body class="bg-bg text-text bg-tech-grid min-h-screen flex flex-col">
+
+  <!-- Navbar Mount -->
+  <div id="navbar-mount"></div>
+
+  <!-- Main Content -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full space-y-10">
+    
+    <!-- Page Header & Architecture Distinction Banner -->
+    <div class="space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-xs font-mono text-accent">
+          <span class="w-2 h-2 rounded-full bg-accent"></span>
+          Capability Registry
+        </div>
+        <div id="hub-source-indicator"></div>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-text">
+        Capability Hub Browser
+      </h1>
+
+      <p class="text-base text-muted max-w-3xl leading-relaxed">
+        This portal connects directly to the open remote registry repository (<a href="https://github.com/kurolabs-ai/hub" target="_blank" rel="noopener noreferrer" class="text-accent underline">kurolabs-ai/hub</a>). Capabilities are modular puzzle pieces that can be hot-snapped into KuroCodeAgent at runtime.
+      </p>
+
+      <!-- Important Notice on Store vs Hub -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl">
+        <div class="p-4 rounded-lg bg-surface border border-border flex items-start gap-3 text-xs text-muted md:col-span-2">
+          <span class="text-accent font-mono font-bold text-sm">ℹ</span>
+          <div>
+            <strong class="text-text">Discovery Layer vs Runtime Store:</strong> This web interface lets you explore catalog metadata and inspect source files. To install capabilities into your active agent, execute <code class="font-mono text-accent">/store install &lt;name&gt;</code> (or paste the raw GitHub URL) directly inside your KuroCodeAgent terminal.
+          </div>
+        </div>
+        <div class="p-4 rounded-lg bg-surface border border-border flex flex-col justify-between text-xs space-y-2">
+          <span class="text-text font-bold font-mono">Want to contribute?</span>
+          <p class="text-dim text-[11px]">Submit your tool, plugin, or skill to the Hub repository via PR.</p>
+          <a href="../docs/index.html#authoring-guide" class="text-accent hover:underline text-xs font-mono">Read 5-Step Authoring Guide →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filters, Search & Sorting Bar -->
+    <div class="surface-card p-6 space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+        
+        <!-- Search Input -->
+        <div class="md:col-span-6 relative">
+          <input type="text" id="hub-search" placeholder="Search by name, tag, author, or description..." 
+                 class="input-control text-sm pl-9" aria-label="Search capabilities">
+          <svg class="w-4 h-4 text-muted absolute left-3 top-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+
+        <!-- Type Filter -->
+        <div class="md:col-span-3">
+          <select id="hub-type-filter" class="input-control text-xs font-mono py-2.5" aria-label="Filter by capability type">
+            <option value="all">All Types</option>
+            <option value="tool">Tools (Standalone .py)</option>
+            <option value="plugin">Plugins (Multi-file packages)</option>
+            <option value="skill">Skills (Procedural workflows)</option>
+            <option value="integration">Integrations (Connectors)</option>
+          </select>
+        </div>
+
+        <!-- Sort Select -->
+        <div class="md:col-span-3 flex items-center gap-2">
+          <select id="hub-sort-by" class="input-control text-xs font-mono py-2.5" aria-label="Sort capabilities">
+            <option value="name-asc">Name (A-Z)</option>
+            <option value="name-desc">Name (Z-A)</option>
+            <option value="type">Type</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Tag Pills & Result Count -->
+      <div class="pt-4 border-t border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div id="hub-tag-pills" class="flex flex-wrap items-center gap-1.5">
+          <!-- Populated dynamically -->
+        </div>
+        <div id="hub-results-count" class="text-xs font-mono text-muted shrink-0">
+          Loading...
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Skeleton -->
+    <div id="hub-loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="surface-card p-6 h-48 animate-pulse bg-surface/50"></div>
+      <div class="surface-card p-6 h-48 animate-pulse bg-surface/50"></div>
+      <div class="surface-card p-6 h-48 animate-pulse bg-surface/50"></div>
+    </div>
+
+    <!-- Error / Status Container -->
+    <div id="hub-status-container" class="hidden p-8 rounded-xl bg-surface border border-danger/40 text-center space-y-4">
+      <p id="hub-status-message" class="text-sm text-danger font-mono"></p>
+      <button id="hub-retry-btn" class="btn-primary text-xs font-mono">
+        Retry Catalog Fetch
+      </button>
+    </div>
+
+    <!-- Empty State -->
+    <div id="hub-empty-state" class="hidden py-16 text-center border border-border rounded-xl bg-surface space-y-3">
+      <p class="text-base text-muted">No capabilities matched your filter criteria.</p>
+      <button id="hub-reset-filter-btn" class="btn-outline text-xs font-mono">
+        Reset Search & Filters
+      </button>
+    </div>
+
+    <!-- Capabilities Cards Grid -->
+    <div id="hub-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Populated dynamically -->
+    </div>
+
+  </main>
+
+  <!-- Capability Detail Modal Dialog -->
+  <div id="capability-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content p-6 sm:p-8 space-y-6">
+      
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between gap-4 border-b border-border pb-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1.5">
+            <span id="modal-type" class="badge"></span>
+            <span id="modal-version" class="text-xs font-mono text-muted"></span>
+          </div>
+          <h2 id="modal-title" class="text-2xl font-bold font-mono text-text"></h2>
+          <span id="modal-author" class="text-xs font-mono text-dim mt-0.5 block"></span>
+        </div>
+        <button id="modal-close-btn" class="p-1 rounded text-muted hover:text-text hover:bg-surface-hover border border-border" aria-label="Close modal">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Description -->
+      <p id="modal-description" class="text-sm text-muted leading-relaxed"></p>
+
+      <!-- Tags -->
+      <div class="space-y-1.5">
+        <span class="text-xs font-mono text-dim block">Tags</span>
+        <div id="modal-tags" class="flex flex-wrap gap-1.5"></div>
+      </div>
+
+      <!-- Store Install Command (Runtime action) -->
+      <div class="space-y-2 p-4 rounded-lg bg-bg border border-border">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-mono text-accent font-bold">Standard Store Command:</span>
+          <button id="modal-copy-cmd-btn" class="btn-outline text-[11px] font-mono py-1 px-2.5">
+            Copy command
+          </button>
+        </div>
+        <pre class="text-xs font-mono text-text p-2 rounded bg-[#030504] border border-border/80 overflow-x-auto"><code id="modal-install-cmd"></code></pre>
+        <p class="text-[11px] text-dim">Paste this command into your running KuroCodeAgent terminal to hot-install.</p>
+      </div>
+
+      <!-- URL Direct Install Command -->
+      <div id="modal-url-cmd-section" class="space-y-2 p-4 rounded-lg bg-bg border border-border hidden">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-mono text-warning font-bold">Direct Raw URL Install:</span>
+          <button id="modal-copy-url-cmd-btn" class="btn-outline text-[11px] font-mono py-1 px-2.5">
+            Copy URL command
+          </button>
+        </div>
+        <pre class="text-xs font-mono text-text p-2 rounded bg-[#030504] border border-border/80 overflow-x-auto"><code id="modal-url-cmd"></code></pre>
+        <p class="text-[11px] text-dim">Downloads directly via web URL, performs AST code safety scan, and hot-activates.</p>
+      </div>
+
+      <!-- Required Environment Variables (for Integrations) -->
+      <div id="modal-env-section" class="space-y-2 p-4 rounded-lg bg-bg border border-border hidden">
+        <span class="text-xs font-mono text-accent font-bold block">Required Environment Secrets:</span>
+        <div id="modal-env-list" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <!-- File Path & GitHub Source Link -->
+      <div id="modal-path-section" class="space-y-1.5 text-xs font-mono border-t border-border pt-4">
+        <span class="text-dim block">Remote Repository File:</span>
+        <div class="flex items-center justify-between gap-2 p-2 rounded bg-bg border border-border">
+          <span id="modal-file-path" class="text-text truncate"></span>
+          <a id="modal-source-link" href="#" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline shrink-0 flex items-center gap-1">
+            View on GitHub ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Payload Inspector (Safe Data) -->
+      <div id="modal-payload-section" class="space-y-1.5 text-xs font-mono border-t border-border pt-4">
+        <span class="text-dim block">Payload Blueprint (Safe Schema Data):</span>
+        <pre id="modal-payload-pre" class="p-3 rounded bg-bg border border-border text-dim max-h-48 overflow-y-auto"></pre>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer Mount -->
+  <div id="footer-mount"></div>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { renderNavbar } from '../js/components/navbar.js';
+    import { renderFooter } from '../js/components/footer.js';
+    import { initCapabilitiesPage } from '../js/pages/capabilities.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNavbar('capabilities');
+      renderFooter();
+      initCapabilitiesPage();
+    });
+  </script>
+</body>
+</html>

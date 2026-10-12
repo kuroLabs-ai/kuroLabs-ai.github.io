@@ -1,0 +1,35 @@
+[
+  {
+    "id": "kurocodeagent",
+    "name": "KuroCodeAgent",
+    "displayName": "KuroCode",
+    "category": "Autonomous AI Agent",
+    "description": "An extensible, terminal-first AI coding agent with multi-model routing, persistent memory, AST safety guards, and self-healing runtime diagnostics.",
+    "status": "Available (v0.2.0)",
+    "statusType": "available",
+    "featured": true,
+    "version": "0.2.0",
+    "repository": "https://github.com/kurolabs-ai/KuroCodeAgent",
+    "documentation": "docs/index.html#kurocode-quickstart",
+    "detailUrl": "programs/kurocode/index.html",
+    "technologies": [
+      "Python 3.10+",
+      "ReAct 2.0 Loop",
+      "AST Safety Guard",
+      "SQLite 4-Layer Memory",
+      "Hardware DPAPI Vault",
+      "Multi-Model Router",
+      "Dual CLI & Desktop GUI",
+      "Vision & Voice"
+    ],
+    "highlights": [
+      "Zero-trust pre-execution AST syntax and permission analyzer",
+      "Automatic traceback diagnostics and self-healing error recovery",
+      "Hot-pluggable capability store synced with kurolabs-ai/hub",
+      "Zero-telemetry local credential storage using OS DPAPI/Keyring",
+      "Standalone Windows console executable packaging (PyInstaller)",
+      "100% test coverage pass rate (60/60 tests passing)"
+    ],
+    "capabilityHub": "https://github.com/kurolabs-ai/hub"
+  }
+]

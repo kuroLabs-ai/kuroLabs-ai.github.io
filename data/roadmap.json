@@ -1,0 +1,42 @@
+[
+  {
+    "id": "kurocode-0-2-0",
+    "title": "KuroCodeAgent v0.2.0 Core Release",
+    "description": "Stable release of the ReAct 2.0 loop, AST safety sandbox, encrypted DPAPI credential vault, SQLite hybrid memory, and Store marketplace integration.",
+    "status": "Completed",
+    "program": "KuroCodeAgent",
+    "category": "Core Architecture"
+  },
+  {
+    "id": "hub-decentralized-registry",
+    "title": "Decentralized Capability Hub",
+    "description": "Separation of catalog metadata and capability source code across tools/, plugins/, and skills/, supporting branch-aware resolution and hot-snapping.",
+    "status": "Completed",
+    "program": "Capability Hub",
+    "category": "Registry Ecosystem"
+  },
+  {
+    "id": "portal-modernization",
+    "title": "Portal & Laboratory Redesign",
+    "description": "Production-grade website with dynamic Hub browser, interactive Rig Studio assembler, safe Simulation Lab, and comprehensive developer documentation.",
+    "status": "In Progress",
+    "program": "Website Portal",
+    "category": "Developer Experience"
+  },
+  {
+    "id": "kurosentinel-engine",
+    "title": "KuroSentinel Security Inspector",
+    "description": "Standalone pre-commit and CI scanner combining Python AST inspection, dependency risk flagging, and automated patch proposals.",
+    "status": "In Development",
+    "program": "KuroSentinel",
+    "category": "Security"
+  },
+  {
+    "id": "kuroflow-orchestrator",
+    "title": "KuroFlow Autonomous Pipeline Orchestrator",
+    "description": "Multi-agent declarative pipeline execution engine supporting chained SKILL routines and enterprise CI/CD connectors.",
+    "status": "Planned",
+    "program": "KuroFlow",
+    "category": "Ecosystem Expansion"
+  }
+]

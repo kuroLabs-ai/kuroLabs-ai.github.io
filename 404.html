@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found | KuroLabs AI</title>
+  <meta name="description" content="The requested page could not be found in the KuroLabs AI ecosystem.">
+  <meta name="theme-color" content="#070909">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: '#070909',
+            surface: { DEFAULT: '#0d1211', hover: '#121a17' },
+            accent: { DEFAULT: '#00e5b0', hover: '#22f5c5' },
+            text: '#f3f6f5',
+            muted: '#9aa9a3',
+            dim: '#5c6a65',
+            border: { DEFAULT: '#24312d', hover: '#384d46' }
+          },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+            mono: ['ui-monospace', '"Cascadia Code"', '"JetBrains Mono"', 'SFMono-Regular', '"Segoe UI Mono"', 'Menlo', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body class="bg-bg text-text bg-tech-grid min-h-screen flex flex-col justify-between">
+
+  <!-- Navbar Mount -->
+  <div id="navbar-mount"></div>
+
+  <main class="flex-grow flex items-center justify-center p-6">
+    <div class="surface-card p-10 max-w-lg w-full text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-xs font-mono text-danger">
+        <span>ERROR 404</span>
+      </div>
+      <h1 class="text-4xl font-bold font-mono text-text">
+        Route Not Found
+      </h1>
+      <p class="text-sm text-muted leading-relaxed">
+        The requested endpoint does not exist in the KuroLabs ecosystem registry.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 pt-2">
+        <a href="index.html" class="btn-primary text-xs font-mono">
+          Return to Overview
+        </a>
+        <a href="capabilities/index.html" class="btn-secondary text-xs font-mono">
+          Capability Hub
+        </a>
+        <a href="programs/index.html" class="btn-outline text-xs font-mono">
+          Programs
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Mount -->
+  <div id="footer-mount"></div>
+
+  <script type="module">
+    import { renderNavbar } from './js/components/navbar.js';
+    import { renderFooter } from './js/components/footer.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNavbar('404');
+      renderFooter();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KuroCodeAgent — Autonomous AI Coding Companion | KuroLabs</title>
+  <meta name="description" content="In-depth architecture, verified features, installation guide, and runtime slash commands for KuroCodeAgent.">
+  <meta name="keywords" content="KuroCodeAgent, AI coding agent, ReAct loop, AST safety sandbox, self-healing code, DPAPI vault, SQLite memory">
+  <meta name="author" content="KuroLabs AI">
+  <meta name="theme-color" content="#070909">
+  <link rel="canonical" href="https://kurolabs-ai.github.io/programs/kurocode/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../../assets/favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="product">
+  <meta property="og:site_name" content="KuroLabs AI">
+  <meta property="og:url" content="https://kurolabs-ai.github.io/programs/kurocode/">
+  <meta property="og:title" content="KuroCodeAgent — Autonomous AI Coding Companion | KuroLabs">
+  <meta property="og:description" content="An extensible, terminal-first AI coding agent with multi-model routing, persistent memory, AST safety guards, and self-healing runtime diagnostics.">
+  <meta property="og:image" content="https://kurolabs-ai.github.io/assets/favicon.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KuroCodeAgent — Autonomous AI Coding Companion | KuroLabs">
+  <meta name="twitter:description" content="An extensible, terminal-first AI coding agent with multi-model routing, persistent memory, AST safety guards, and self-healing runtime diagnostics.">
+  <meta name="twitter:image" content="https://kurolabs-ai.github.io/assets/favicon.png">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "KuroCodeAgent",
+    "operatingSystem": "Windows, Linux, macOS",
+    "applicationCategory": "DeveloperApplication",
+    "description": "An extensible, terminal-first AI coding agent with multi-model routing, persistent memory, AST safety guards, and self-healing runtime diagnostics.",
+    "softwareVersion": "0.2.0",
+    "url": "https://kurolabs-ai.github.io/programs/kurocode/",
+    "author": {
+      "@type": "Organization",
+      "name": "KuroLabs AI"
+    }
+  }
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: '#070909',
+            surface: { DEFAULT: '#0d1211', hover: '#121a17' },
+            accent: { DEFAULT: '#00e5b0', hover: '#22f5c5' },
+            text: '#f3f6f5',
+            muted: '#9aa9a3',
+            dim: '#5c6a65',
+            border: { DEFAULT: '#24312d', hover: '#384d46' },
+            warning: '#f5c451',
+            danger: '#ff6868'
+          },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+            mono: ['ui-monospace', '"Cascadia Code"', '"JetBrains Mono"', 'SFMono-Regular', '"Segoe UI Mono"', 'Menlo', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/components.css">
+</head>
+<body class="bg-bg text-text bg-tech-grid min-h-screen flex flex-col">
+
+  <!-- Navbar Mount -->
+  <div id="navbar-mount"></div>
+
+  <!-- Main Content -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full space-y-16">
+    
+    <!-- Breadcrumb & Back -->
+    <div class="flex items-center gap-2 text-xs font-mono text-muted">
+      <a href="../../index.html" class="hover:text-accent">Home</a>
+      <span>/</span>
+      <a href="../index.html" class="hover:text-accent">Programs</a>
+      <span>/</span>
+      <span class="text-accent">KuroCodeAgent</span>
+    </div>
+
+    <!-- Hero Header -->
+    <div class="surface-card p-8 sm:p-12 border-accent/40 bg-gradient-to-br from-surface to-[#0a1210]">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+        <div class="space-y-4 max-w-3xl">
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="badge badge-status-available text-xs">Flagship Program</span>
+            <span class="badge badge-tool text-xs">v0.2.0</span>
+            <span class="text-xs font-mono text-muted">Python 3.10+ • MIT License</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-text">
+            KuroCodeAgent
+          </h1>
+
+          <p class="text-lg text-muted leading-relaxed">
+            An extensible, terminal-first AI coding agent engineered for autonomous software maintenance, proactive bug diagnosis, AST safety verification, and hot-pluggable capability snapping.
+          </p>
+
+          <div class="flex flex-wrap gap-3 pt-2">
+            <a href="https://github.com/kurolabs-ai/KuroCodeAgent" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm">
+              View Repository on GitHub ↗
+            </a>
+            <a href="../../capabilities/index.html" class="btn-secondary text-sm">
+              Browse Hub Capabilities
+            </a>
+            <a href="#installation-guide" class="btn-outline text-sm">
+              Setup Instructions ↓
+            </a>
+          </div>
+        </div>
+
+        <!-- Metric Badges -->
+        <div class="p-6 rounded-xl bg-bg/80 border border-border space-y-4 min-w-[240px]">
+          <div class="border-b border-border/60 pb-3">
+            <span class="text-xs text-muted block">Cognitive Core</span>
+            <span class="text-sm font-mono font-bold text-accent">ReAct 2.0 Autonomous Loop</span>
+          </div>
+          <div class="border-b border-border/60 pb-3">
+            <span class="text-xs text-muted block">Safety Guard</span>
+            <span class="text-sm font-mono font-bold text-text">AST Pre-Execution Intercept</span>
+          </div>
+          <div class="border-b border-border/60 pb-3">
+            <span class="text-xs text-muted block">Credentials</span>
+            <span class="text-sm font-mono font-bold text-accent">Hardware DPAPI Vault</span>
+          </div>
+          <div>
+            <span class="text-xs text-muted block">Test Coverage</span>
+            <span class="text-sm font-mono font-bold text-accent">100% (60/60 passing)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Subsystems & Architecture -->
+    <div class="space-y-8">
+      <div class="space-y-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-accent">System Architecture</span>
+        <h2 class="text-3xl font-bold text-text">Engineering Architecture</h2>
+        <p class="text-sm text-muted">
+          KuroCodeAgent is organized into decoupled Python subsystems inside <code>src/kurocode/</code>.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div class="surface-card p-6 space-y-3">
+          <div class="w-8 h-8 rounded bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-mono text-xs font-bold">
+            01
+          </div>
+          <h3 class="text-lg font-bold text-text">AST Safety Sandbox</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Located in <code>core/sandbox.py</code>. Analyzes Python Abstract Syntax Trees before execution, blocking dangerous invocations (e.g. disk wipers, unapproved filesystem traversal, arbitrary system command execution).
+          </p>
+        </div>
+
+        <div class="surface-card p-6 space-y-3">
+          <div class="w-8 h-8 rounded bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-mono text-xs font-bold">
+            02
+          </div>
+          <h3 class="text-lg font-bold text-text">Self-Healing Diagnostics</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Located in <code>healing/</code>. Automatically captures execution tracebacks, isolates missing dependencies or malformed arguments, invokes isolated pip resolution, and supports atomic Git checkpoint rollback.
+          </p>
+        </div>
+
+        <div class="surface-card p-6 space-y-3">
+          <div class="w-8 h-8 rounded bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-mono text-xs font-bold">
+            03
+          </div>
+          <h3 class="text-lg font-bold text-text">Multi-Model Task Router</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Located in <code>core/model_router.py</code>. Dynamically routes queries between Google Gemini, Groq (Llama-3), OpenRouter, and local offline Ollama endpoints with zero-downtime automated failover.
+          </p>
+        </div>
+
+        <div class="surface-card p-6 space-y-3">
+          <div class="w-8 h-8 rounded bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-mono text-xs font-bold">
+            04
+          </div>
+          <h3 class="text-lg font-bold text-text">Controlled Self-Evolution</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Located in <code>evolution/</code>. Assesses task bottlenecks, dynamically generates new Python tools via <code>tools/generator.py</code>, compiles them, and tracks changes in an immutable ledger.
+          </p>
+        </div>
+
+        <div class="surface-card p-6 space-y-3">
+          <div class="w-8 h-8 rounded bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-mono text-xs font-bold">
+            05
+          </div>
+          <h3 class="text-lg font-bold text-text">Hardware Encrypted Vault</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Located in <code>core/vault.py</code>. Uses native Windows DPAPI and AES-256 encryption to store model API keys with zero plain-text file leakage.
+          </p>
+        </div>
+
+        <div class="surface-card p-6 space-y-3">
+          <div class="w-8 h-8 rounded bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-mono text-xs font-bold">
+            06
+          </div>
+          <h3 class="text-lg font-bold text-text">4-Layer Hybrid SQLite Memory</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Located in <code>core/memory_db.py</code>. Retains project context, session history, learned developer preferences, and tool performance metrics across restarts.
+          </p>
+        </div>
+
+        <div class="surface-card p-6 space-y-3">
+          <div class="w-8 h-8 rounded bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-mono text-xs font-bold">
+            07
+          </div>
+          <h3 class="text-lg font-bold text-text">Dual Interface & Vision</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Supports interactive terminal REPL and desktop assistant mode with speech recognition, voice synthesis, and multi-modal desktop screenshot vision analysis.
+          </p>
+        </div>
+
+        <div class="surface-card p-6 space-y-3">
+          <div class="w-8 h-8 rounded bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-mono text-xs font-bold">
+            08
+          </div>
+          <h3 class="text-lg font-bold text-text">Enterprise Integrations</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Located in <code>integrations/</code>. Out-of-the-box connectors for GitLab, GitHub, Slack, Discord, Telegram, Email, and Google Drive for automated team notifications and CI/CD operations.
+          </p>
+        </div>
+
+        <div class="surface-card p-6 space-y-3">
+          <div class="w-8 h-8 rounded bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-mono text-xs font-bold">
+            09
+          </div>
+          <h3 class="text-lg font-bold text-text">The Store Engine</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Located in <code>store/manager.py</code>. Communicates with <code>kurolabs-ai/hub</code>, supports 1-click install from raw URLs, validates AST signatures, and hot-activates capabilities without restart.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Verified Store Commands & Terminal Slash Reference -->
+    <div class="surface-card p-8 space-y-6">
+      <div class="space-y-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-warning">KuroCodeAgent Interactive Commands</span>
+        <h2 class="text-2xl font-bold text-text">Interactive Slash Commands Reference</h2>
+        <p class="text-xs text-muted">
+          Execute these verified commands directly in the KuroCode terminal interface:
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs font-mono border-collapse">
+          <thead>
+            <tr class="border-b border-border text-muted">
+              <th class="py-3 px-4">Command</th>
+              <th class="py-3 px-4">Category</th>
+              <th class="py-3 px-4">Description</th>
+              <th class="py-3 px-4">Example</th>
+              <th class="py-3 px-4 text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border/60">
+            <tr>
+              <td class="py-3 px-4 text-accent font-bold">/store update</td>
+              <td class="py-3 px-4 text-dim">Store</td>
+              <td class="py-3 px-4 text-text">Sync latest capabilities from kurolabs-ai/hub</td>
+              <td class="py-3 px-4 text-muted">/store update</td>
+              <td class="py-3 px-4 text-right">
+                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/store update">Copy</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 text-accent font-bold">/store list</td>
+              <td class="py-3 px-4 text-dim">Store</td>
+              <td class="py-3 px-4 text-text">Browse available & installed puzzle pieces</td>
+              <td class="py-3 px-4 text-muted">/store list</td>
+              <td class="py-3 px-4 text-right">
+                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/store list">Copy</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 text-accent font-bold">/store search &lt;q&gt;</td>
+              <td class="py-3 px-4 text-dim">Store</td>
+              <td class="py-3 px-4 text-text">Search capabilities by keyword or tag</td>
+              <td class="py-3 px-4 text-muted">/store search crypto</td>
+              <td class="py-3 px-4 text-right">
+                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/store search crypto">Copy</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 text-accent font-bold">/store install &lt;t|url&gt;</td>
+              <td class="py-3 px-4 text-dim">Store</td>
+              <td class="py-3 px-4 text-text">Hot-install tool, plugin, skill, or web URL</td>
+              <td class="py-3 px-4 text-muted">/store install regex_tester</td>
+              <td class="py-3 px-4 text-right">
+                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/store install regex_tester">Copy</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 text-accent font-bold">/store remove &lt;n&gt;</td>
+              <td class="py-3 px-4 text-dim">Store</td>
+              <td class="py-3 px-4 text-text">Unplug and delete an installed puzzle piece</td>
+              <td class="py-3 px-4 text-muted">/store remove regex_tester</td>
+              <td class="py-3 px-4 text-right">
+                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/store remove regex_tester">Copy</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 text-accent font-bold">/store info &lt;n&gt;</td>
+              <td class="py-3 px-4 text-dim">Store</td>
+              <td class="py-3 px-4 text-text">Inspect metadata and manifest blueprint</td>
+              <td class="py-3 px-4 text-muted">/store info json_inspector</td>
+              <td class="py-3 px-4 text-right">
+                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/store info json_inspector">Copy</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 text-accent font-bold">/heal status</td>
+              <td class="py-3 px-4 text-dim">Healing</td>
+              <td class="py-3 px-4 text-text">View active self-healing diagnosis status</td>
+              <td class="py-3 px-4 text-muted">/heal status</td>
+              <td class="py-3 px-4 text-right">
+                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/heal status">Copy</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 text-accent font-bold">/heal repair &lt;tool&gt;</td>
+              <td class="py-3 px-4 text-dim">Healing</td>
+              <td class="py-3 px-4 text-text">Trigger automated tool diagnosis & repair</td>
+              <td class="py-3 px-4 text-muted">/heal repair json_inspector</td>
+              <td class="py-3 px-4 text-right">
+                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/heal repair json_inspector">Copy</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 text-accent font-bold">/evolve propose</td>
+              <td class="py-3 px-4 text-dim">Evolution</td>
+              <td class="py-3 px-4 text-text">Propose autonomous upgrades from bottlenecks</td>
+              <td class="py-3 px-4 text-muted">/evolve propose</td>
+              <td class="py-3 px-4 text-right">
+                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/evolve propose">Copy</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 text-accent font-bold">/vault set &lt;k&gt; &lt;v&gt;</td>
+              <td class="py-3 px-4 text-dim">Security</td>
+              <td class="py-3 px-4 text-text">Encrypt credential in OS hardware vault</td>
+              <td class="py-3 px-4 text-muted">/vault set GEMINI_API_KEY AIzaSy...</td>
+              <td class="py-3 px-4 text-right">
+                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/vault set GEMINI_API_KEY AIzaSy...">Copy</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 text-accent font-bold">/safe &lt;on|off&gt;</td>
+              <td class="py-3 px-4 text-dim">Security</td>
+              <td class="py-3 px-4 text-text">Toggle Safe Mode confirmation gate</td>
+              <td class="py-3 px-4 text-muted">/safe off</td>
+              <td class="py-3 px-4 text-right">
+                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/safe off">Copy</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 text-accent font-bold">/undo</td>
+              <td class="py-3 px-4 text-dim">Rollback</td>
+              <td class="py-3 px-4 text-text">Roll back last automated file modifications</td>
+              <td class="py-3 px-4 text-muted">/undo</td>
+              <td class="py-3 px-4 text-right">
+                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/undo">Copy</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 text-accent font-bold">/system</td>
+              <td class="py-3 px-4 text-dim">Telemetry</td>
+              <td class="py-3 px-4 text-text">Inspect live CPU, RAM, Disk, and OS metrics</td>
+              <td class="py-3 px-4 text-muted">/system</td>
+              <td class="py-3 px-4 text-right">
+                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/system">Copy</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Verified Installation Guide -->
+    <div id="installation-guide" class="space-y-6">
+      <div class="space-y-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-accent">Setup Walkthrough</span>
+        <h2 class="text-3xl font-bold text-text">Installation & Local Setup</h2>
+        <p class="text-sm text-muted">
+          KuroCodeAgent requires Python 3.10 or higher. Follow these verified installation instructions:
+        </p>
+      </div>
+
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <span class="text-xs font-mono text-muted">Terminal — Setup Workflow</span>
+          <button id="copy-setup-all" class="text-xs font-mono text-accent hover:underline">Copy all steps</button>
+        </div>
+        <div class="terminal-body space-y-4 text-xs font-mono">
+          <div>
+            <p class="text-dim"># Step 1: Clone repository</p>
+            <p class="text-text">git clone https://github.com/kurolabs-ai/KuroCodeAgent.git</p>
+            <p class="text-text">cd KuroCodeAgent</p>
+          </div>
+
+          <div>
+            <p class="text-dim"># Step 2: Initialize virtual environment</p>
+            <p class="text-muted"># Windows:</p>
+            <p class="text-text">python -m venv venv</p>
+            <p class="text-text">.\venv\Scripts\activate</p>
+            <p class="text-muted mt-1"># Linux / macOS:</p>
+            <p class="text-text">python3 -m venv venv</p>
+            <p class="text-text">source venv/bin/activate</p>
+          </div>
+
+          <div>
+            <p class="text-dim"># Step 3: Install dependencies in editable mode</p>
+            <p class="text-text">pip install -e .</p>
+          </div>
+
+          <div>
+            <p class="text-dim"># Step 4: Configure credentials into encrypted vault</p>
+            <p class="text-text">kuro</p>
+            <p class="text-accent">kuro &gt; /vault set GEMINI_API_KEY AIzaSy... "Google Gemini API Key"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer Mount -->
+  <div id="footer-mount"></div>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { renderNavbar } from '../../js/components/navbar.js';
+    import { renderFooter } from '../../js/components/footer.js';
+    import { copyToClipboard } from '../../js/components/toast.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNavbar('programs');
+      renderFooter();
+
+      // Bind command copy buttons
+      document.querySelectorAll('.btn-copy-cmd').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cmd = btn.getAttribute('data-cmd');
+          if (cmd) copyToClipboard(cmd, `Copied: ${cmd}`);
+        });
+      });
+
+      // Bind copy all setup
+      const copyAllBtn = document.getElementById('copy-setup-all');
+      if (copyAllBtn) {
+        copyAllBtn.addEventListener('click', () => {
+          const script = `git clone https://github.com/kurolabs-ai/KuroCodeAgent.git\ncd KuroCodeAgent\npython -m venv venv\n.\\venv\\Scripts\\activate\npip install -e .\nkuro`;
+          copyToClipboard(script, 'Setup script copied to clipboard!');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
