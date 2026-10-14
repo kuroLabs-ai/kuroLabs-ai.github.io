@@ -248,171 +248,276 @@ KURO_SAFE_MODE=true</code></pre>
         </section>
 
         <!-- Section 3: Interactive CLI Slash Commands Reference -->
-        <section id="cli-reference" class="doc-section space-y-6">
-          <h2 class="text-2xl font-bold text-text flex items-center gap-2">
-            <span class="text-accent font-mono">03.</span> Interactive CLI Commands Reference
-          </h2>
-          <p class="text-sm text-muted leading-relaxed">
-            KuroCode features an extensive suite of slash commands for capability management, self-healing, evolutionary improvement, security gates, and system telemetry:
-          </p>
+        <section id="cli-reference" class="doc-section space-y-8">
+          <div class="space-y-3">
+            <h2 class="text-2xl font-bold text-text flex items-center gap-2">
+              <span class="text-accent font-mono">03.</span> Interactive CLI Slash Commands Reference
+            </h2>
+            <p class="text-sm text-muted leading-relaxed">
+              KuroCode features a comprehensive suite of slash <code class="font-mono text-accent">/</code> commands for system telemetry, hardware monitoring, permission gates, key pool rotation, capability management, and encrypted credential storage. All commands can be run directly inside the interactive terminal REPL.
+            </p>
+          </div>
 
-          <div class="surface-card p-6 overflow-x-auto">
-            <table class="w-full text-left text-xs font-mono border-collapse">
-              <thead>
-                <tr class="border-b border-border text-muted">
-                  <th class="py-2.5 px-3">Command</th>
-                  <th class="py-2.5 px-3">Category</th>
-                  <th class="py-2.5 px-3">Description</th>
-                  <th class="py-2.5 px-3">Example</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-border/60">
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/store update</td>
-                  <td class="py-2.5 px-3 text-dim">Store</td>
-                  <td class="py-2.5 px-3 text-text">Sync latest capabilities from kurolabs-ai/hub</td>
-                  <td class="py-2.5 px-3 text-muted">/store update</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/store list</td>
-                  <td class="py-2.5 px-3 text-dim">Store</td>
-                  <td class="py-2.5 px-3 text-text">Browse all available & installed puzzle pieces</td>
-                  <td class="py-2.5 px-3 text-muted">/store list</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/store search &lt;q&gt;</td>
-                  <td class="py-2.5 px-3 text-dim">Store</td>
-                  <td class="py-2.5 px-3 text-text">Search capabilities by keyword or tag</td>
-                  <td class="py-2.5 px-3 text-muted">/store search crypto</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/store install &lt;t|url&gt;</td>
-                  <td class="py-2.5 px-3 text-dim">Store</td>
-                  <td class="py-2.5 px-3 text-text">1-click hot-install tool, plugin, skill, or web URL</td>
-                  <td class="py-2.5 px-3 text-muted">/store install regex_tester</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/store remove &lt;n&gt;</td>
-                  <td class="py-2.5 px-3 text-dim">Store</td>
-                  <td class="py-2.5 px-3 text-text">Unplug and delete an installed puzzle piece</td>
-                  <td class="py-2.5 px-3 text-muted">/store remove regex_tester</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/store info &lt;n&gt;</td>
-                  <td class="py-2.5 px-3 text-dim">Store</td>
-                  <td class="py-2.5 px-3 text-text">Inspect metadata and blueprint for a piece</td>
-                  <td class="py-2.5 px-3 text-muted">/store info json_inspector</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/tool create &lt;n&gt; &lt;c&gt;</td>
-                  <td class="py-2.5 px-3 text-dim">Tools</td>
-                  <td class="py-2.5 px-3 text-text">Dynamically synthesize a Python tool</td>
-                  <td class="py-2.5 px-3 text-muted">/tool create echo def echo(x): return x</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/heal status</td>
-                  <td class="py-2.5 px-3 text-dim">Healing</td>
-                  <td class="py-2.5 px-3 text-text">View active self-healing diagnosis status</td>
-                  <td class="py-2.5 px-3 text-muted">/heal status</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/heal repair &lt;tool&gt;</td>
-                  <td class="py-2.5 px-3 text-dim">Healing</td>
-                  <td class="py-2.5 px-3 text-text">Trigger automatic tool error diagnosis & repair</td>
-                  <td class="py-2.5 px-3 text-muted">/heal repair json_inspector</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/evolve propose</td>
-                  <td class="py-2.5 px-3 text-dim">Evolution</td>
-                  <td class="py-2.5 px-3 text-text">Assess performance bottlenecks and propose upgrades</td>
-                  <td class="py-2.5 px-3 text-muted">/evolve propose</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/evolve history</td>
-                  <td class="py-2.5 px-3 text-dim">Evolution</td>
-                  <td class="py-2.5 px-3 text-text">View immutable self-improvement ledger</td>
-                  <td class="py-2.5 px-3 text-muted">/evolve history</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/vault list</td>
-                  <td class="py-2.5 px-3 text-dim">Security</td>
-                  <td class="py-2.5 px-3 text-text">View encrypted credentials in DPAPI vault</td>
-                  <td class="py-2.5 px-3 text-muted">/vault list</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/vault set &lt;k&gt; &lt;v&gt;</td>
-                  <td class="py-2.5 px-3 text-dim">Security</td>
-                  <td class="py-2.5 px-3 text-text">Encrypt and store sensitive credential</td>
-                  <td class="py-2.5 px-3 text-muted">/vault set GROQ_KEY gsk_...</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/safe &lt;on|off&gt;</td>
-                  <td class="py-2.5 px-3 text-dim">Security</td>
-                  <td class="py-2.5 px-3 text-text">Toggle Safe Mode confirmation gate</td>
-                  <td class="py-2.5 px-3 text-muted">/safe off</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/system</td>
-                  <td class="py-2.5 px-3 text-dim">Telemetry</td>
-                  <td class="py-2.5 px-3 text-text">Inspect live CPU, RAM, Disk, and OS metrics</td>
-                  <td class="py-2.5 px-3 text-muted">/system</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/top</td>
-                  <td class="py-2.5 px-3 text-dim">Telemetry</td>
-                  <td class="py-2.5 px-3 text-text">List top running processes and memory usage</td>
-                  <td class="py-2.5 px-3 text-muted">/top</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/screen</td>
-                  <td class="py-2.5 px-3 text-dim">Vision</td>
-                  <td class="py-2.5 px-3 text-text">Capture desktop screenshot for AI visual analysis</td>
-                  <td class="py-2.5 px-3 text-muted">/screen</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/see &lt;path&gt;</td>
-                  <td class="py-2.5 px-3 text-dim">Vision</td>
-                  <td class="py-2.5 px-3 text-text">Analyze image file with multi-modal LLM</td>
-                  <td class="py-2.5 px-3 text-muted">/see chart.png explain trends</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/search &lt;query&gt;</td>
-                  <td class="py-2.5 px-3 text-dim">Web</td>
-                  <td class="py-2.5 px-3 text-text">Live web search via DuckDuckGo / Wikipedia</td>
-                  <td class="py-2.5 px-3 text-muted">/search Python 3.13 features</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/browse &lt;url&gt;</td>
-                  <td class="py-2.5 px-3 text-dim">Web</td>
-                  <td class="py-2.5 px-3 text-text">Headless web browser automation & scraping</td>
-                  <td class="py-2.5 px-3 text-muted">/browse https://news.ycombinator.com</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/plan &lt;goal&gt;</td>
-                  <td class="py-2.5 px-3 text-dim">Planning</td>
-                  <td class="py-2.5 px-3 text-text">Generate hierarchical task execution plan</td>
-                  <td class="py-2.5 px-3 text-muted">/plan Refactor database layer</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/undo</td>
-                  <td class="py-2.5 px-3 text-dim">Rollback</td>
-                  <td class="py-2.5 px-3 text-text">Roll back last automated file modifications</td>
-                  <td class="py-2.5 px-3 text-muted">/undo</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/clear</td>
-                  <td class="py-2.5 px-3 text-dim">Memory</td>
-                  <td class="py-2.5 px-3 text-text">Reset active conversation memory buffer</td>
-                  <td class="py-2.5 px-3 text-muted">/clear</td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 px-3 text-accent font-bold">/help</td>
-                  <td class="py-2.5 px-3 text-dim">Help</td>
-                  <td class="py-2.5 px-3 text-text">Display complete CLI command reference</td>
-                  <td class="py-2.5 px-3 text-muted">/help</td>
-                </tr>
-              </tbody>
-            </table>
+          <!-- Note on Autonomous Tools Callout -->
+          <div class="p-4 rounded-lg bg-surface border border-accent/30 flex items-start gap-3 text-xs leading-relaxed">
+            <span class="text-accent font-mono font-bold text-base mt-0.5">ℹ</span>
+            <div>
+              <strong class="text-text font-semibold">Important Note on Autonomous Tools:</strong>
+              <p class="text-muted mt-1">
+                Tools such as web search (<code class="font-mono text-text">search_web</code>), headless browsing (<code class="font-mono text-text">browse_web_headless</code>), image analysis (<code class="font-mono text-text">analyze_image</code>), file reading/writing, database queries, and code generation are <strong>not</strong> manual slash commands — Kuro invokes them automatically and autonomously during conversations when needed.
+              </p>
+            </div>
+          </div>
+
+          <!-- Category 1: ⚙️ System, Hardware & Configuration -->
+          <div class="space-y-4">
+            <div class="flex items-center gap-2 border-b border-border pb-2">
+              <span class="text-lg">⚙️</span>
+              <h3 class="text-base font-bold text-text">System, Hardware & Configuration</h3>
+              <span class="text-xs font-mono text-dim ml-auto">9 Commands</span>
+            </div>
+
+            <div class="surface-card p-6 overflow-x-auto">
+              <table class="w-full text-left text-xs font-mono border-collapse">
+                <thead>
+                  <tr class="border-b border-border text-muted">
+                    <th class="py-2.5 px-3 w-40">Command</th>
+                    <th class="py-2.5 px-3">What it does</th>
+                    <th class="py-2.5 px-3">Usage & Parameters</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-border/60">
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/status</td>
+                    <td class="py-3 px-3 text-text align-top">Displays the active LLM provider (e.g. Gemini, Groq, OpenAI), the currently selected model, the number of loaded API keys in the pool, Safe Mode status, and automatic Git checkpoint status.</td>
+                    <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-1 rounded border border-border">/status</code></td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/system</td>
+                    <td class="py-3 px-3 text-text align-top">Shows live host hardware telemetry, including Operating System details, CPU core count, RAM utilization (GB used / total), and primary disk storage usage.</td>
+                    <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-1 rounded border border-border">/system</code></td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/top</td>
+                    <td class="py-3 px-3 text-text align-top">Scans and lists active operating system processes ordered by memory consumption to monitor system resource footprint.</td>
+                    <td class="py-3 px-3 text-muted align-top">
+                      <div class="space-y-1">
+                        <div><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/top</code></div>
+                        <div><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/top 20</code> <span class="text-dim text-[11px]">(view top 20 processes)</span></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/safe</td>
+                    <td class="py-3 px-3 text-text align-top">Controls the execution permission gate. When enabled (<code class="text-accent">on</code>), KURO prompts you before running destructive actions (file edits, executing Python code, shell commands). You can also whitelist specific actions.</td>
+                    <td class="py-3 px-3 text-muted align-top">
+                      <div class="space-y-1 text-[11px]">
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/safe on</code> <span class="text-dim">(enable confirmation prompts)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/safe off</code> <span class="text-dim">(disable prompts for autonomous execution)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/safe toggle</code> <span class="text-dim">(switch between on and off)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/safe allow execute_python</code> <span class="text-dim">(whitelist tool)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/safe clear</code> <span class="text-dim">(clear all whitelisted tool overrides)</span></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/pool</td>
+                    <td class="py-3 px-3 text-text align-top">Displays the status of multi-key API pools across all providers, showing active keys and HTTP 429 rate-limit cooldown timers.</td>
+                    <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-1 rounded border border-border">/pool</code></td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/models</td>
+                    <td class="py-3 px-3 text-text align-top">Displays the priority model fallback chain for the active provider (or a specific provider), showing which model will be used first and which will take over if rate-limited.</td>
+                    <td class="py-3 px-3 text-muted align-top">
+                      <div class="space-y-1">
+                        <div><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/models</code></div>
+                        <div><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/models gemini</code></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/key</td>
+                    <td class="py-3 px-3 text-text align-top">Securely adds a new API key to a provider's key rotation pool and encrypts it into the credential vault.</td>
+                    <td class="py-3 px-3 text-muted align-top">
+                      <div class="space-y-1">
+                        <div><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/key &lt;API_KEY&gt;</code></div>
+                        <div><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/key groq &lt;API_KEY&gt;</code></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/undo</td>
+                    <td class="py-3 px-3 text-text align-top">Immediately rolls back the last automated file changes using Kuro's automatic Git stash checkpoints.</td>
+                    <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-1 rounded border border-border">/undo</code></td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">!&lt;cmd&gt;</td>
+                    <td class="py-3 px-3 text-text align-top"><span class="text-warning font-semibold">[Direct Shell Bypass]</span> Bypasses the LLM completely and executes the command directly in your local operating system shell.</td>
+                    <td class="py-3 px-3 text-muted align-top">
+                      <div class="space-y-1 text-[11px]">
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">!git status</code></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">!dir</code></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">!npm test</code></div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Category 2: 🧩 KuroHub & Capability Management -->
+          <div class="space-y-4">
+            <div class="flex items-center gap-2 border-b border-border pb-2">
+              <span class="text-lg">🧩</span>
+              <h3 class="text-base font-bold text-text">KuroHub & Capability Management</h3>
+              <span class="text-xs font-mono text-dim ml-auto">6 Commands</span>
+            </div>
+
+            <div class="surface-card p-6 overflow-x-auto">
+              <table class="w-full text-left text-xs font-mono border-collapse">
+                <thead>
+                  <tr class="border-b border-border text-muted">
+                    <th class="py-2.5 px-3 w-40">Command</th>
+                    <th class="py-2.5 px-3">What it does</th>
+                    <th class="py-2.5 px-3">Usage & Parameters</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y border-border/60">
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/hub</td>
+                    <td class="py-3 px-3 text-text align-top">The primary manager for the KuroHub capability store. Allows you to browse, search, install, uninstall, view blueprints, and update capabilities (tools, plugins, skills, integrations).</td>
+                    <td class="py-3 px-3 text-muted align-top">
+                      <div class="space-y-1 text-[11px]">
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub</code> or <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub list all</code> <span class="text-dim">(list all available capabilities)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub list tool</code> <span class="text-dim">(filter: tool, plugin, skill, integration)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub search crypto</code> <span class="text-dim">(search by keyword or tag)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub install &lt;name&gt;</code> <span class="text-dim">(install tool as .py or folder)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub remove &lt;name&gt;</code> <span class="text-dim">(uninstall capability and remove files)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub info &lt;name&gt;</code> <span class="text-dim">(display blueprint, author, version)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub update</code> <span class="text-dim">(sync capabilities with remote GitHub hub)</span></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/store</td>
+                    <td class="py-3 px-3 text-text align-top">An alias for <code class="text-accent">/hub</code>. Provides identical commands and parameters for managing capabilities.</td>
+                    <td class="py-3 px-3 text-muted align-top">
+                      <div class="space-y-1 text-[11px]">
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/store list</code></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/store install &lt;name&gt;</code></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/store remove &lt;name&gt;</code></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/skills</td>
+                    <td class="py-3 px-3 text-text align-top">Lists all procedural routines and self-learned skills saved in <code class="text-dim">src/kurocode/brain/skills.json</code> and the <code class="text-dim">skills/</code> directory.</td>
+                    <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-1 rounded border border-border">/skills</code></td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/&lt;skill-name&gt; [prompt]</td>
+                    <td class="py-3 px-3 text-text align-top"><span class="text-warning font-semibold">[Direct Skill Execution]</span> Directly triggers an installed skill by name. Kuro reads the procedural instructions from <code class="text-dim">skills/&lt;name&gt;/SKILL.md</code> (or <code class="text-dim">README.md</code>), injects your custom prompt, and executes the routine step-by-step.</td>
+                    <td class="py-3 px-3 text-muted align-top">
+                      <div class="space-y-1 text-[11px]">
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/&lt;skill-name&gt; &lt;custom instructions&gt;</code></div>
+                        <div class="text-dim">Example: <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/git-release-workflow bump version to 2.1.0 and run test suite</code></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/plugin</td>
+                    <td class="py-3 px-3 text-text align-top">Manages modular plugins that run as full self-contained folders with their own manifests (<code class="text-dim">plugin.json</code>) and entrypoints.</td>
+                    <td class="py-3 px-3 text-muted align-top">
+                      <div class="space-y-1 text-[11px]">
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/plugin list</code> <span class="text-dim">(list installed plugins & active status)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/plugin install &lt;path_or_git_url&gt;</code> <span class="text-dim">(install folder or repo)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/plugin remove &lt;plugin_name&gt;</code> <span class="text-dim">(uninstall plugin directory)</span></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/integrations</td>
+                    <td class="py-3 px-3 text-text align-top">Lists and manages external service bridges (GitHub, Telegram, Discord, Google Drive, GitLab).</td>
+                    <td class="py-3 px-3 text-muted align-top">
+                      <div class="space-y-1 text-[11px]">
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/integrations</code> <span class="text-dim">(view connection status for all services)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/integrations connect telegram &lt;TOKEN&gt; [CHAT_ID]</code></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/integrations connect discord &lt;WEBHOOK_URL&gt;</code></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/integrations connect github &lt;TOKEN&gt;</code></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/integrations disconnect &lt;service_name&gt;</code></div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Category 3: 🧠 Memory, Security & Session Management -->
+          <div class="space-y-4">
+            <div class="flex items-center gap-2 border-b border-border pb-2">
+              <span class="text-lg">🧠</span>
+              <h3 class="text-base font-bold text-text">Memory, Security & Session Management</h3>
+              <span class="text-xs font-mono text-dim ml-auto">5 Commands</span>
+            </div>
+
+            <div class="surface-card p-6 overflow-x-auto">
+              <table class="w-full text-left text-xs font-mono border-collapse">
+                <thead>
+                  <tr class="border-b border-border text-muted">
+                    <th class="py-2.5 px-3 w-40">Command</th>
+                    <th class="py-2.5 px-3">What it does</th>
+                    <th class="py-2.5 px-3">Usage & Parameters</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-border/60">
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/vault</td>
+                    <td class="py-3 px-3 text-text align-top">Manages your encrypted credential vault (using Windows DPAPI or AES-256). All tokens, passwords, and API keys are stored encrypted on disk.</td>
+                    <td class="py-3 px-3 text-muted align-top">
+                      <div class="space-y-1 text-[11px]">
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/vault list</code> <span class="text-dim">(list keys without revealing plaintext)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/vault set &lt;KEY&gt; &lt;VALUE&gt;</code> <span class="text-dim">(store encrypted secret)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/vault get &lt;KEY&gt; [--reveal]</code> <span class="text-dim">(retrieve secret; masked by default)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/vault delete &lt;KEY&gt;</code> <span class="text-dim">(delete a secret from the vault)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/vault lock</code> <span class="text-dim">(purge credentials from RAM memory)</span></div>
+                        <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/vault unlock [password]</code> <span class="text-dim">(unlock the vault)</span></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/memory</td>
+                    <td class="py-3 px-3 text-text align-top">Inspects persistent conversation history and summarized context stored in the SQLite brain database.</td>
+                    <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-1 rounded border border-border">/memory</code></td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/clear</td>
+                    <td class="py-3 px-3 text-text align-top">Clears the active conversation working memory for a fresh session without resetting your stored configuration or vault.</td>
+                    <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-1 rounded border border-border">/clear</code></td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">/help</td>
+                    <td class="py-3 px-3 text-text align-top">Displays the interactive categorized command reference table directly in your terminal. <span class="text-dim">(Aliases: <code class="text-accent">/h</code>, <code class="text-accent">help</code>, <code class="text-accent">?</code>)</span></td>
+                    <td class="py-3 px-3 text-muted align-top">
+                      <div class="space-y-1">
+                        <div><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/help</code></div>
+                        <div class="text-dim text-[11px]">Aliases: <code>/h</code> | <code>help</code> | <code>?</code></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-3 text-accent font-bold align-top">exit / quit</td>
+                    <td class="py-3 px-3 text-text align-top">Safely shuts down and terminates the active KURO session.</td>
+                    <td class="py-3 px-3 text-muted align-top">
+                      <div class="space-y-1">
+                        <div><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">exit</code> or <code class="text-text bg-bg px-2 py-0.5 rounded border border-border">quit</code></div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
 

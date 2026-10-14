@@ -166,7 +166,7 @@
                   <span class="w-2 h-2 rounded-full bg-accent/60"></span>
                   <span>kuro-agent ~ v0.2.0</span>
                 </div>
-                <button data-copy-text="/store update && /store install json_inspector" 
+                <button data-copy-text="/hub update && /hub install json_inspector" 
                         class="text-[11px] font-mono text-muted hover:text-accent flex items-center gap-1 transition-colors" 
                         title="Copy command">
                   <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -193,15 +193,15 @@
                 
                 <div class="pt-2 text-muted flex items-center gap-2">
                   <span class="text-accent font-bold">kuro &gt;</span>
-                  <span class="text-text">/store update</span>
+                  <span class="text-text">/hub update</span>
                 </div>
                 <div class="text-dim">
-                  → Fetching kurolabs-ai/hub catalog... (10 pieces indexed)
+                  → Syncing kurolabs-ai/hub catalog... (10 pieces indexed)
                 </div>
                 
                 <div class="pt-1 text-muted flex items-center gap-2">
                   <span class="text-accent font-bold">kuro &gt;</span>
-                  <span class="text-text">/store install json_inspector</span>
+                  <span class="text-text">/hub install json_inspector</span>
                 </div>
                 <div class="text-accent">
                   ✓ Hot-snapped tool_json_inspector (v1.0.0) into runtime.
@@ -209,10 +209,10 @@
                 
                 <div class="pt-1 text-muted flex items-center gap-2">
                   <span class="text-accent font-bold">kuro &gt;</span>
-                  <span class="text-text">/heal status</span>
+                  <span class="text-text">/status</span>
                 </div>
                 <div class="text-dim">
-                  [Diagnostics] Zero traceback errors. System healthy.
+                  [Status] Provider: Gemini | Model: gemini-2.0-flash | Keys: 2 | Safe: ON | Git: Active
                 </div>
               </div>
             </div>
@@ -275,7 +275,7 @@
                 The internal subsystem inside KuroCodeAgent responsible for discovering, resolving, and hot-installing capabilities dynamically.
               </p>
               <ul class="text-xs text-dim space-y-1.5 font-mono pt-2 border-t border-border">
-                <li>• Runtime commands: <code>/store install</code></li>
+                <li>• Runtime commands: <code>/hub install</code> (or <code>/store install</code>)</li>
                 <li>• Resolves dependencies into local agent</li>
                 <li>• Zero browser execution — pure terminal runtime</li>
               </ul>

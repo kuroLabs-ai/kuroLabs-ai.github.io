@@ -254,146 +254,314 @@
     </div>
 
     <!-- Verified Store Commands & Terminal Slash Reference -->
-    <div class="surface-card p-8 space-y-6">
+    <div class="surface-card p-8 space-y-8">
       <div class="space-y-2">
         <span class="text-xs font-mono uppercase tracking-widest text-warning">KuroCodeAgent Interactive Commands</span>
         <h2 class="text-2xl font-bold text-text">Interactive Slash Commands Reference</h2>
         <p class="text-xs text-muted">
-          Execute these verified commands directly in the KuroCode terminal interface:
+          Execute these verified slash commands directly in the KuroCode terminal interface:
         </p>
       </div>
 
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs font-mono border-collapse">
-          <thead>
-            <tr class="border-b border-border text-muted">
-              <th class="py-3 px-4">Command</th>
-              <th class="py-3 px-4">Category</th>
-              <th class="py-3 px-4">Description</th>
-              <th class="py-3 px-4">Example</th>
-              <th class="py-3 px-4 text-right">Action</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-border/60">
-            <tr>
-              <td class="py-3 px-4 text-accent font-bold">/store update</td>
-              <td class="py-3 px-4 text-dim">Store</td>
-              <td class="py-3 px-4 text-text">Sync latest capabilities from kurolabs-ai/hub</td>
-              <td class="py-3 px-4 text-muted">/store update</td>
-              <td class="py-3 px-4 text-right">
-                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/store update">Copy</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-3 px-4 text-accent font-bold">/store list</td>
-              <td class="py-3 px-4 text-dim">Store</td>
-              <td class="py-3 px-4 text-text">Browse available & installed puzzle pieces</td>
-              <td class="py-3 px-4 text-muted">/store list</td>
-              <td class="py-3 px-4 text-right">
-                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/store list">Copy</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-3 px-4 text-accent font-bold">/store search &lt;q&gt;</td>
-              <td class="py-3 px-4 text-dim">Store</td>
-              <td class="py-3 px-4 text-text">Search capabilities by keyword or tag</td>
-              <td class="py-3 px-4 text-muted">/store search crypto</td>
-              <td class="py-3 px-4 text-right">
-                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/store search crypto">Copy</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-3 px-4 text-accent font-bold">/store install &lt;t|url&gt;</td>
-              <td class="py-3 px-4 text-dim">Store</td>
-              <td class="py-3 px-4 text-text">Hot-install tool, plugin, skill, or web URL</td>
-              <td class="py-3 px-4 text-muted">/store install regex_tester</td>
-              <td class="py-3 px-4 text-right">
-                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/store install regex_tester">Copy</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-3 px-4 text-accent font-bold">/store remove &lt;n&gt;</td>
-              <td class="py-3 px-4 text-dim">Store</td>
-              <td class="py-3 px-4 text-text">Unplug and delete an installed puzzle piece</td>
-              <td class="py-3 px-4 text-muted">/store remove regex_tester</td>
-              <td class="py-3 px-4 text-right">
-                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/store remove regex_tester">Copy</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-3 px-4 text-accent font-bold">/store info &lt;n&gt;</td>
-              <td class="py-3 px-4 text-dim">Store</td>
-              <td class="py-3 px-4 text-text">Inspect metadata and manifest blueprint</td>
-              <td class="py-3 px-4 text-muted">/store info json_inspector</td>
-              <td class="py-3 px-4 text-right">
-                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/store info json_inspector">Copy</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-3 px-4 text-accent font-bold">/heal status</td>
-              <td class="py-3 px-4 text-dim">Healing</td>
-              <td class="py-3 px-4 text-text">View active self-healing diagnosis status</td>
-              <td class="py-3 px-4 text-muted">/heal status</td>
-              <td class="py-3 px-4 text-right">
-                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/heal status">Copy</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-3 px-4 text-accent font-bold">/heal repair &lt;tool&gt;</td>
-              <td class="py-3 px-4 text-dim">Healing</td>
-              <td class="py-3 px-4 text-text">Trigger automated tool diagnosis & repair</td>
-              <td class="py-3 px-4 text-muted">/heal repair json_inspector</td>
-              <td class="py-3 px-4 text-right">
-                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/heal repair json_inspector">Copy</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-3 px-4 text-accent font-bold">/evolve propose</td>
-              <td class="py-3 px-4 text-dim">Evolution</td>
-              <td class="py-3 px-4 text-text">Propose autonomous upgrades from bottlenecks</td>
-              <td class="py-3 px-4 text-muted">/evolve propose</td>
-              <td class="py-3 px-4 text-right">
-                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/evolve propose">Copy</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-3 px-4 text-accent font-bold">/vault set &lt;k&gt; &lt;v&gt;</td>
-              <td class="py-3 px-4 text-dim">Security</td>
-              <td class="py-3 px-4 text-text">Encrypt credential in OS hardware vault</td>
-              <td class="py-3 px-4 text-muted">/vault set GEMINI_API_KEY AIzaSy...</td>
-              <td class="py-3 px-4 text-right">
-                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/vault set GEMINI_API_KEY AIzaSy...">Copy</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-3 px-4 text-accent font-bold">/safe &lt;on|off&gt;</td>
-              <td class="py-3 px-4 text-dim">Security</td>
-              <td class="py-3 px-4 text-text">Toggle Safe Mode confirmation gate</td>
-              <td class="py-3 px-4 text-muted">/safe off</td>
-              <td class="py-3 px-4 text-right">
-                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/safe off">Copy</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-3 px-4 text-accent font-bold">/undo</td>
-              <td class="py-3 px-4 text-dim">Rollback</td>
-              <td class="py-3 px-4 text-text">Roll back last automated file modifications</td>
-              <td class="py-3 px-4 text-muted">/undo</td>
-              <td class="py-3 px-4 text-right">
-                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/undo">Copy</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-3 px-4 text-accent font-bold">/system</td>
-              <td class="py-3 px-4 text-dim">Telemetry</td>
-              <td class="py-3 px-4 text-text">Inspect live CPU, RAM, Disk, and OS metrics</td>
-              <td class="py-3 px-4 text-muted">/system</td>
-              <td class="py-3 px-4 text-right">
-                <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/system">Copy</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Autonomous Tools Note -->
+      <div class="p-4 rounded-lg bg-bg border border-accent/30 flex items-start gap-3 text-xs leading-relaxed">
+        <span class="text-accent font-mono font-bold text-base mt-0.5">ℹ</span>
+        <div>
+          <strong class="text-text font-semibold">Autonomous Tools Notice:</strong>
+          <span class="text-muted ml-1">
+            Tools such as web search (<code class="font-mono text-dim">search_web</code>), headless browsing (<code class="font-mono text-dim">browse_web_headless</code>), image analysis (<code class="font-mono text-dim">analyze_image</code>), file reading/writing, database queries, and code generation are <strong>not</strong> manual slash commands — Kuro invokes them automatically and autonomously during conversations when needed.
+          </span>
+        </div>
+      </div>
+
+      <!-- Category 1: ⚙️ System, Hardware & Configuration -->
+      <div class="space-y-3">
+        <div class="flex items-center gap-2 border-b border-border pb-2">
+          <span class="text-base">⚙️</span>
+          <h3 class="text-sm font-bold text-text">System, Hardware & Configuration</h3>
+          <span class="text-[11px] font-mono text-dim ml-auto">9 Commands</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono border-collapse">
+            <thead>
+              <tr class="border-b border-border text-muted">
+                <th class="py-2.5 px-3 w-36">Command</th>
+                <th class="py-2.5 px-3">What it does</th>
+                <th class="py-2.5 px-3">Usage & Parameters</th>
+                <th class="py-2.5 px-3 text-right w-20">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border/60">
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/status</td>
+                <td class="py-3 px-3 text-text align-top">Displays the active LLM provider, selected model, loaded key count in pool, Safe Mode status, and automatic Git checkpoint status.</td>
+                <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/status</code></td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/status">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/system</td>
+                <td class="py-3 px-3 text-text align-top">Shows live host hardware telemetry, including Operating System details, CPU core count, RAM utilization (GB used / total), and primary disk storage usage.</td>
+                <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/system</code></td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/system">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/top</td>
+                <td class="py-3 px-3 text-text align-top">Scans and lists active operating system processes ordered by memory consumption to monitor system resource footprint.</td>
+                <td class="py-3 px-3 text-muted align-top">
+                  <div class="space-y-1">
+                    <div><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/top</code></div>
+                    <div><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/top 20</code> <span class="text-dim text-[11px]">(top 20)</span></div>
+                  </div>
+                </td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/top">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/safe</td>
+                <td class="py-3 px-3 text-text align-top">Controls the execution permission gate. When enabled (on), KURO prompts before destructive actions. Supports tool whitelisting.</td>
+                <td class="py-3 px-3 text-muted align-top">
+                  <div class="space-y-1 text-[11px]">
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/safe on</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/safe off</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/safe toggle</code></div>
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/safe allow execute_python</code></div>
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/safe clear</code></div>
+                  </div>
+                </td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/safe on">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/pool</td>
+                <td class="py-3 px-3 text-text align-top">Displays the status of multi-key API pools across all providers, showing active keys and HTTP 429 rate-limit cooldown timers.</td>
+                <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/pool</code></td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/pool">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/models</td>
+                <td class="py-3 px-3 text-text align-top">Displays the priority model fallback chain for the active provider, showing which model will be used first and which takes over if rate-limited.</td>
+                <td class="py-3 px-3 text-muted align-top">
+                  <div class="space-y-1">
+                    <div><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/models</code></div>
+                    <div><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/models gemini</code></div>
+                  </div>
+                </td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/models">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/key</td>
+                <td class="py-3 px-3 text-text align-top">Securely adds a new API key to a provider's key rotation pool and encrypts it into the credential vault.</td>
+                <td class="py-3 px-3 text-muted align-top">
+                  <div class="space-y-1 text-[11px]">
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/key &lt;API_KEY&gt;</code></div>
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/key groq &lt;API_KEY&gt;</code></div>
+                  </div>
+                </td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/key">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/undo</td>
+                <td class="py-3 px-3 text-text align-top">Immediately rolls back the last automated file changes using Kuro's automatic Git stash checkpoints.</td>
+                <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/undo</code></td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/undo">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">!&lt;cmd&gt;</td>
+                <td class="py-3 px-3 text-text align-top"><span class="text-warning font-semibold">[Direct Shell Bypass]</span> Bypasses the LLM completely and executes the command directly in your local OS shell.</td>
+                <td class="py-3 px-3 text-muted align-top">
+                  <div class="space-y-1 text-[11px]">
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">!git status</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">!dir</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">!npm test</code></div>
+                  </div>
+                </td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="!git status">Copy</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Category 2: 🧩 KuroHub & Capability Management -->
+      <div class="space-y-3">
+        <div class="flex items-center gap-2 border-b border-border pb-2">
+          <span class="text-base">🧩</span>
+          <h3 class="text-sm font-bold text-text">KuroHub & Capability Management</h3>
+          <span class="text-[11px] font-mono text-dim ml-auto">6 Commands</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono border-collapse">
+            <thead>
+              <tr class="border-b border-border text-muted">
+                <th class="py-2.5 px-3 w-36">Command</th>
+                <th class="py-2.5 px-3">What it does</th>
+                <th class="py-2.5 px-3">Usage & Parameters</th>
+                <th class="py-2.5 px-3 text-right w-20">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border/60">
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/hub</td>
+                <td class="py-3 px-3 text-text align-top">The primary manager for the KuroHub capability store. Browse, search, install, uninstall, view blueprints, and update capabilities.</td>
+                <td class="py-3 px-3 text-muted align-top">
+                  <div class="space-y-1 text-[11px]">
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub list all</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub list tool</code></div>
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub search crypto</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub install &lt;name&gt;</code></div>
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub remove &lt;name&gt;</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub info &lt;name&gt;</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/hub update</code></div>
+                  </div>
+                </td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/hub list all">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/store</td>
+                <td class="py-3 px-3 text-text align-top">An alias for <code class="text-accent">/hub</code>. Provides identical commands and parameters for managing capabilities.</td>
+                <td class="py-3 px-3 text-muted align-top">
+                  <div class="space-y-1 text-[11px]">
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/store list</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/store install &lt;name&gt;</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/store remove &lt;name&gt;</code></div>
+                  </div>
+                </td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/store list">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/skills</td>
+                <td class="py-3 px-3 text-text align-top">Lists all installed procedural routines and self-learned skills saved in brain database and skills/ directory.</td>
+                <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/skills</code></td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/skills">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/&lt;skill-name&gt;</td>
+                <td class="py-3 px-3 text-text align-top"><span class="text-warning font-semibold">[Direct Skill Execution]</span> Directly triggers an installed skill by name, injecting custom prompt instructions.</td>
+                <td class="py-3 px-3 text-muted align-top">
+                  <div class="space-y-1 text-[11px]">
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/&lt;skill-name&gt; &lt;custom instructions&gt;</code></div>
+                    <div class="text-dim">Example: <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/git-release-workflow bump version to 2.1.0</code></div>
+                  </div>
+                </td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/git-release-workflow bump version to 2.1.0">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/plugin</td>
+                <td class="py-3 px-3 text-text align-top">Manages modular plugins that run as full self-contained folders with their own manifests (<code class="text-dim">plugin.json</code>) and entrypoints.</td>
+                <td class="py-3 px-3 text-muted align-top">
+                  <div class="space-y-1 text-[11px]">
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/plugin list</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/plugin install &lt;path|git_url&gt;</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/plugin remove &lt;name&gt;</code></div>
+                  </div>
+                </td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/plugin list">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/integrations</td>
+                <td class="py-3 px-3 text-text align-top">Lists and manages external service bridges (GitHub, Telegram, Discord, Google Drive, GitLab).</td>
+                <td class="py-3 px-3 text-muted align-top">
+                  <div class="space-y-1 text-[11px]">
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/integrations</code></div>
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/integrations connect telegram &lt;TOKEN&gt; [CHAT_ID]</code></div>
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/integrations connect discord &lt;WEBHOOK_URL&gt;</code></div>
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/integrations connect github &lt;TOKEN&gt;</code></div>
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/integrations disconnect &lt;service&gt;</code></div>
+                  </div>
+                </td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/integrations">Copy</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Category 3: 🧠 Memory, Security & Session Management -->
+      <div class="space-y-3">
+        <div class="flex items-center gap-2 border-b border-border pb-2">
+          <span class="text-base">🧠</span>
+          <h3 class="text-sm font-bold text-text">Memory, Security & Session Management</h3>
+          <span class="text-[11px] font-mono text-dim ml-auto">5 Commands</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono border-collapse">
+            <thead>
+              <tr class="border-b border-border text-muted">
+                <th class="py-2.5 px-3 w-36">Command</th>
+                <th class="py-2.5 px-3">What it does</th>
+                <th class="py-2.5 px-3">Usage & Parameters</th>
+                <th class="py-2.5 px-3 text-right w-20">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border/60">
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/vault</td>
+                <td class="py-3 px-3 text-text align-top">Manages your encrypted credential vault (using Windows DPAPI or AES-256). All tokens, passwords, and API keys are stored encrypted on disk.</td>
+                <td class="py-3 px-3 text-muted align-top">
+                  <div class="space-y-1 text-[11px]">
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/vault list</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/vault set &lt;KEY&gt; &lt;VALUE&gt;</code></div>
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/vault get &lt;KEY&gt; [--reveal]</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/vault delete &lt;KEY&gt;</code></div>
+                    <div><code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/vault lock</code> | <code class="text-text bg-bg px-1.5 py-0.5 rounded border border-border">/vault unlock [password]</code></div>
+                  </div>
+                </td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/vault list">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/memory</td>
+                <td class="py-3 px-3 text-text align-top">Inspects persistent conversation history and summarized context stored in the SQLite brain database.</td>
+                <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/memory</code></td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/memory">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/clear</td>
+                <td class="py-3 px-3 text-text align-top">Clears the active conversation working memory for a fresh session without resetting your stored configuration or vault.</td>
+                <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/clear</code></td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/clear">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">/help</td>
+                <td class="py-3 px-3 text-text align-top">Displays the interactive categorized command reference table directly in your terminal. <span class="text-dim">(Aliases: <code class="text-accent">/h</code>, <code class="text-accent">help</code>, <code class="text-accent">?</code>)</span></td>
+                <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">/help</code></td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="/help">Copy</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 text-accent font-bold align-top">exit / quit</td>
+                <td class="py-3 px-3 text-text align-top">Safely shuts down and terminates the active KURO session.</td>
+                <td class="py-3 px-3 text-muted align-top"><code class="text-text bg-bg px-2 py-0.5 rounded border border-border">exit</code></td>
+                <td class="py-3 px-3 text-right align-top">
+                  <button class="text-xs text-dim hover:text-accent btn-copy-cmd" data-cmd="exit">Copy</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 

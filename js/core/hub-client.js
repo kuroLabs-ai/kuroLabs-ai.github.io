@@ -123,8 +123,8 @@ export class HubClient {
       filePath,
       sourceUrl,
       payload,
-      // Verified Store command
-      installCommand: `/store install ${name}`
+      // Verified Hub/Store command
+      installCommand: `/hub install ${name}`
     };
   }
 

@@ -115,9 +115,9 @@ const SCENARIOS = {
       {
         phase: 'Store Hot-Installation',
         thought: 'Matching piece "tool_hash_calculator" found in official Hub. Downloading and verifying entrypoint.',
-        action: 'kuro > /store install hash_calculator',
+        action: 'kuro > /hub install hash_calculator',
         output: [
-          '[Store] Resolved branch file: tools/hash_calculator.py',
+          '[Hub] Resolved branch file: tools/hash_calculator.py',
           '[AST Check] Entrypoint signature verified safe.',
           '[Hot-Reload] Snapped tool_hash_calculator (v1.0.0) into active session.'
         ],

@@ -331,7 +331,7 @@ function openDetailModal(item) {
   if (urlCmdSection && urlCmdEl) {
     if (item.filePath) {
       const rawUrl = `https://raw.githubusercontent.com/kurolabs-ai/hub/main/${item.filePath}`;
-      const urlInstallCmd = `/store install ${rawUrl}`;
+      const urlInstallCmd = `/hub install ${rawUrl}`;
       urlCmdEl.textContent = urlInstallCmd;
       urlCmdSection.classList.remove('hidden');
       if (copyUrlBtn) {
