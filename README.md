@@ -16,7 +16,7 @@ The website strictly communicates three distinct concepts:
                |             |             |
             Website       Programs        Hub
                |             |             |
-         Public portal   KuroCodeAgent  catalog.json
+         Public portal   KuroCodeAgent  kuro-hub.json
                |             |             |
          Browse & learn   Store runtime   tools/
                |             |            plugins/
@@ -31,7 +31,7 @@ The website strictly communicates three distinct concepts:
 
 1. **Programs:** Complete standalone applications developed by KuroLabs (e.g. `KuroCodeAgent`).
 2. **Store:** The runtime capability manager inside `KuroCodeAgent` that enables `/store install <name>` and manages local execution lifecycles.
-3. **Hub:** The open decentralized remote registry repository (`kurolabs-ai/hub`) containing `catalog.json` and standalone capability files (`tools/`, `plugins/`, `skills/`).
+3. **Hub:** The open decentralized remote registry repository (`kurolabs-ai/hub`) containing `kuro-hub.json` and standalone capability files (`tools/`, `plugins/`, `skills/`).
 
 ---
 
@@ -70,7 +70,7 @@ website/
 ├── data/
 │   ├── programs.json            # Authoritative metadata for KuroLabs programs
 │   ├── roadmap.json             # Verified ecosystem roadmap milestones
-│   └── hub-fallback.json        # Resilient offline cache of Hub catalog.json
+│   └── hub-fallback.json        # Resilient offline cache of Hub kuro-hub.json
 ├── css/
 │   ├── tokens.css               # Brand palette & CSS custom property tokens
 │   ├── global.css               # Base layout, scrollbar, grid overlay, reset
@@ -146,8 +146,8 @@ To add a new standalone program to the ecosystem:
 Capabilities belong to the **Capability Hub repository** (`kurolabs-ai/hub`), **not** this website:
 1. Navigate to the Hub repository: [https://github.com/kurolabs-ai/hub](https://github.com/kurolabs-ai/hub).
 2. Add your implementation file in `tools/`, `plugins/`, or `skills/`.
-3. Add a corresponding record to `catalog.json` in `kurolabs-ai/hub`.
-4. Once merged to `main`, this website automatically discovers and displays the new capability live via `https://raw.githubusercontent.com/kurolabs-ai/hub/main/catalog.json`.
+3. Add a corresponding record to `kuro-hub.json` in `kurolabs-ai/hub`.
+4. Once merged to `main`, this website automatically discovers and displays the new capability live via `https://raw.githubusercontent.com/kurolabs-ai/hub/main/kuro-hub.json`.
 
 ---
 

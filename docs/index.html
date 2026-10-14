@@ -429,7 +429,7 @@ KURO_SAFE_MODE=true</code></pre>
             <div class="surface-card p-6 space-y-3">
               <h4 class="text-sm font-bold text-text font-mono">Core Store Responsibilities</h4>
               <ul class="space-y-2 text-xs text-muted list-disc list-inside leading-relaxed">
-                <li><strong>Remote Sync:</strong> Fetches and parses <code>catalog.json</code> from <code>kurolabs-ai/hub</code> via urllib.</li>
+                <li><strong>Remote Sync:</strong> Fetches and parses <code>kuro-hub.json</code> from <code>kurolabs-ai/hub</code> via urllib.</li>
                 <li><strong>Pre-Execution AST Inspection:</strong> All Python files downloaded from URLs are scanned by <code>sandbox_guard</code> before execution.</li>
                 <li><strong>Hot-Reloading:</strong> Registers new callables directly into the active ReAct tool registry without restarting the session.</li>
                 <li><strong>URL Installation:</strong> Supports direct installation from arbitrary raw GitHub or web URLs via <code>/store install &lt;url&gt;</code>.</li>
@@ -460,7 +460,7 @@ KURO_SAFE_MODE=true</code></pre>
 
           <!-- Schema Table -->
           <div class="surface-card p-6 overflow-x-auto space-y-4">
-            <h4 class="text-sm font-bold text-text font-mono">catalog.json Schema Specification</h4>
+            <h4 class="text-sm font-bold text-text font-mono">kuro-hub.json Schema Specification</h4>
             <table class="w-full text-left text-xs font-mono border-collapse">
               <thead>
                 <tr class="border-b border-border text-muted">
@@ -532,7 +532,7 @@ KURO_SAFE_MODE=true</code></pre>
           <!-- Code Example: Multi-type schema records -->
           <div class="code-block-wrapper terminal-window">
             <div class="terminal-header">
-              <span class="text-xs font-mono text-muted">Example catalog.json Entries (Tools, Plugins, Skills, Integrations)</span>
+              <span class="text-xs font-mono text-muted">Example kuro-hub.json Entries (Tools, Plugins, Skills, Integrations)</span>
               <button class="doc-copy-btn text-xs font-mono text-accent hover:underline">Copy</button>
             </div>
             <div class="terminal-body">
@@ -662,7 +662,7 @@ tags: [workflow]
               <li><strong class="text-text">Fork &amp; Clone:</strong> <code>git clone https://github.com/&lt;your-user&gt;/hub.git</code></li>
               <li><strong class="text-text">Create Branch:</strong> <code>git checkout -b feat/add-&lt;capability-name&gt;</code></li>
               <li><strong class="text-text">Author Capability:</strong> Add file in <code>tools/</code>, <code>plugins/</code>, or <code>skills/</code>.</li>
-              <li><strong class="text-text">Update catalog.json:</strong> Append entry matching the schema above.</li>
+              <li><strong class="text-text">Update kuro-hub.json:</strong> Append entry matching the schema above.</li>
               <li><strong class="text-text">Open PR:</strong> Submit PR to <code>kurolabs-ai/hub:main</code>. Once merged, it is immediately discoverable in KuroCode!</li>
             </ol>
           </div>

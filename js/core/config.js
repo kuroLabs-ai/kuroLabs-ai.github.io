@@ -16,7 +16,7 @@ export const CONFIG = {
   },
 
   hub: {
-    remoteCatalogUrl: 'https://raw.githubusercontent.com/kurolabs-ai/hub/main/catalog.json',
+    remoteCatalogUrl: 'https://raw.githubusercontent.com/kurolabs-ai/hub/main/kuro-hub.json',
     blobBaseUrl: 'https://github.com/kurolabs-ai/hub/blob/main/',
     fallbackDataPath: 'data/hub-fallback.json'
   },
