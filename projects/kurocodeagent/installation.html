@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Installation Guide — KuroCodeAgent</title>
+  <meta name="description" content="Step-by-step verified installation instructions for KuroCodeAgent. Install from PyPI or source, configure providers, and verify system setup.">
+  <meta name="theme-color" content="#0B0D0F">
+
+  <meta name="application-name" content="KuroLabs">
+  <meta name="apple-mobile-web-app-title" content="KuroLabs">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://kurolabs-ai.github.io/projects/kurocodeagent/installation.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KuroLabs">
+  <meta property="og:url" content="https://kurolabs-ai.github.io/projects/kurocodeagent/installation.html">
+  <meta property="og:title" content="Installation Guide — KuroCodeAgent">
+  <meta property="og:description" content="Step-by-step verified installation instructions for KuroCodeAgent. Install from PyPI or source, configure providers, and verify your setup.">
+  <meta property="og:image" content="https://kurolabs-ai.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KuroCodeAgent Installation Guide — KuroLabs">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Installation Guide — KuroCodeAgent">
+  <meta name="twitter:description" content="Install KuroCodeAgent via PyPI or from source. Supports Python 3.10–3.13 on Windows, Linux, and macOS.">
+  <meta name="twitter:image" content="https://kurolabs-ai.github.io/assets/og-image.png">
+
+  <!-- Favicons -->
+  <link rel="icon" href="../../favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="48x48" href="../../assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../assets/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../assets/favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Install KuroCodeAgent",
+    "description": "Step-by-step verified installation guide for KuroCodeAgent on Windows, Linux, and macOS.",
+    "url": "https://kurolabs-ai.github.io/projects/kurocodeagent/installation.html",
+    "step": [
+      { "@type": "HowToStep", "name": "Install via PyPI", "text": "Run: pip install kurocode" },
+      { "@type": "HowToStep", "name": "Configure a provider", "text": "Run: kuro --setup and follow the interactive prompts." },
+      { "@type": "HowToStep", "name": "Verify installation", "text": "Run: kuro --version to confirm the agent is ready." }
+    ],
+    "isPartOf": { "@id": "https://kurolabs-ai.github.io/#website" }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0B0D0F',
+            surface: '#111315',
+            'surface-elevated': '#181B1F',
+            'surface-card': '#14171A',
+            border: '#292D32',
+            'border-light': '#363C43',
+            accent: '#B6F36B',
+            'accent-muted': '#96D050',
+            'accent-dim': 'rgba(182, 243, 107, 0.08)',
+            'accent-glow': 'rgba(182, 243, 107, 0.15)',
+            primary: '#F3F4F6',
+            secondary: '#9CA3AF',
+            muted: '#6B7280',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/global.css">
+</head>
+<body class="bg-bg text-primary min-h-screen flex flex-col font-sans selection:bg-accent selection:text-bg">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-bg/90 backdrop-blur border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="../../index.html" class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded">
+        <div class="w-8 h-8 rounded bg-surface-elevated border border-border flex items-center justify-center text-accent group-hover:border-accent transition-colors">
+          <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <span class="font-mono font-bold text-lg tracking-tight text-primary group-hover:text-accent transition-colors">
+          KURO<span class="text-accent font-medium">LABS</span>
+        </span>
+      </a>
+
+      <nav class="hidden md:flex items-center space-x-8 text-sm" aria-label="Main Navigation">
+        <a href="../../about.html" class="text-secondary hover:text-primary transition-colors">About</a>
+        <a href="../index.html" class="text-secondary hover:text-primary transition-colors">Projects</a>
+        <a href="./index.html" class="text-accent font-medium transition-colors">KuroCodeAgent</a>
+        <a href="./docs/index.html" class="text-secondary hover:text-primary transition-colors">Docs</a>
+        <a href="../../hub/index.html" class="text-secondary hover:text-primary transition-colors">Hub</a>
+      </nav>
+
+      <div class="hidden md:flex items-center space-x-4">
+        <a href="https://github.com/kuroLabs-ai/KuroCodeAgent" target="_blank" rel="noopener noreferrer" class="btn-secondary text-xs !py-1.5 !px-3 font-mono flex items-center gap-1.5">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>Source</span>
+        </a>
+      </div>
+
+      <button id="mobile-menu-toggle" type="button" class="md:hidden p-2 rounded text-secondary hover:text-primary hover:bg-surface-elevated" aria-label="Toggle mobile menu" aria-expanded="false">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-50 bg-bg/95 backdrop-blur-md p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-border">
+          <span class="font-mono font-bold text-lg text-primary">KURO<span class="text-accent">CODE</span></span>
+          <button id="mobile-menu-close" type="button" class="p-2 text-secondary hover:text-primary" aria-label="Close menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <nav class="flex flex-col space-y-4 pt-6 text-base font-mono">
+          <a href="./index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Product Overview</a>
+          <a href="./installation.html" class="text-accent py-2 border-b border-border/40">Installation Guide</a>
+          <a href="./docs/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Documentation Index</a>
+          <a href="./docs/configuration.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Configuration</a>
+          <a href="./docs/architecture.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Architecture</a>
+          <a href="../../hub/index.html" class="text-secondary hover:text-accent py-2">Capability Hub</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumbs -->
+      <nav class="flex items-center gap-2 text-xs font-mono text-muted mb-8" aria-label="Breadcrumb">
+        <a href="../../index.html" class="hover:text-primary">KuroLabs</a>
+        <span>/</span>
+        <a href="../index.html" class="hover:text-primary">Projects</a>
+        <span>/</span>
+        <a href="./index.html" class="hover:text-primary">KuroCodeAgent</a>
+        <span>/</span>
+        <span class="text-accent">Installation</span>
+      </nav>
+
+      <!-- Header -->
+      <div class="mb-12 pb-6 border-b border-border">
+        <div class="mono-label text-accent mb-2">QUICKSTART GUIDE</div>
+        <h1 class="text-4xl font-extrabold text-primary font-sans mb-3">Installing KuroCodeAgent</h1>
+        <p class="text-secondary text-base leading-relaxed">
+          Follow verified setup instructions to run KuroCode on Windows, Linux, or macOS.
+        </p>
+      </div>
+
+      <!-- Prerequisites -->
+      <section class="mb-12">
+        <h2 class="text-xl font-bold text-primary font-mono mb-4 flex items-center gap-2">
+          <span class="text-accent">01.</span> System Prerequisites
+        </h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="p-4 rounded-lg bg-surface border border-border">
+            <div class="text-xs font-mono text-muted uppercase mb-1">Python Version</div>
+            <div class="text-sm font-bold text-primary font-mono">3.10, 3.11, 3.12, 3.13</div>
+            <div class="text-xs text-secondary mt-1">Tested across active CPython builds</div>
+          </div>
+
+          <div class="p-4 rounded-lg bg-surface border border-border">
+            <div class="text-xs font-mono text-muted uppercase mb-1">Git Client</div>
+            <div class="text-sm font-bold text-primary font-mono">Available in PATH</div>
+            <div class="text-xs text-secondary mt-1">Required for automated rollback checkpoints</div>
+          </div>
+
+          <div class="p-4 rounded-lg bg-surface border border-border">
+            <div class="text-xs font-mono text-muted uppercase mb-1">Operating System</div>
+            <div class="text-sm font-bold text-primary font-mono">Windows / Linux / macOS</div>
+            <div class="text-xs text-secondary mt-1">Windows provides native DPAPI vault</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Option 1: Install from PyPI -->
+      <section class="mb-12">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-primary font-mono flex items-center gap-2">
+            <span class="text-accent">02.</span> Option 1 — Install from PyPI (Recommended)
+          </h2>
+          <span class="px-2 py-0.5 rounded text-xs font-mono bg-accent-dim text-accent border border-accent/20">Fastest</span>
+        </div>
+
+        <p class="text-sm text-secondary mb-4 leading-relaxed">
+          KuroCode is distributed on PyPI with automatic trusted publishing. Simply execute:
+        </p>
+
+        <div class="terminal-window mb-4">
+          <div class="terminal-header">
+            <span class="text-xs font-mono text-muted">terminal</span>
+            <button data-copy-target="pypi-install-cmd" class="btn-secondary !py-0.5 !px-2 text-xs font-mono">Copy</button>
+          </div>
+          <div class="terminal-body">
+            <pre id="pypi-install-cmd" class="text-accent font-semibold">pip install kurocode</pre>
+          </div>
+        </div>
+
+        <p class="text-xs text-secondary mb-2">Once installed, launch the terminal REPL simply with:</p>
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <span class="text-xs font-mono text-muted">terminal</span>
+            <button data-copy-target="pypi-launch-cmd" class="btn-secondary !py-0.5 !px-2 text-xs font-mono">Copy</button>
+          </div>
+          <div class="terminal-body">
+            <pre id="pypi-launch-cmd" class="text-accent font-semibold">kuro</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Option 2: Install from Source -->
+      <section class="mb-12">
+        <h2 class="text-xl font-bold text-primary font-mono mb-4 flex items-center gap-2">
+          <span class="text-accent">03.</span> Option 2 — Install from Source (For Contributors)
+        </h2>
+        
+        <p class="text-sm text-secondary mb-4 leading-relaxed">
+          If you want to modify KuroCode, submit pull requests, or inspect internals:
+        </p>
+
+        <div class="terminal-window mb-4">
+          <div class="terminal-header">
+            <span class="text-xs font-mono text-muted">bash / powershell</span>
+            <button data-copy-target="source-install-cmd" class="btn-secondary !py-0.5 !px-2 text-xs font-mono">Copy</button>
+          </div>
+          <div class="terminal-body">
+            <pre id="source-install-cmd" class="text-secondary leading-relaxed"># Clone repository
+git clone https://github.com/kurolabs-ai/KuroCodeAgent.git
+cd KuroCodeAgent
+
+# Create and activate virtual environment
+python -m venv .venv
+# On Windows: .venv\Scripts\activate
+# On Linux/macOS: source .venv/bin/activate
+
+# Install in editable mode
+pip install -e .
+
+# Launch assistant
+kuro</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Provider Configuration -->
+      <section class="mb-12">
+        <h2 class="text-xl font-bold text-primary font-mono mb-4 flex items-center gap-2">
+          <span class="text-accent">04.</span> Provider Configuration
+        </h2>
+
+        <p class="text-sm text-secondary mb-4 leading-relaxed">
+          KuroCode requires at least one LLM API key. Choose either the encrypted interactive vault or a local <code class="text-accent font-mono">.env</code> file.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Option A: Vault -->
+          <div class="p-5 rounded-lg bg-surface border border-border">
+            <div class="text-xs font-mono text-accent font-semibold mb-2">OPTION A: ENCRYPTED VAULT (RECOMMENDED)</div>
+            <p class="text-xs text-secondary mb-3 leading-relaxed">
+              Keys are encrypted with Windows DPAPI (<code class="text-primary font-mono">CryptProtectData</code>) or AES-256 and never stored in plaintext.
+            </p>
+            <div class="p-3 rounded bg-bg border border-border font-mono text-xs text-accent space-y-1">
+              <div>kuro</div>
+              <div class="text-secondary"># Inside the running terminal:</div>
+              <div>/key gemini AIzaSyYourKeyHere</div>
+              <div>/key groq gsk_YourKeyHere</div>
+            </div>
+          </div>
+
+          <!-- Option B: .env -->
+          <div class="p-5 rounded-lg bg-surface border border-border">
+            <div class="text-xs font-mono text-muted font-semibold mb-2">OPTION B: LOCAL .ENV FILE</div>
+            <p class="text-xs text-secondary mb-3 leading-relaxed">
+              Create a <code class="text-primary font-mono">.env</code> file in your working directory:
+            </p>
+            <div class="p-3 rounded bg-bg border border-border font-mono text-xs text-secondary space-y-1">
+              <div>GEMINI_API_KEY=your_gemini_key</div>
+              <div>GROQ_API_KEY=your_groq_key</div>
+              <div>KURO_PROVIDER=gemini</div>
+              <div>KURO_SAFE_MODE=true</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Verification Step -->
+      <section class="mb-12">
+        <h2 class="text-xl font-bold text-primary font-mono mb-4 flex items-center gap-2">
+          <span class="text-accent">05.</span> Verification &amp; Diagnostics
+        </h2>
+
+        <p class="text-sm text-secondary mb-4 leading-relaxed">
+          Verify that KuroCodeAgent successfully detects your hardware telemetry and configured providers:
+        </p>
+
+        <div class="terminal-window mb-4">
+          <div class="terminal-header">
+            <span class="text-xs font-mono text-muted">verification commands</span>
+          </div>
+          <div class="terminal-body space-y-2 text-xs">
+            <div><span class="text-accent font-mono font-bold">/status</span> <span class="text-muted">— Displays active provider, model chain, and Safe Mode status</span></div>
+            <div><span class="text-accent font-mono font-bold">/system</span> <span class="text-muted">— Tests live CPU, RAM, and disk utilization telemetry</span></div>
+            <div><span class="text-accent font-mono font-bold">/hub list</span> <span class="text-muted">— Verifies connectivity with Kuro Hub capability store</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Common Errors & Solutions -->
+      <section class="mb-12">
+        <h2 class="text-xl font-bold text-primary font-mono mb-4 flex items-center gap-2">
+          <span class="text-accent">06.</span> Common Issues &amp; Troubleshooting
+        </h2>
+
+        <div class="space-y-4">
+          <div class="p-4 rounded-lg bg-surface border border-border">
+            <h3 class="text-sm font-bold text-primary font-mono mb-1">'kuro' is not recognized as an internal or external command</h3>
+            <p class="text-xs text-secondary leading-relaxed">
+              Ensure Python's Scripts directory (e.g. <code class="font-mono text-accent">~/.local/bin</code> on Unix or <code class="font-mono text-accent">%USERPROFILE%\AppData\Local\Programs\Python\PythonXX\Scripts</code> on Windows) is included in your system's <code class="font-mono text-primary">PATH</code> environment variable.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-lg bg-surface border border-border">
+            <h3 class="text-sm font-bold text-primary font-mono mb-1">Git checkpoint warning on execution</h3>
+            <p class="text-xs text-secondary leading-relaxed">
+              KuroCode automatically snapshots staged and unstaged changes prior to file modifications. Ensure <code class="font-mono text-accent">git</code> is installed and that the working directory is an initialized repository (<code class="font-mono text-primary">git init</code>).
+            </p>
+          </div>
+
+          <div class="p-4 rounded-lg bg-surface border border-border">
+            <h3 class="text-sm font-bold text-primary font-mono mb-1">HTTP 429 Provider Rate Limit</h3>
+            <p class="text-xs text-secondary leading-relaxed">
+              KuroCode features automatic model cascading and multi-key pool rotation. Add multiple keys with <code class="font-mono text-accent">/key &lt;provider&gt; &lt;key&gt;</code> or specify a fallback provider in your <code class="font-mono text-primary">.env</code> file.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Next Steps Navigation -->
+      <div class="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
+        <a href="./docs/index.html" class="btn-primary !py-2 !px-4">
+          <span>Read Documentation</span>
+          <svg class="w-3.5 h-3.5 ml-1 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+        <a href="https://github.com/kuroLabs-ai/KuroCodeAgent/issues" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors flex items-center gap-1">
+          <span>Report installation issue on GitHub</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="bg-surface border-t border-border mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted">
+      <div>KuroCodeAgent &copy; 2026 KuroLabs. Distributed under MIT License.</div>
+      <div class="flex items-center gap-4">
+        <a href="./index.html" class="hover:text-primary transition-colors">Overview</a>
+        <span>•</span>
+        <a href="./docs/index.html" class="hover:text-primary transition-colors">Docs</a>
+        <span>•</span>
+        <a href="../../hub/index.html" class="hover:text-primary transition-colors">Hub</a>
+        <span>•</span>
+        <a href="https://github.com/kuroLabs-ai/KuroCodeAgent" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/navigation.js"></script>
+</body>
+</html>

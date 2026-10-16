@@ -1,166 +1,120 @@
-# KuroLabs AI — Organization Website & Software Ecosystem
+# KuroLabs Organization Website
 
-The official public web portal and ecosystem explorer for **KuroLabs AI** (`kurolabs-ai`), deployed to **GitHub Pages** at:
-https://kurolabs-ai.github.io/
+The central digital home of **[KuroLabs](https://github.com/kuroLabs-ai)** — an open-source engineering organization building practical software, intelligent systems, developer tools, and extensible technologies.
+
+## 🏛️ Architecture & Tech Stack
+
+- **Semantic Multi-Page HTML5**: Clean, accessible structure with dedicated pages for organization identity, projects, documentation, and the capability catalog.
+- **Tailwind CSS & Design Tokens**: Industrial Tech / Open-Source aesthetic palette (`#0B0D0F` dark mode, `#B6F36B` electric lime accent, Inter and IBM Plex Mono typography).
+- **Decoupled JavaScript Modules**:
+  - `js/registry.js`: Dedicated Capability Hub client fetching live metadata from [`kuroLabs-ai/hub`](https://raw.githubusercontent.com/kuroLabs-ai/hub/main/kuro-hub.json) with local fallback snapshot.
+  - `js/hub.js`: Real-time browser-based search, multi-type filtering (`tool`, `plugin`, `skill`, `integration`), and card rendering.
+  - `js/hub-item.js`: Dynamic detail page (`item.html?id=...`) rendering procedural skill steps, integration auth configs, and tool manifests safely without DOM injection vulnerabilities.
+  - `js/projects.js`: Data-driven project directory rendering entries from `data/projects.json`.
+  - `js/docs.js`: Documentation search, active heading spy, and mobile drawer controls.
+  - `js/navigation.js`: Global responsive navigation, active route highlights, and copy-to-clipboard interactions.
+- **Data Stores**:
+  - `data/projects.json`: Centralized metadata for current and future organization projects.
+  - `data/kuro-hub.json`: Local verified fallback snapshot of the public Capability Hub registry.
 
 ---
 
-## 1. Architectural Philosophy: Programs ≠ Store ≠ Hub
+## 📂 Site Map & Directory Structure
 
-The website strictly communicates three distinct concepts:
-
-```text
-                         KUROLABS
-                             |
-               +-------------+-------------+
-               |             |             |
-            Website       Programs        Hub
-               |             |             |
-         Public portal   KuroCodeAgent  kuro-hub.json
-               |             |             |
-         Browse & learn   Store runtime   tools/
-               |             |            plugins/
-               |             |            skills/
-               |             |
-               |         Discover, install
-               |         and manage
-               |
-          Reads public catalog
-          and links to source files
 ```
-
-1. **Programs:** Complete standalone applications developed by KuroLabs (e.g. `KuroCodeAgent`).
-2. **Store:** The runtime capability manager inside `KuroCodeAgent` that enables `/store install <name>` and manages local execution lifecycles.
-3. **Hub:** The open decentralized remote registry repository (`kurolabs-ai/hub`) containing `kuro-hub.json` and standalone capability files (`tools/`, `plugins/`, `skills/`).
-
----
-
-## 2. Technology Stack
-
-- **HTML5:** Semantic, accessible markup.
-- **Tailwind CSS:** Responsive layout, spacing, typography, and utility styling via CDN.
-- **Custom CSS:** Brand design tokens (`css/tokens.css`), global base styles (`css/global.css`), and UI components (`css/components.css`).
-- **Vanilla JavaScript ES Modules:** Clean, decoupled modular code with zero npm build step or bundler dependencies.
-- **Font Stack:** High-performance native system font stack (`system-ui`, `-apple-system`, `ui-monospace`, `Cascadia Code`, `JetBrains Mono`) with zero external network blocking.
-- **Brand Assets:** Organization emblem and favicon integrated across all pages and manifests.
-- **Target Platform:** GitHub Pages static hosting (`.nojekyll` enabled).
-
----
-
-## 3. Project Directory Structure
-
-```text
-website/
-├── index.html                   # Organization Overview & Hero Portal
-├── 404.html                     # Custom 404 Route Not Found page
-├── .nojekyll                    # Disables Jekyll processing on GitHub Pages
-├── README.md                    # Developer and maintenance documentation
-├── programs/
-│   ├── index.html               # Programs Directory (data-driven)
-│   └── kurocode/
-│       └── index.html           # Dedicated KuroCodeAgent Product & Architecture Page
-├── capabilities/
-│   └── index.html               # Live Capability Hub Browser & Detail Inspector
-├── rig-studio/
-│   └── index.html               # Interactive Agent Rig Studio (Config & Launch Gen)
-├── simulation-lab/
-│   └── index.html               # Browser-based Autonomous Agent Sandbox Simulation
-├── docs/
-│   └── index.html               # Comprehensive Technical Docs & Setup Guide
-├── data/
-│   ├── programs.json            # Authoritative metadata for KuroLabs programs
-│   ├── roadmap.json             # Verified ecosystem roadmap milestones
-│   └── hub-fallback.json        # Resilient offline cache of Hub kuro-hub.json
+kurolabs-website/
+├── index.html                           # Organization Homepage
+├── about.html                           # Identity, Mission, Vision & Principles
+├── community.html                       # Open-Source Participation & GitHub Guides
+├── 404.html                             # Diagnostic Not-Found Page
+├── projects/
+│   ├── index.html                       # Data-Driven Projects Directory
+│   └── kurocodeagent/
+│       ├── index.html                   # KuroCodeAgent v2.0 Landing Page
+│       ├── installation.html            # Verified Step-by-Step Installation Guide
+│       └── docs/
+│           ├── index.html               # Documentation Index & Slash Command Reference
+│           ├── configuration.html       # Provider Setup & DPAPI Vault Configuration
+│           └── architecture.html        # ReAct Engine & AST Sandbox Specification
+├── hub/
+│   ├── index.html                       # Capability Hub (Live Filterable Catalog)
+│   └── item.html                        # Capability Detail View (?id=<capability_id>)
 ├── css/
-│   ├── tokens.css               # Brand palette & CSS custom property tokens
-│   ├── global.css               # Base layout, scrollbar, grid overlay, reset
-│   └── components.css           # Cards, badges, buttons, modals, terminal windows
-└── js/
-    ├── core/
-    │   ├── config.js            # Repositories, URLs, and relative path resolution
-    │   ├── hub-client.js        # Hub catalog fetcher, validator, and safe normalizer
-    │   └── data-loader.js       # Local JSON data loader
-    ├── components/
-    │   ├── navbar.js            # Desktop & mobile responsive header navigation
-    │   ├── footer.js            # Universal ecosystem footer & manifesto
-    │   └── toast.js             # Notification & clipboard utility
-    └── pages/
-        ├── home.js              # Homepage logic & live previews
-        ├── programs.js          # Programs directory filter & renderer
-        ├── capabilities.js      # Capability Hub browser, search, tag filters & modal
-        ├── rig-studio.js        # Interactive configuration assembler & JSON export
-        ├── simulation-lab.js    # Step-by-step interactive agent simulation
-        └── docs.js              # Documentation search & copy blocks
+│   ├── tokens.css                       # Color & Typography CSS Variables
+│   └── global.css                       # Industrial Tech Layout & Terminal Styles
+├── js/
+│   ├── navigation.js                    # Navigation & Copy-to-Clipboard
+│   ├── registry.js                      # Hub Data Fetching & Normalization
+│   ├── hub.js                           # Hub Catalog Controller
+│   ├── hub-item.js                      # Hub Item Detail Controller
+│   ├── projects.js                      # Project Directory Controller
+│   └── docs.js                          # Documentation Controls
+├── data/
+│   ├── projects.json                    # Central Organization Projects Metadata
+│   └── kuro-hub.json                    # Offline Fallback Snapshot of Kuro Hub
+├── assets/
+│   └── favicon.png                      # Organization Brand Favicon
+├── sitemap.xml                          # Search Engine Sitemap
+├── robots.txt                           # Web Crawler Directives
+└── README.md                            # Documentation
 ```
 
 ---
 
-## 4. Local Development
+## 🚀 Local Development & Preview
 
-Because this project uses native JavaScript ES Modules, run a simple local web server to avoid browser `file://` CORS restrictions:
+Because this is a standard static website using ES modules, you can serve it with any local static HTTP server:
 
-### Using Python (Recommended)
 ```bash
-# In the repository root:
+# Using Python:
 python -m http.server 8000
-```
-Then visit: `http://localhost:8000/`
 
-### Using Node.js (Alternative)
-```bash
+# Using Node (npx):
 npx serve .
 ```
 
----
-
-## 5. How to Add a New Program
-
-To add a new standalone program to the ecosystem:
-1. Open `data/programs.json`.
-2. Add a new JSON object adhering to the schema:
-   ```json
-   {
-     "id": "new_program_id",
-     "name": "ProgramName",
-     "displayName": "DisplayName",
-     "category": "Category",
-     "description": "Accurate description.",
-     "status": "In Development",
-     "statusType": "in-development",
-     "featured": false,
-     "version": "0.1.0",
-     "repository": "https://github.com/kurolabs-ai/new_repo",
-     "documentation": "/docs/#section",
-     "detailUrl": null,
-     "technologies": ["Python", "AsyncIO"],
-     "highlights": ["Key architectural feature 1", "Key architectural feature 2"],
-     "capabilityHub": "https://github.com/kurolabs-ai/hub"
-   }
-   ```
-3. The Programs directory (`programs/index.html`) and homepage overview will immediately display the new program dynamically.
+Open your browser at `http://localhost:8000/`.
 
 ---
 
-## 6. How to Add or Update Capabilities
+## 🧩 Adding New Projects
 
-Capabilities belong to the **Capability Hub repository** (`kurolabs-ai/hub`), **not** this website:
-1. Navigate to the Hub repository: [https://github.com/kurolabs-ai/hub](https://github.com/kurolabs-ai/hub).
-2. Add your implementation file in `tools/`, `plugins/`, or `skills/`.
-3. Add a corresponding record to `kuro-hub.json` in `kurolabs-ai/hub`.
-4. Once merged to `main`, this website automatically discovers and displays the new capability live via `https://raw.githubusercontent.com/kurolabs-ai/hub/main/kuro-hub.json`.
+To add a new organization project, simply append an entry to `data/projects.json`:
+
+```json
+{
+  "id": "new-project",
+  "name": "Project Name",
+  "short_name": "proj",
+  "tagline": "Brief one-line summary",
+  "description": "Full description of what the project solves.",
+  "category": "Developer Tools",
+  "status": "Active (v1.0)",
+  "technologies": ["Rust", "CLI", "Linux"],
+  "repo_url": "https://github.com/kuroLabs-ai/new-project",
+  "site_url": "projects/new-project/index.html",
+  "docs_url": "projects/new-project/docs/index.html",
+  "featured": false,
+  "highlights": [
+    "Key capability 1",
+    "Key capability 2"
+  ]
+}
+```
+
+The Projects Directory (`projects/index.html`) will automatically render the new project card without requiring any HTML modifications.
 
 ---
 
-## 7. Deployment Instructions (GitHub Pages)
+## 🌐 Updating Capability Hub Metadata
 
-1. Commit and push the repository to the `main` branch of `kurolabs-ai/kurolabs-ai.github.io`:
-   ```bash
-   git add .
-   git commit -m "feat: complete production portal implementation"
-   git push origin main
-   ```
-2. In the GitHub repository Settings:
-   - Navigate to **Pages**.
-   - Under **Build and deployment**, select **Source: Deploy from a branch**.
-   - Branch: `main` / `root`.
-3. GitHub Pages will publish the site at `https://kurolabs-ai.github.io/`.
+The Capability Hub dynamically queries GitHub's raw endpoint:
+`https://raw.githubusercontent.com/kuroLabs-ai/hub/main/kuro-hub.json`
+
+New capabilities authored and merged into `kuroLabs-ai/hub` will automatically appear on the website catalog.
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**. Created for **[kuroLabs-ai](https://github.com/kuroLabs-ai)**.

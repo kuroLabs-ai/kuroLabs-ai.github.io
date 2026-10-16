@@ -1,0 +1,46 @@
+[
+  {
+    "id": "kurocodeagent",
+    "name": "KuroCodeAgent",
+    "short_name": "kurocode",
+    "icon": "terminal",
+    "tagline": "Autonomous Local-First AI Terminal Assistant & OS Copilot",
+    "description": "An autonomous desktop terminal agent designed to plan, execute, verify, heal, and evolve directly on your machine with deterministic safety gates.",
+    "category": "Intelligent Systems",
+    "status": "Active (v2.0)",
+    "status_type": "active",
+    "technologies": ["Python 3.10+", "ReAct Loop", "AST Guard", "Windows DPAPI", "Multi-Provider LLM"],
+    "repo_url": "https://github.com/kuroLabs-ai/KuroCodeAgent",
+    "site_url": "projects/kurocodeagent/index.html",
+    "docs_url": "projects/kurocodeagent/docs/index.html",
+    "featured": true,
+    "highlights": [
+      "Deterministic verification with py_compile and exit code checking",
+      "Encrypted credential vault via Windows DPAPI / AES-256",
+      "Dynamic hot-loading of custom tools, plugins, and skills",
+      "Multi-provider failover across Gemini, Groq, OpenRouter, OpenAI, and Ollama"
+    ]
+  },
+  {
+    "id": "kuro-hub",
+    "name": "Kuro Hub",
+    "short_name": "hub",
+    "icon": "boxes",
+    "tagline": "Public Capability Registry for Tools, Plugins, Skills & Integrations",
+    "description": "The open capability distribution registry that catalogs verified extensions, diagnostic utilities, and procedural workflows for the KuroLabs ecosystem.",
+    "category": "Extensible Ecosystems",
+    "status": "Active (Catalog v1.0)",
+    "status_type": "active",
+    "technologies": ["JSON Schema", "Modular Manifests", "Decoupled Distribution", "GitHub Actions"],
+    "repo_url": "https://github.com/kuroLabs-ai/hub",
+    "site_url": "hub/index.html",
+    "docs_url": "projects/kurocodeagent/docs/index.html#hub",
+    "featured": true,
+    "highlights": [
+      "Decoupled registry of 25+ verified developer capabilities",
+      "Native sync with KuroCodeAgent via /hub and /store commands",
+      "Typed manifests for tools, plugins, procedural skills, and external bridges",
+      "Open for community contributions through standardized PR workflows"
+    ]
+  }
+]

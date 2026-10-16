@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KuroCodeAgent — Autonomous AI Terminal Assistant &amp; OS Copilot</title>
+  <meta name="description" content="KuroCodeAgent (kurocode) is an autonomous, local-first AI terminal assistant and operating system copilot with deterministic verification and self-healing.">
+  <meta name="theme-color" content="#0B0D0F">
+
+  <meta name="application-name" content="KuroLabs">
+  <meta name="apple-mobile-web-app-title" content="KuroLabs">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://kurolabs-ai.github.io/projects/kurocodeagent/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KuroLabs">
+  <meta property="og:url" content="https://kurolabs-ai.github.io/projects/kurocodeagent/">
+  <meta property="og:title" content="KuroCodeAgent — Autonomous AI Terminal Assistant & OS Copilot">
+  <meta property="og:description" content="KURO 2.0: autonomous, local-first AI terminal assistant with deterministic verification, self-healing, and modular capability store.">
+  <meta property="og:image" content="https://kurolabs-ai.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KuroCodeAgent — AI Terminal Assistant by KuroLabs">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KuroCodeAgent — Autonomous AI Terminal Assistant">
+  <meta name="twitter:description" content="KURO 2.0: plan, execute, verify, and self-heal on your local machine.">
+  <meta name="twitter:image" content="https://kurolabs-ai.github.io/assets/og-image.png">
+
+  <!-- Favicons -->
+  <link rel="icon" href="../../favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="48x48" href="../../assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../assets/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../assets/favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "KuroCodeAgent",
+    "alternateName": "kurocode",
+    "url": "https://kurolabs-ai.github.io/projects/kurocodeagent/",
+    "downloadUrl": "https://pypi.org/project/kurocode/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Windows, Linux, macOS",
+    "description": "Autonomous local-first AI terminal assistant and OS copilot with Level 2 ReAct execution, deterministic verification, and self-healing.",
+    "codeRepository": "https://github.com/kuroLabs-ai/KuroCodeAgent",
+    "isPartOf": { "@id": "https://kurolabs-ai.github.io/#website" }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0B0D0F',
+            surface: '#111315',
+            'surface-elevated': '#181B1F',
+            'surface-card': '#14171A',
+            border: '#292D32',
+            'border-light': '#363C43',
+            accent: '#B6F36B',
+            'accent-muted': '#96D050',
+            'accent-dim': 'rgba(182, 243, 107, 0.08)',
+            'accent-glow': 'rgba(182, 243, 107, 0.15)',
+            primary: '#F3F4F6',
+            secondary: '#9CA3AF',
+            muted: '#6B7280',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/global.css">
+</head>
+<body class="bg-bg text-primary min-h-screen flex flex-col font-sans selection:bg-accent selection:text-bg">
+
+  <!-- Top Global Header -->
+  <header class="sticky top-0 z-50 bg-bg/90 backdrop-blur border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="../../index.html" class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded">
+        <div class="w-8 h-8 rounded bg-surface-elevated border border-border flex items-center justify-center text-accent group-hover:border-accent transition-colors">
+          <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <span class="font-mono font-bold text-lg tracking-tight text-primary group-hover:text-accent transition-colors">
+          KURO<span class="text-accent font-medium">LABS</span>
+        </span>
+      </a>
+
+      <nav class="hidden md:flex items-center space-x-8 text-sm" aria-label="Main Navigation">
+        <a href="../../about.html" class="text-secondary hover:text-primary transition-colors">About</a>
+        <a href="../index.html" class="text-accent font-medium transition-colors">Projects</a>
+        <a href="../../hub/index.html" class="text-secondary hover:text-primary transition-colors">Capability Hub</a>
+        <a href="../../community.html" class="text-secondary hover:text-primary transition-colors">Community</a>
+      </nav>
+
+      <div class="hidden md:flex items-center space-x-4">
+        <a href="./docs/index.html" class="text-xs font-mono text-secondary hover:text-primary transition-colors">
+          Docs
+        </a>
+        <a href="https://github.com/kuroLabs-ai/KuroCodeAgent" target="_blank" rel="noopener noreferrer" class="btn-secondary text-xs !py-1.5 !px-3 font-mono flex items-center gap-1.5">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>Source</span>
+        </a>
+        <a href="./installation.html" class="btn-primary text-xs !py-1.5 !px-3 font-mono">
+          Install v2.0
+        </a>
+      </div>
+
+      <button id="mobile-menu-toggle" type="button" class="md:hidden p-2 rounded text-secondary hover:text-primary hover:bg-surface-elevated" aria-label="Toggle mobile menu" aria-expanded="false">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-50 bg-bg/95 backdrop-blur-md p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-border">
+          <span class="font-mono font-bold text-lg text-primary">KURO<span class="text-accent">CODE</span></span>
+          <button id="mobile-menu-close" type="button" class="p-2 text-secondary hover:text-primary" aria-label="Close menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <nav class="flex flex-col space-y-4 pt-6 text-base font-mono">
+          <a href="./index.html" class="text-accent py-2 border-b border-border/40">Product Overview</a>
+          <a href="./installation.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Installation Guide</a>
+          <a href="./docs/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Documentation Index</a>
+          <a href="./docs/configuration.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Configuration</a>
+          <a href="./docs/architecture.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Architecture</a>
+          <a href="../../hub/index.html" class="text-secondary hover:text-accent py-2">Capability Hub</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-20 md:pt-28 md:pb-28 bg-radial-gradient border-b border-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-xs font-mono text-secondary mb-6">
+            <span class="px-1.5 py-0.5 rounded bg-accent/20 text-accent font-bold">KURO 2.0</span>
+            <span>LEVEL 2 AUTONOMOUS REACT AGENT</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-primary font-sans leading-tight mb-6">
+            The Autonomous, Local-First AI Terminal Assistant.
+          </h1>
+
+          <p class="text-lg sm:text-xl text-secondary leading-relaxed mb-8">
+            Unlike passive AI chat widgets, KURO has hands. It plans, executes shell commands, inspects live telemetry, validates outcomes with deterministic AST compilation, heals its own errors, and evolutes directly on your workstation.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="./installation.html" class="btn-primary text-sm font-mono">
+              <span>Get Started</span>
+              <svg class="w-4 h-4 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
+            <a href="./docs/index.html" class="btn-secondary text-sm font-mono">
+              Read Documentation
+            </a>
+            <a href="https://github.com/kuroLabs-ai/KuroCodeAgent" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary text-sm font-mono ml-2 flex items-center gap-1.5 transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              <span>GitHub / KuroCodeAgent</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Verified Quick Copy Snippet -->
+        <div class="mt-12 max-w-xl p-4 rounded-lg bg-surface border border-border flex items-center justify-between gap-4 font-mono text-sm">
+          <div class="flex items-center gap-3 overflow-x-auto">
+            <span class="text-muted select-none">$</span>
+            <span id="quick-install-code" class="text-accent font-semibold whitespace-nowrap">pip install kurocode</span>
+          </div>
+          <button data-copy-target="quick-install-code" class="btn-secondary !py-1 !px-2.5 text-xs font-mono flex-shrink-0" aria-label="Copy install command">
+            Copy
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Key Capabilities Grid -->
+    <section class="py-20 bg-bg border-b border-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="mb-14">
+          <div class="mono-label text-accent mb-2">VERIFIED CAPABILITIES</div>
+          <h2 class="text-3xl font-bold text-primary font-sans">Engineered for Developer Autonomy</h2>
+          <p class="text-secondary text-sm sm:text-base mt-2 max-w-2xl">
+            Features verified against the KuroCodeAgent 2.0 master specification and implementation.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Cap 1: ReAct Execution -->
+          <div class="card-tech rounded-lg p-6 border-subtle">
+            <div class="text-accent font-mono text-xs font-semibold mb-2">01 / ORCHESTRATION</div>
+            <h3 class="text-lg font-bold text-primary font-mono mb-2">Autonomous ReAct Loop</h3>
+            <p class="text-sm text-secondary leading-relaxed mb-4">
+              Decomposes high-level instructions into multi-step actions. Never assumes success—validates each step with AST checks (<code class="text-accent font-mono">py_compile</code>) and exit code scrutiny.
+            </p>
+            <div class="text-xs font-mono text-muted">
+              Cascade: Gemini › Groq › OpenRouter › OpenAI › Ollama
+            </div>
+          </div>
+
+          <!-- Cap 2: Self-Healing -->
+          <div class="card-tech rounded-lg p-6 border-subtle">
+            <div class="text-accent font-mono text-xs font-semibold mb-2">02 / RESILIENCE</div>
+            <h3 class="text-lg font-bold text-primary font-mono mb-2">Self-Healing Engine</h3>
+            <p class="text-sm text-secondary leading-relaxed mb-4">
+              Failure classifier detects errors across 10 structured categories. Triggers automated <code class="text-accent font-mono">pip install</code>, path creation, or git-stash rollback checkpoints.
+            </p>
+            <div class="text-xs font-mono text-muted">
+              Safety Net: Automated Git Checkpoint &amp; /undo
+            </div>
+          </div>
+
+          <!-- Cap 3: Security & Vault -->
+          <div class="card-tech rounded-lg p-6 border-subtle">
+            <div class="text-accent font-mono text-xs font-semibold mb-2">03 / SECURITY</div>
+            <h3 class="text-lg font-bold text-primary font-mono mb-2">Windows DPAPI Vault</h3>
+            <p class="text-sm text-secondary leading-relaxed mb-4">
+              Hardware-backed encryption for API keys tied to your Windows OS user profile (<code class="text-accent font-mono">CryptProtectData</code>) with AES-256 fallback on Linux/macOS.
+            </p>
+            <div class="text-xs font-mono text-muted">
+              AST Guard: Blocks malicious imports &amp; shell wipes
+            </div>
+          </div>
+
+          <!-- Cap 4: Capability Store & Hub -->
+          <div class="card-tech rounded-lg p-6 border-subtle">
+            <div class="text-accent font-mono text-xs font-semibold mb-2">04 / EXTENSIBILITY</div>
+            <h3 class="text-lg font-bold text-primary font-mono mb-2">Modular Puzzle Store</h3>
+            <p class="text-sm text-secondary leading-relaxed mb-4">
+              Synchronize, install, and hot-load tools, plugins, procedural skills, and external bridges from KuroHub without restarting the running agent session.
+            </p>
+            <div class="text-xs font-mono text-muted">
+              CLI Sync: <span class="text-accent">/hub install &lt;item&gt;</span>
+            </div>
+          </div>
+
+          <!-- Cap 5: Multimodal & Telemetry -->
+          <div class="card-tech rounded-lg p-6 border-subtle">
+            <div class="text-accent font-mono text-xs font-semibold mb-2">05 / TELEMETRY &amp; VISION</div>
+            <h3 class="text-lg font-bold text-primary font-mono mb-2">Desktop Vision &amp; Telemetry</h3>
+            <p class="text-sm text-secondary leading-relaxed mb-4">
+              Inspects screen grabs to diagnose visual layout bugs, runs Playwright browser automation, and reads live CPU, RAM, and disk utilization statistics.
+            </p>
+            <div class="text-xs font-mono text-muted">
+              Commands: <span class="text-accent">/system</span> and <span class="text-accent">/top</span>
+            </div>
+          </div>
+
+          <!-- Cap 6: Service Bridges -->
+          <div class="card-tech rounded-lg p-6 border-subtle">
+            <div class="text-accent font-mono text-xs font-semibold mb-2">06 / INTEGRATIONS</div>
+            <h3 class="text-lg font-bold text-primary font-mono mb-2">External Bridges</h3>
+            <p class="text-sm text-secondary leading-relaxed mb-4">
+              Connect terminal notifications to Discord webhooks, Telegram bots, GitHub PRs/issues, GitLab pipelines, or Google Drive file storage.
+            </p>
+            <div class="text-xs font-mono text-muted">
+              Command: <span class="text-accent">/integrations connect</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- How It Works Architecture Flow -->
+    <section class="py-20 bg-surface/30 border-b border-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <div class="mono-label text-accent mb-2">EXECUTION FLOW</div>
+          <h2 class="text-3xl font-bold text-primary font-sans">Deterministic ReAct Architecture</h2>
+          <p class="text-secondary text-sm sm:text-base mt-2">
+            How KuroCodeAgent processes user instructions from terminal input to verified disk modification.
+          </p>
+        </div>
+
+        <div class="card-tech rounded-xl p-8 border-subtle max-w-5xl mx-auto font-mono text-xs">
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-stretch text-center">
+            
+            <div class="p-4 rounded bg-surface border border-border flex flex-col justify-between">
+              <div class="text-accent font-bold mb-2">STEP 1</div>
+              <div class="text-primary font-semibold text-sm mb-2">User Request</div>
+              <p class="text-[11px] text-secondary">Terminal CLI input, slash command, or headless single-shot string.</p>
+            </div>
+
+            <div class="p-4 rounded bg-surface border border-border flex flex-col justify-between">
+              <div class="text-accent font-bold mb-2">STEP 2</div>
+              <div class="text-primary font-semibold text-sm mb-2">Agent Orchestration</div>
+              <p class="text-[11px] text-secondary">Context engine synthesizes prompt; ModelRouter selects active LLM provider.</p>
+            </div>
+
+            <div class="p-4 rounded bg-surface border border-border flex flex-col justify-between">
+              <div class="text-accent font-bold mb-2">STEP 3</div>
+              <div class="text-primary font-semibold text-sm mb-2">Permission Gate</div>
+              <p class="text-[11px] text-secondary">Safe Mode verifies AST security; blocks destructive calls unless approved.</p>
+            </div>
+
+            <div class="p-4 rounded bg-surface border border-border flex flex-col justify-between">
+              <div class="text-accent font-bold mb-2">STEP 4</div>
+              <div class="text-primary font-semibold text-sm mb-2">Tool Execution</div>
+              <p class="text-[11px] text-secondary">Invokes local tools or modular puzzle pieces loaded from Kuro Hub.</p>
+            </div>
+
+            <div class="p-4 rounded bg-surface border border-border flex flex-col justify-between">
+              <div class="text-accent font-bold mb-2">STEP 5</div>
+              <div class="text-primary font-semibold text-sm mb-2">Verification &amp; Heal</div>
+              <p class="text-[11px] text-secondary">Validates AST &amp; exit codes; triggers auto-pip or rollback on failure.</p>
+            </div>
+
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-secondary">
+            <div>
+              <span class="text-primary font-semibold">Want deeper architectural details?</span>
+              <span class="ml-1">Review the complete layer specification and execution loop.</span>
+            </div>
+            <a href="./docs/architecture.html" class="btn-secondary !py-1.5 !px-3 font-mono text-xs whitespace-nowrap">
+              View Architecture Docs
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-20 bg-radial-gradient">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-extrabold text-primary font-sans mb-4">
+          Ready to run KuroCode on your machine?
+        </h2>
+        <p class="text-secondary text-base max-w-xl mx-auto mb-8">
+          Install the verified release directly from PyPI or clone the source code for local contribution.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="./installation.html" class="btn-primary font-mono text-sm">
+            <span>Read Installation Guide</span>
+            <svg class="w-4 h-4 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+          <a href="./docs/index.html" class="btn-secondary font-mono text-sm">
+            Documentation Index
+          </a>
+          <a href="../../hub/index.html" class="btn-secondary font-mono text-sm">
+            Browse Kuro Hub
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Project Footer -->
+  <footer class="bg-surface border-t border-border mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted">
+      <div>KuroCodeAgent &copy; 2026 KuroLabs. Distributed under MIT License.</div>
+      <div class="flex items-center gap-4">
+        <a href="./installation.html" class="hover:text-primary transition-colors">Install</a>
+        <span>•</span>
+        <a href="./docs/index.html" class="hover:text-primary transition-colors">Documentation</a>
+        <span>•</span>
+        <a href="./docs/architecture.html" class="hover:text-primary transition-colors">Architecture</a>
+        <span>•</span>
+        <a href="https://github.com/kuroLabs-ai/KuroCodeAgent" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/navigation.js"></script>
+</body>
+</html>
