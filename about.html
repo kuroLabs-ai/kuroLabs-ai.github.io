@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About KuroLabs — Mission, Vision &amp; Engineering Philosophy</title>
+  <meta name="description" content="KuroLabs is an open-source engineering organization focused on building practical software and extensible technology. Discover our mission, principles, and ecosystem.">
+  <meta name="theme-color" content="#0B0D0F">
+
+  <meta name="application-name" content="KuroLabs">
+  <meta name="apple-mobile-web-app-title" content="KuroLabs">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://kurolabs-ai.github.io/about.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KuroLabs">
+  <meta property="og:url" content="https://kurolabs-ai.github.io/about.html">
+  <meta property="og:title" content="About KuroLabs — Mission, Vision &amp; Engineering Philosophy">
+  <meta property="og:description" content="KuroLabs is an open-source engineering organization focused on building practical software and extensible technology. Discover our mission, principles, and ecosystem.">
+  <meta property="og:image" content="https://kurolabs-ai.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KuroLabs — About the Organization">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About KuroLabs — Mission, Vision &amp; Engineering Philosophy">
+  <meta name="twitter:description" content="Open-source engineering. Practical software. Extensible technology.">
+  <meta name="twitter:image" content="https://kurolabs-ai.github.io/assets/og-image.png">
+
+  <!-- Favicons -->
+  <link rel="icon" href="./favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "url": "https://kurolabs-ai.github.io/about.html",
+    "name": "About KuroLabs",
+    "description": "Mission, vision, and engineering philosophy of KuroLabs.",
+    "isPartOf": { "@id": "https://kurolabs-ai.github.io/#website" },
+    "publisher": { "@id": "https://kurolabs-ai.github.io/#organization" }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0B0D0F',
+            surface: '#111315',
+            'surface-elevated': '#181B1F',
+            'surface-card': '#14171A',
+            border: '#292D32',
+            'border-light': '#363C43',
+            accent: '#B6F36B',
+            'accent-muted': '#96D050',
+            'accent-dim': 'rgba(182, 243, 107, 0.08)',
+            'accent-glow': 'rgba(182, 243, 107, 0.15)',
+            primary: '#F3F4F6',
+            secondary: '#9CA3AF',
+            muted: '#6B7280',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/global.css">
+</head>
+<body class="bg-bg text-primary min-h-screen flex flex-col font-sans selection:bg-accent selection:text-bg">
+
+  <!-- Top Global Header -->
+  <header class="sticky top-0 z-50 bg-bg/90 backdrop-blur border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="./index.html" class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded">
+        <div class="w-8 h-8 rounded bg-surface-elevated border border-border flex items-center justify-center text-accent group-hover:border-accent transition-colors">
+          <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <span class="font-mono font-bold text-lg tracking-tight text-primary group-hover:text-accent transition-colors">
+          KURO<span class="text-accent font-medium">LABS</span>
+        </span>
+      </a>
+
+      <nav class="hidden md:flex items-center space-x-8 text-sm" aria-label="Main Navigation">
+        <a href="./about.html" class="text-accent font-medium transition-colors">About</a>
+        <a href="./projects/index.html" class="text-secondary hover:text-primary transition-colors">Projects</a>
+        <a href="./hub/index.html" class="text-secondary hover:text-primary transition-colors">Capability Hub</a>
+        <a href="./community.html" class="text-secondary hover:text-primary transition-colors">Community</a>
+      </nav>
+
+      <div class="hidden md:flex items-center space-x-4">
+        <a href="https://github.com/kuroLabs-ai" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors p-2 rounded hover:bg-surface-elevated" aria-label="KuroLabs GitHub">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </a>
+        <a href="./projects/kurocodeagent/index.html" class="btn-primary text-xs !py-2 !px-3 font-mono">
+          <span>KuroCode v2.0</span>
+          <svg class="w-3.5 h-3.5 ml-1.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+
+      <button id="mobile-menu-toggle" type="button" class="md:hidden p-2 rounded text-secondary hover:text-primary hover:bg-surface-elevated" aria-label="Toggle mobile menu" aria-expanded="false">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-50 bg-bg/95 backdrop-blur-md p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-border">
+          <span class="font-mono font-bold text-lg text-primary">KURO<span class="text-accent">LABS</span></span>
+          <button id="mobile-menu-close" type="button" class="p-2 text-secondary hover:text-primary" aria-label="Close menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <nav class="flex flex-col space-y-4 pt-6 text-base font-mono">
+          <a href="./about.html" class="text-accent py-2 border-b border-border/40">About Organization</a>
+          <a href="./projects/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Projects Directory</a>
+          <a href="./hub/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Capability Hub</a>
+          <a href="./community.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Community &amp; Open Source</a>
+          <a href="./projects/kurocodeagent/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">KuroCodeAgent Overview</a>
+          <a href="./projects/kurocodeagent/installation.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Installation Guide</a>
+          <a href="./projects/kurocodeagent/docs/index.html" class="text-secondary hover:text-accent py-2">Documentation</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-14 pb-8 border-b border-border">
+        <div class="mono-label text-accent mb-2">ABOUT THE ORGANIZATION</div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-primary font-sans tracking-tight mb-4">
+          Practical Software, Extensible Technology.
+        </h1>
+        <p class="text-lg text-secondary leading-relaxed">
+          KuroLabs is an open-source engineering organization focused on building software, AI systems, and developer tools designed to solve real problems through modularity, transparency, and engineering discipline.
+        </p>
+      </div>
+
+      <!-- Why KuroLabs Exists -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-primary font-sans mb-4 flex items-center gap-2">
+          <span class="text-accent font-mono">/</span> Why KuroLabs Exists
+        </h2>
+        <div class="space-y-4 text-secondary leading-relaxed text-base">
+          <p>
+            Modern developer tooling is increasingly fractured between black-box hosted services that strip developers of control, and toy prototypes that fail under real workloads.
+          </p>
+          <p>
+            KuroLabs explores how intelligent systems, automation, modular software, and developer-focused tools can work together to make complex engineering tasks easier while keeping developers in full control of the technology they run.
+          </p>
+          <p>
+            The organization should not be defined by a single application. KuroCodeAgent is the first major project in a broader ecosystem that grows to include independent products, libraries, developer utilities, and AI infrastructure.
+          </p>
+        </div>
+      </section>
+
+      <!-- Mission & Vision -->
+      <section class="mb-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card-tech rounded-lg p-6 border-subtle">
+          <div class="mono-label text-accent mb-2">ORGANIZATION MISSION</div>
+          <h3 class="text-xl font-bold text-primary font-mono mb-3">Our Mission</h3>
+          <p class="text-sm text-secondary leading-relaxed">
+            Build practical, extensible, and accessible software that helps people solve real problems, automate workflows, and explore what modern technology can do.
+          </p>
+        </div>
+
+        <div class="card-tech rounded-lg p-6 border-subtle">
+          <div class="mono-label text-sky-400 mb-2">ORGANIZATION VISION</div>
+          <h3 class="text-xl font-bold text-primary font-mono mb-3">Our Vision</h3>
+          <p class="text-sm text-secondary leading-relaxed">
+            Create a growing ecosystem of open-source projects that work independently while leaving room for collaboration, reuse, and future integration.
+          </p>
+        </div>
+      </section>
+
+      <!-- Engineering Philosophy & Principles -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-primary font-sans mb-6 flex items-center gap-2">
+          <span class="text-accent font-mono">/</span> Core Principles Guiding Our Work
+        </h2>
+        
+        <div class="space-y-4">
+          
+          <div class="p-5 rounded-lg bg-surface border border-border">
+            <h3 class="text-base font-bold text-primary font-mono mb-1">
+              <span class="text-accent mr-2">01.</span> Build useful things
+            </h3>
+            <p class="text-sm text-secondary leading-relaxed">
+              Prioritize real functionality, determinism, and practical outcomes over synthetic hype. We build software to solve actual development challenges.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-lg bg-surface border border-border">
+            <h3 class="text-base font-bold text-primary font-mono mb-1">
+              <span class="text-accent mr-2">02.</span> Open by design
+            </h3>
+            <p class="text-sm text-secondary leading-relaxed">
+              Make source code, project decisions, and contribution paths accessible wherever possible. No proprietary moats or hidden execution walls.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-lg bg-surface border border-border">
+            <h3 class="text-base font-bold text-primary font-mono mb-1">
+              <span class="text-accent mr-2">03.</span> Modular by nature
+            </h3>
+            <p class="text-sm text-secondary leading-relaxed">
+              Build software that can evolve, be extended via standard manifests, and integrate smoothly with existing developer toolchains.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-lg bg-surface border border-border">
+            <h3 class="text-base font-bold text-primary font-mono mb-1">
+              <span class="text-accent mr-2">04.</span> Experiment and learn
+            </h3>
+            <p class="text-sm text-secondary leading-relaxed">
+              Treat projects as opportunities to explore ideas, test architectures against reality, and improve through concrete feedback.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-lg bg-surface border border-border">
+            <h3 class="text-base font-bold text-primary font-mono mb-1">
+              <span class="text-accent mr-2">05.</span> Engineering over hype
+            </h3>
+            <p class="text-sm text-secondary leading-relaxed">
+              Communicate capabilities honestly, distinguish shipped features from planned ideas, and prioritize software quality over marketing buzzwords.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-lg bg-surface border border-border">
+            <h3 class="text-base font-bold text-primary font-mono mb-1">
+              <span class="text-accent mr-2">06.</span> Community matters
+            </h3>
+            <p class="text-sm text-secondary leading-relaxed">
+              Welcome contributions, issue triage, RFC feedback, and collaboration from developers and engineers worldwide.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- How Projects Fit Together -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-primary font-sans mb-4 flex items-center gap-2">
+          <span class="text-accent font-mono">/</span> Ecosystem Structure
+        </h2>
+        <div class="p-6 rounded-lg bg-surface border border-border leading-relaxed text-sm text-secondary space-y-4">
+          <p>
+            <strong class="text-primary font-mono">KuroLabs</strong> serves as the home organization. It sets code quality standards, hosts shared registries, and fosters an open culture.
+          </p>
+          <p>
+            <strong class="text-primary font-mono">KuroCodeAgent</strong> is an autonomous terminal agent project demonstrating practical AI execution directly on developer workstations with verifiable security controls and self-healing.
+          </p>
+          <p>
+            <strong class="text-primary font-mono">Kuro Hub</strong> is the public capability registry containing verified metadata for tools, plugins, procedural skills, and external integrations, usable by KuroCodeAgent or other tools.
+          </p>
+          <p>
+            New projects will be introduced into this structure as independent, decoupled repositories, adhering to the same modular principles.
+          </p>
+        </div>
+      </section>
+
+      <!-- How to Participate CTA -->
+      <section class="card-tech rounded-xl p-8 border-subtle text-center">
+        <h3 class="text-2xl font-bold text-primary font-sans mb-3">Participate in KuroLabs</h3>
+        <p class="text-sm text-secondary max-w-xl mx-auto mb-6">
+          Everything we build is published in the open. You can explore repositories, suggest enhancements, report defects, or submit your own capabilities.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="./community.html" class="btn-primary font-mono text-xs">
+            Community &amp; Contribution Guide
+          </a>
+          <a href="./projects/index.html" class="btn-secondary font-mono text-xs">
+            Browse Projects
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="bg-surface border-t border-border mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted">
+      <div>&copy; 2026 KuroLabs. Distributed under MIT License.</div>
+      <div class="flex items-center gap-4">
+        <a href="./index.html" class="hover:text-primary transition-colors">Home</a>
+        <span>•</span>
+        <a href="./projects/index.html" class="hover:text-primary transition-colors">Projects</a>
+        <span>•</span>
+        <a href="./hub/index.html" class="hover:text-primary transition-colors">Hub</a>
+        <span>•</span>
+        <a href="https://github.com/kuroLabs-ai" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/navigation.js"></script>
+</body>
+</html>

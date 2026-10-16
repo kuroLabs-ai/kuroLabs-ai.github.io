@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects Directory — KuroLabs Open-Source Ecosystem</title>
+  <meta name="description" content="Explore open-source projects built by KuroLabs, including KuroCodeAgent and Kuro Hub. Discover tools, architectures, and repositories.">
+  <meta name="theme-color" content="#0B0D0F">
+
+  <meta name="application-name" content="KuroLabs">
+  <meta name="apple-mobile-web-app-title" content="KuroLabs">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://kurolabs-ai.github.io/projects/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KuroLabs">
+  <meta property="og:url" content="https://kurolabs-ai.github.io/projects/">
+  <meta property="og:title" content="Projects Directory — KuroLabs Open-Source Ecosystem">
+  <meta property="og:description" content="Explore open-source projects built by KuroLabs, including KuroCodeAgent and Kuro Hub. Discover tools, architectures, and repositories.">
+  <meta property="og:image" content="https://kurolabs-ai.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KuroLabs Projects Directory">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Projects Directory — KuroLabs Open-Source Ecosystem">
+  <meta name="twitter:description" content="Browse KuroLabs open-source projects: KuroCodeAgent, Kuro Hub, and more.">
+  <meta name="twitter:image" content="https://kurolabs-ai.github.io/assets/og-image.png">
+
+  <!-- Favicons -->
+  <link rel="icon" href="../favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "url": "https://kurolabs-ai.github.io/projects/",
+    "name": "Projects Directory — KuroLabs",
+    "description": "Central directory of KuroLabs open-source software and infrastructure.",
+    "isPartOf": { "@id": "https://kurolabs-ai.github.io/#website" }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0B0D0F',
+            surface: '#111315',
+            'surface-elevated': '#181B1F',
+            'surface-card': '#14171A',
+            border: '#292D32',
+            'border-light': '#363C43',
+            accent: '#B6F36B',
+            'accent-muted': '#96D050',
+            'accent-dim': 'rgba(182, 243, 107, 0.08)',
+            'accent-glow': 'rgba(182, 243, 107, 0.15)',
+            primary: '#F3F4F6',
+            secondary: '#9CA3AF',
+            muted: '#6B7280',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/global.css">
+</head>
+<body class="bg-bg text-primary min-h-screen flex flex-col font-sans selection:bg-accent selection:text-bg">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-bg/90 backdrop-blur border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded">
+        <div class="w-8 h-8 rounded bg-surface-elevated border border-border flex items-center justify-center text-accent group-hover:border-accent transition-colors">
+          <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <span class="font-mono font-bold text-lg tracking-tight text-primary group-hover:text-accent transition-colors">
+          KURO<span class="text-accent font-medium">LABS</span>
+        </span>
+      </a>
+
+      <nav class="hidden md:flex items-center space-x-8 text-sm" aria-label="Main Navigation">
+        <a href="../about.html" class="text-secondary hover:text-primary transition-colors">About</a>
+        <a href="./index.html" class="text-accent font-medium transition-colors">Projects</a>
+        <a href="../hub/index.html" class="text-secondary hover:text-primary transition-colors">Capability Hub</a>
+        <a href="../community.html" class="text-secondary hover:text-primary transition-colors">Community</a>
+      </nav>
+
+      <div class="hidden md:flex items-center space-x-4">
+        <a href="https://github.com/kuroLabs-ai" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors p-2 rounded hover:bg-surface-elevated" aria-label="KuroLabs GitHub">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </a>
+        <a href="./kurocodeagent/index.html" class="btn-primary text-xs !py-2 !px-3 font-mono">
+          <span>KuroCode v2.0</span>
+          <svg class="w-3.5 h-3.5 ml-1.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+
+      <button id="mobile-menu-toggle" type="button" class="md:hidden p-2 rounded text-secondary hover:text-primary hover:bg-surface-elevated" aria-label="Toggle mobile menu" aria-expanded="false">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-50 bg-bg/95 backdrop-blur-md p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-border">
+          <span class="font-mono font-bold text-lg text-primary">KURO<span class="text-accent">LABS</span></span>
+          <button id="mobile-menu-close" type="button" class="p-2 text-secondary hover:text-primary" aria-label="Close menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <nav class="flex flex-col space-y-4 pt-6 text-base font-mono">
+          <a href="../about.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">About Organization</a>
+          <a href="./index.html" class="text-accent py-2 border-b border-border/40">Projects Directory</a>
+          <a href="../hub/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Capability Hub</a>
+          <a href="../community.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Community &amp; Open Source</a>
+          <a href="./kurocodeagent/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">KuroCodeAgent Overview</a>
+          <a href="./kurocodeagent/installation.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Installation Guide</a>
+          <a href="./kurocodeagent/docs/index.html" class="text-secondary hover:text-accent py-2">Documentation</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Title & Header -->
+      <div class="mb-12">
+        <div class="mono-label text-accent mb-2">PROJECTS DIRECTORY</div>
+        <h1 class="text-4xl font-extrabold text-primary font-sans tracking-tight mb-3">
+          Open-Source Systems &amp; Infrastructure
+        </h1>
+        <p class="text-secondary text-base max-w-2xl leading-relaxed">
+          The central directory for all KuroLabs software. Every project maintains its own dedicated documentation, tests, and public repository under our open-source umbrella.
+        </p>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap items-center gap-2 mt-8">
+          <span class="text-xs font-mono text-muted mr-2">Filter by Category:</span>
+          <button data-project-filter="all" class="px-3 py-1.5 rounded text-xs font-mono font-medium transition-colors bg-accent text-bg border border-accent">
+            All Projects
+          </button>
+          <button data-project-filter="Intelligent Systems" class="px-3 py-1.5 rounded text-xs font-mono font-medium transition-colors bg-surface-elevated text-secondary border border-border hover:border-border-light">
+            Intelligent Systems
+          </button>
+          <button data-project-filter="Extensible Ecosystems" class="px-3 py-1.5 rounded text-xs font-mono font-medium transition-colors bg-surface-elevated text-secondary border border-border hover:border-border-light">
+            Extensible Ecosystems
+          </button>
+        </div>
+      </div>
+
+      <!-- Data-Driven Projects Grid -->
+      <div id="projects-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Rendered dynamically from data/projects.json via js/projects.js -->
+        <div class="p-8 rounded-lg bg-surface border border-border text-center font-mono text-xs text-muted col-span-full">
+          Loading project metadata from central data registry...
+        </div>
+      </div>
+
+      <!-- Extensible Pipeline Note -->
+      <div class="mt-16 p-6 rounded-lg bg-surface-elevated border border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <h3 class="text-sm font-bold text-primary font-mono mb-1">Ecosystem Evolution</h3>
+          <p class="text-xs text-secondary leading-relaxed max-w-xl">
+            KuroLabs is engineered to grow. Future utilities, runtime libraries, and community capability collections can be seamlessly integrated into this directory without modifying page layouts.
+          </p>
+        </div>
+        <a href="../community.html" class="btn-secondary text-xs font-mono whitespace-nowrap">
+          Contribute a Project
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="bg-surface border-t border-border mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted">
+      <div>&copy; 2026 KuroLabs. Distributed under MIT License.</div>
+      <div class="flex items-center gap-4">
+        <a href="../index.html" class="hover:text-primary transition-colors">Home</a>
+        <span>•</span>
+        <a href="../about.html" class="hover:text-primary transition-colors">About</a>
+        <span>•</span>
+        <a href="../hub/index.html" class="hover:text-primary transition-colors">Capability Hub</a>
+        <span>•</span>
+        <a href="https://github.com/kuroLabs-ai" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/navigation.js"></script>
+  <script src="../js/projects.js"></script>
+</body>
+</html>

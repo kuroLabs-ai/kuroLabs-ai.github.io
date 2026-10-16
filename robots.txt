@@ -1,4 +1,16 @@
 User-agent: *
 Allow: /
+Allow: /assets/
+Allow: /favicon.ico
+Allow: /site.webmanifest
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /assets/
+Allow: /favicon.ico
+Allow: /*.png$
+Allow: /*.ico$
 
 Sitemap: https://kurolabs-ai.github.io/sitemap.xml

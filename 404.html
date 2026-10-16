@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 — Page Not Found | KuroLabs AI</title>
-  <meta name="description" content="The requested page could not be found in the KuroLabs AI ecosystem.">
-  <meta name="theme-color" content="#070909">
+  <title>404 — Route Not Found | KuroLabs</title>
+  <meta name="description" content="The requested destination was not found on KuroLabs.">
+  <meta name="theme-color" content="#0B0D0F">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="apple-touch-icon" href="assets/favicon.png">
+  <meta name="robots" content="noindex, nofollow">
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Favicons -->
+  <link rel="icon" href="./favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -19,69 +27,69 @@
       theme: {
         extend: {
           colors: {
-            bg: '#070909',
-            surface: { DEFAULT: '#0d1211', hover: '#121a17' },
-            accent: { DEFAULT: '#00e5b0', hover: '#22f5c5' },
-            text: '#f3f6f5',
-            muted: '#9aa9a3',
-            dim: '#5c6a65',
-            border: { DEFAULT: '#24312d', hover: '#384d46' }
+            bg: '#0B0D0F',
+            surface: '#111315',
+            'surface-elevated': '#181B1F',
+            border: '#292D32',
+            accent: '#B6F36B',
+            primary: '#F3F4F6',
+            secondary: '#9CA3AF',
+            muted: '#6B7280',
           },
           fontFamily: {
-            sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
-            mono: ['ui-monospace', '"Cascadia Code"', '"JetBrains Mono"', 'SFMono-Regular', '"Segoe UI Mono"', 'Menlo', 'monospace']
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
           }
         }
       }
     }
   </script>
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/global.css">
 </head>
-<body class="bg-bg text-text bg-tech-grid min-h-screen flex flex-col justify-between">
+<body class="bg-bg text-primary min-h-screen flex flex-col font-sans selection:bg-accent selection:text-bg">
 
-  <!-- Navbar Mount -->
-  <div id="navbar-mount"></div>
+  <!-- Header -->
+  <header class="bg-bg border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="./index.html" class="flex items-center gap-3 group">
+        <span class="font-mono font-bold text-lg text-primary group-hover:text-accent transition-colors">
+          KURO<span class="text-accent font-medium">LABS</span>
+        </span>
+      </a>
+      <a href="./index.html" class="text-xs font-mono text-secondary hover:text-primary">
+        &larr; Back to Home
+      </a>
+    </div>
+  </header>
 
-  <main class="flex-grow flex items-center justify-center p-6">
-    <div class="surface-card p-10 max-w-lg w-full text-center space-y-6">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-xs font-mono text-danger">
-        <span>ERROR 404</span>
+  <main class="flex-grow flex items-center justify-center py-20 px-4">
+    <div class="max-w-md w-full text-center">
+      <div class="p-3 rounded-full bg-accent/10 text-accent border border-accent/20 w-16 h-16 flex items-center justify-center mx-auto mb-6 font-mono text-2xl font-bold">
+        404
       </div>
-      <h1 class="text-4xl font-bold font-mono text-text">
-        Route Not Found
-      </h1>
-      <p class="text-sm text-muted leading-relaxed">
-        The requested endpoint does not exist in the KuroLabs ecosystem registry.
+      <h1 class="text-2xl font-bold text-primary font-mono mb-2">Endpoint Unresolved</h1>
+      <p class="text-secondary text-sm mb-8 leading-relaxed">
+        The route you requested does not exist in the KuroLabs ecosystem registry.
       </p>
-      <div class="flex flex-wrap justify-center gap-3 pt-2">
-        <a href="index.html" class="btn-primary text-xs font-mono">
-          Return to Overview
-        </a>
-        <a href="capabilities/index.html" class="btn-secondary text-xs font-mono">
-          Capability Hub
-        </a>
-        <a href="programs/index.html" class="btn-outline text-xs font-mono">
-          Programs
-        </a>
+
+      <div class="p-4 rounded-lg bg-surface border border-border text-left font-mono text-xs space-y-2 mb-8">
+        <div class="text-muted">Suggested Destinations:</div>
+        <div>&bull; <a href="./index.html" class="text-accent hover:underline">/ (Organization Home)</a></div>
+        <div>&bull; <a href="./projects/index.html" class="text-accent hover:underline">/projects/ (Projects Directory)</a></div>
+        <div>&bull; <a href="./projects/kurocodeagent/index.html" class="text-accent hover:underline">/projects/kurocodeagent/ (KuroCodeAssistant)</a></div>
+        <div>&bull; <a href="./hub/index.html" class="text-accent hover:underline">/hub/ (Capability Hub)</a></div>
       </div>
+
+      <a href="./index.html" class="btn-primary font-mono text-xs w-full justify-center">
+        Return to KuroLabs Home
+      </a>
     </div>
   </main>
 
-  <!-- Footer Mount -->
-  <div id="footer-mount"></div>
+  <footer class="bg-surface border-t border-border mt-auto py-6 text-center text-xs font-mono text-muted">
+    &copy; 2026 KuroLabs. Open-source engineering organization.
+  </footer>
 
-  <script type="module">
-    import { renderNavbar } from './js/components/navbar.js';
-    import { renderFooter } from './js/components/footer.js';
-
-    document.addEventListener('DOMContentLoaded', () => {
-      renderNavbar('404');
-      renderFooter();
-    });
-  </script>
 </body>
 </html>

@@ -1,0 +1,513 @@
+[
+  {
+    "id": "tool_json_inspector",
+    "name": "json_inspector",
+    "item_type": "tool",
+    "description": "Fast JSON formatter, syntax validator, and schema inspector.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "json",
+      "formatting",
+      "parser",
+      "utility"
+    ],
+    "file_path": "tools/json_inspector.py",
+    "payload": {
+      "entrypoint": "json_inspector"
+    }
+  },
+  {
+    "id": "tool_hash_calculator",
+    "name": "hash_calculator",
+    "item_type": "tool",
+    "description": "Compute MD5, SHA1, SHA256, or SHA512 cryptographic checksums for text or files.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "crypto",
+      "hash",
+      "sha256",
+      "security"
+    ],
+    "file_path": "tools/hash_calculator.py",
+    "payload": {
+      "entrypoint": "hash_calculator"
+    }
+  },
+  {
+    "id": "tool_regex_tester",
+    "name": "regex_tester",
+    "item_type": "tool",
+    "description": "Tests regular expressions against candidate text with match group extraction.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "regex",
+      "testing",
+      "string",
+      "pattern"
+    ],
+    "file_path": "tools/regex_tester.py",
+    "payload": {
+      "entrypoint": "regex_tester"
+    }
+  },
+  {
+    "id": "tool_currency_converter",
+    "name": "currency_converter",
+    "item_type": "tool",
+    "description": "Calculates foreign exchange conversions using standard baseline currency ratios.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "finance",
+      "currency",
+      "converter"
+    ],
+    "file_path": "tools/currency_converter.py",
+    "payload": {
+      "entrypoint": "currency_converter"
+    }
+  },
+  {
+    "id": "tool_web_scraper",
+    "name": "web_scraper",
+    "item_type": "tool",
+    "description": "Extract structured information including title, metadata, headings, text summary, and links from permitted webpages.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "web",
+      "scraper",
+      "crawler",
+      "http",
+      "html",
+      "parsing"
+    ],
+    "file_path": "tools/web_scraper.py",
+    "payload": {
+      "entrypoint": "web_scraper"
+    }
+  },
+  {
+    "id": "tool_metadata_stripper",
+    "name": "metadata_stripper",
+    "item_type": "tool",
+    "description": "Strip and sanitize metadata (EXIF, GPS, author info, timestamps) from selected files including images, PDFs, and documents.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "metadata",
+      "privacy",
+      "exif",
+      "sanitizer",
+      "security",
+      "cleaner"
+    ],
+    "file_path": "tools/metadata_stripper.py",
+    "payload": {
+      "entrypoint": "metadata_stripper"
+    }
+  },
+  {
+    "id": "tool_secret_scanner",
+    "name": "secret_scanner",
+    "item_type": "tool",
+    "description": "Scan text, files, and directories for exposed secrets, API keys, private tokens, and high-entropy credentials.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "security",
+      "secrets",
+      "scanner",
+      "credentials",
+      "entropy",
+      "tokens"
+    ],
+    "file_path": "tools/secret_scanner.py",
+    "payload": {
+      "entrypoint": "secret_scanner"
+    }
+  },
+  {
+    "id": "tool_csv_json_converter",
+    "name": "csv_json_converter",
+    "item_type": "tool",
+    "description": "Bidirectional streaming converter between CSV/TSV data and structured JSON/JSONL formats.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "csv",
+      "json",
+      "converter",
+      "jsonl",
+      "data",
+      "parser"
+    ],
+    "file_path": "tools/csv_json_converter.py",
+    "payload": {
+      "entrypoint": "csv_json_converter"
+    }
+  },
+  {
+    "id": "plugin_code_metrics",
+    "name": "code_metrics",
+    "item_type": "plugin",
+    "description": "Analyzes Python source files to calculate lines of code, docstring ratio, and function count.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "metrics",
+      "analysis",
+      "code-quality"
+    ],
+    "dir_path": "plugins/code_metrics",
+    "payload": {
+      "entrypoint": "main.py"
+    }
+  },
+  {
+    "id": "plugin_dependency_guard",
+    "name": "dependency_guard",
+    "item_type": "plugin",
+    "description": "Scans requirements.txt to flag unpinned dependencies.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "dependencies",
+      "security",
+      "pip"
+    ],
+    "dir_path": "plugins/dependency_guard",
+    "payload": {
+      "entrypoint": "main.py"
+    }
+  },
+  {
+    "id": "plugin_pdf_toolkit",
+    "name": "pdf_toolkit",
+    "item_type": "plugin",
+    "description": "Read, merge, split, extract text/metadata, and generate PDF documents.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "pdf",
+      "documents",
+      "extractor",
+      "generator",
+      "converter"
+    ],
+    "dir_path": "plugins/pdf_toolkit",
+    "payload": {
+      "entrypoint": "main.py"
+    }
+  },
+  {
+    "id": "plugin_image_processor",
+    "name": "image_processor",
+    "item_type": "plugin",
+    "description": "Resize, compress, convert, crop, and optimize images across major formats.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "image",
+      "resize",
+      "compress",
+      "converter",
+      "pillow",
+      "optimization"
+    ],
+    "dir_path": "plugins/image_processor",
+    "payload": {
+      "entrypoint": "main.py"
+    }
+  },
+  {
+    "id": "plugin_website_auditor",
+    "name": "website_auditor",
+    "item_type": "plugin",
+    "description": "Audit websites for SEO, accessibility, performance, and best practices.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "seo",
+      "audit",
+      "accessibility",
+      "web",
+      "performance",
+      "security"
+    ],
+    "dir_path": "plugins/website_auditor",
+    "payload": {
+      "entrypoint": "main.py"
+    }
+  },
+  {
+    "id": "plugin_local_knowledge_base",
+    "name": "local_knowledge_base",
+    "item_type": "plugin",
+    "description": "Index selected folders, Markdown files, documentation, and notes so KuroCode can search personal or project knowledge and retrieve relevant passages when answering questions.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "knowledge-base",
+      "search",
+      "markdown",
+      "notes",
+      "rag",
+      "retrieval",
+      "docs"
+    ],
+    "dir_path": "plugins/local_knowledge_base",
+    "payload": {
+      "entrypoint": "main.py"
+    }
+  },
+  {
+    "id": "plugin_speech_transcriber",
+    "name": "speech_transcriber",
+    "item_type": "plugin",
+    "description": "Convert audio recordings into text using configurable speech-recognition APIs, with timestamps when supported.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "audio",
+      "speech",
+      "transcription",
+      "whisper",
+      "voice",
+      "stt"
+    ],
+    "dir_path": "plugins/speech_transcriber",
+    "payload": {
+      "entrypoint": "main.py"
+    }
+  },
+  {
+    "id": "skill_tdd_refactoring",
+    "name": "tdd_refactoring",
+    "item_type": "skill",
+    "description": "Test-Driven Development refactoring routine (Red -> Green -> Refactor -> Verify).",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "tdd",
+      "testing",
+      "refactor",
+      "workflow"
+    ],
+    "dir_path": "skills/tdd_refactoring",
+    "payload": {
+      "steps": [
+        "Write failing unit test.",
+        "Make minimal change to pass.",
+        "Refactor cleanly.",
+        "Verify with full test suite."
+      ]
+    }
+  },
+  {
+    "id": "skill_security_audit",
+    "name": "security_audit",
+    "item_type": "skill",
+    "description": "Automated security inspection routine checking AST dangerous calls, secrets, and permissions.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "security",
+      "audit",
+      "ast",
+      "compliance"
+    ],
+    "dir_path": "skills/security_audit",
+    "payload": {
+      "steps": [
+        "Scan source tree for hardcoded secrets.",
+        "Inspect Python AST for risky calls.",
+        "Check permission gates.",
+        "Generate audit report."
+      ]
+    }
+  },
+  {
+    "id": "skill_docs_generator",
+    "name": "docs_generator",
+    "item_type": "skill",
+    "description": "Generate structured technical documentation from source code across multiple languages.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "documentation",
+      "docs",
+      "markdown",
+      "docstrings",
+      "api-reference"
+    ],
+    "dir_path": "skills/docs_generator",
+    "payload": {
+      "steps": [
+        "Discover modules, packages, and architecture targets.",
+        "Extract public interfaces, signatures, and configuration models.",
+        "Synthesize Markdown documentation with examples and diagrams.",
+        "Validate links, signatures, and output paths."
+      ]
+    }
+  },
+  {
+    "id": "skill_commit_generator",
+    "name": "commit_generator",
+    "item_type": "skill",
+    "description": "Generate Conventional Commit messages from Git diffs, staged changes, and issue references.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "git",
+      "commits",
+      "conventional-commits",
+      "vcs",
+      "workflow"
+    ],
+    "dir_path": "skills/commit_generator",
+    "payload": {
+      "steps": [
+        "Inspect git status and staged or unstaged diffs.",
+        "Categorize change type (feat, fix, docs, refactor, perf, test, chore).",
+        "Compose succinct imperative commit message following Conventional Commits 1.0.0.",
+        "Identify breaking changes and document necessary footers."
+      ]
+    }
+  },
+  {
+    "id": "skill_api_endpoint_scaffolder",
+    "name": "api_endpoint_scaffolder",
+    "item_type": "skill",
+    "description": "End-to-end routine for scaffolding production-ready API endpoints with schemas, validation, router registration, and tests.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "api",
+      "rest",
+      "backend",
+      "scaffolding",
+      "fastapi",
+      "testing",
+      "openapi"
+    ],
+    "dir_path": "skills/api_endpoint_scaffolder",
+    "payload": {
+      "steps": [
+        "Define request/response schemas and contract with strict types.",
+        "Scaffold integration tests covering 200, 400, 404, and 401 status codes.",
+        "Implement route handler and service layer with proper exception handling.",
+        "Register route with router, add OpenAPI annotations, and run full test suite."
+      ]
+    }
+  },
+  {
+    "id": "skill_database_migration_reviewer",
+    "name": "database_migration_reviewer",
+    "item_type": "skill",
+    "description": "Systematic review routine for inspecting database migrations for locking risks, rollback integrity, index correctness, and data safety.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "database",
+      "migrations",
+      "sql",
+      "alembic",
+      "prisma",
+      "safety",
+      "review"
+    ],
+    "dir_path": "skills/database_migration_reviewer",
+    "payload": {
+      "steps": [
+        "Discover and classify pending migration files by framework and type.",
+        "Inspect for table-locking operations and recommend safe alternatives.",
+        "Verify downgrade/rollback scripts are present, correct, and idempotent.",
+        "Validate index presence on foreign keys and concurrent index creation.",
+        "Check data migrations for row scoping, enum changes, and hardcoded values.",
+        "Compile structured PASS / WARN / BLOCK migration report."
+      ]
+    }
+  },
+  {
+    "id": "integration_gitlab",
+    "name": "gitlab",
+    "item_type": "integration",
+    "description": "GitLab REST API connector for repository inspection, issue tracking, and CI/CD pipelines.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "gitlab",
+      "vcs",
+      "ci-cd",
+      "devops"
+    ],
+    "dir_path": "integrations/gitlab",
+    "payload": {
+      "auth_type": "access_token",
+      "env_var": "GITLAB_TOKEN"
+    }
+  },
+  {
+    "id": "integration_slack",
+    "name": "slack",
+    "item_type": "integration",
+    "description": "Slack workspace bot for task alerts and notifications",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "slack",
+      "notifications",
+      "integration"
+    ],
+    "dir_path": "integrations/slack",
+    "payload": {
+      "auth_type": "bot_token",
+      "env_var": "SLACK_BOT_TOKEN"
+    }
+  },
+  {
+    "id": "integration_github",
+    "name": "github",
+    "item_type": "integration",
+    "description": "GitHub REST API connector for repository inspection, issue/PR management, and workflow dispatching.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "github",
+      "vcs",
+      "git",
+      "ci-cd",
+      "issues",
+      "pr"
+    ],
+    "dir_path": "integrations/github",
+    "payload": {
+      "auth_type": "bearer_token",
+      "env_var": "GITHUB_TOKEN"
+    }
+  },
+  {
+    "id": "integration_discord",
+    "name": "discord",
+    "item_type": "integration",
+    "description": "Discord Webhook connector for dispatching operational alerts, logs, and build notifications.",
+    "version": "1.0.0",
+    "author": "kuroLabs-ai",
+    "tags": [
+      "discord",
+      "notifications",
+      "alerts",
+      "webhook",
+      "chatops"
+    ],
+    "dir_path": "integrations/discord",
+    "payload": {
+      "auth_type": "webhook_url",
+      "env_var": "DISCORD_WEBHOOK_URL"
+    }
+  }
+]
