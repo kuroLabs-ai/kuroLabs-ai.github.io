@@ -2,46 +2,7 @@
  * KuroLabs Global Navigation & Utility Script
  */
 
-// Immediate global helpers for mobile menu
-window.openMobileMenu = function() {
-  const mobileMenu = document.getElementById('mobile-menu');
-  const toggleBtn = document.getElementById('mobile-menu-toggle');
-  if (!mobileMenu) return;
-
-  mobileMenu.classList.remove('hidden');
-  mobileMenu.style.setProperty('display', 'block', 'important');
-  document.body.classList.add('overflow-hidden');
-  if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
-};
-
-window.closeMobileMenu = function() {
-  const mobileMenu = document.getElementById('mobile-menu');
-  const toggleBtn = document.getElementById('mobile-menu-toggle');
-  if (!mobileMenu) return;
-
-  mobileMenu.classList.add('hidden');
-  mobileMenu.style.setProperty('display', 'none', 'important');
-  document.body.classList.remove('overflow-hidden');
-  if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
-};
-
-window.toggleMobileMenu = function() {
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (!mobileMenu) return;
-
-  const isHidden = mobileMenu.classList.contains('hidden') || 
-                   mobileMenu.style.display === 'none' || 
-                   (window.getComputedStyle && window.getComputedStyle(mobileMenu).display === 'none');
-
-  if (isHidden) {
-    window.openMobileMenu();
-  } else {
-    window.closeMobileMenu();
-  }
-};
-
 function initAll() {
-  try { initMobileMenu(); } catch(e) { console.warn('initMobileMenu error:', e); }
   try { initActiveNavLinks(); } catch(e) { console.warn('initActiveNavLinks error:', e); }
   try { initCopyButtons(); } catch(e) { console.warn('initCopyButtons error:', e); }
   if (window.lucide && typeof window.lucide.createIcons === 'function') {
@@ -53,51 +14,6 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initAll);
 } else {
   initAll();
-}
-
-function initMobileMenu() {
-  const toggleBtn = document.getElementById('mobile-menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const closeBtn = document.getElementById('mobile-menu-close');
-
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      window.toggleMobileMenu();
-    });
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      window.closeMobileMenu();
-    });
-  }
-
-  if (mobileMenu) {
-    // Close when clicking any nav link in the mobile drawer
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        window.closeMobileMenu();
-      });
-    });
-
-    // Close when clicking directly on the backdrop area
-    mobileMenu.addEventListener('click', (e) => {
-      if (e.target === mobileMenu) {
-        window.closeMobileMenu();
-      }
-    });
-  }
-
-  // Close on ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      window.closeMobileMenu();
-    }
-  });
 }
 
 function initActiveNavLinks() {
@@ -163,6 +79,4 @@ function initCopyButtons() {
   });
 }
 
-// Expose on window for module scripts or direct invocations
 window.initCopyButtons = initCopyButtons;
-window.initMobileMenu = initMobileMenu;

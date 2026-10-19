@@ -123,7 +123,7 @@
   </header>
  
    <!-- Mobile Drawer -->
-   <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-[100] bg-bg/95 backdrop-blur-md p-6 overflow-y-auto">
+   <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-[100] bg-bg/95 backdrop-blur-md p-6 overflow-y-auto" style="display: none;">
      <div class="min-h-full flex flex-col justify-between">
        <div>
          <div class="flex items-center justify-between pb-6 border-b border-border">
@@ -149,6 +149,58 @@
        </div>
      </div>
    </div>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('mobile-menu-toggle');
+      var menu = document.getElementById('mobile-menu');
+      var closeBtn = document.getElementById('mobile-menu-close');
+      if (!btn || !menu) return;
+
+      function openNav() {
+        menu.classList.remove('hidden');
+        menu.style.display = 'block';
+        document.body.classList.add('overflow-hidden');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeNav() {
+        menu.classList.add('hidden');
+        menu.style.display = 'none';
+        document.body.classList.remove('overflow-hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+
+      function toggleNav() {
+        var isClosed = menu.classList.contains('hidden') || menu.style.display === 'none';
+        if (isClosed) { openNav(); } else { closeNav(); }
+      }
+
+      btn.onclick = function (e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        toggleNav();
+      };
+
+      if (closeBtn) {
+        closeBtn.onclick = function (e) {
+          if (e) { e.preventDefault(); e.stopPropagation(); }
+          closeNav();
+        };
+      }
+
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.onclick = function () { closeNav(); };
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeNav();
+      });
+
+      menu.onclick = function (e) {
+        if (e.target === menu) closeNav();
+      };
+    })();
+  </script>
 
   <main class="flex-grow py-14">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -274,7 +326,7 @@
     </div>
   </footer>
 
-  <script src="../js/navigation.js?v=2.0.1"></script>
+  <script src="../js/nav.js?v=2.0.2"></script>
   <script type="module" src="../js/hub-item.js"></script>
 </body>
 </html>
