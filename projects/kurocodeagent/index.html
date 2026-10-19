@@ -126,21 +126,21 @@
         </a>
       </div>
 
-      <button id="mobile-menu-toggle" type="button" class="md:hidden p-2 rounded text-secondary hover:text-primary hover:bg-surface-elevated" aria-label="Toggle mobile menu" aria-expanded="false">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      <button id="mobile-menu-toggle" type="button" onclick="window.toggleMobileMenu && window.toggleMobileMenu()" class="md:hidden p-2 rounded text-secondary hover:text-primary hover:bg-surface-elevated" aria-label="Toggle mobile menu" aria-expanded="false">
+        <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
 
   </header>
  
    <!-- Mobile Drawer -->
-   <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-50 bg-bg/95 backdrop-blur-md p-6 overflow-y-auto">
+   <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-[100] bg-bg/95 backdrop-blur-md p-6 overflow-y-auto">
      <div class="min-h-full flex flex-col justify-between">
        <div>
          <div class="flex items-center justify-between pb-6 border-b border-border">
            <span class="font-mono font-bold text-lg text-primary">KURO<span class="text-accent">CODE</span></span>
-           <button id="mobile-menu-close" type="button" class="p-2 text-secondary hover:text-primary rounded hover:bg-surface-elevated" aria-label="Close menu">
-             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+           <button id="mobile-menu-close" type="button" onclick="window.closeMobileMenu && window.closeMobileMenu()" class="p-2 text-secondary hover:text-primary rounded hover:bg-surface-elevated" aria-label="Close menu">
+             <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
            </button>
          </div>
          <nav class="flex flex-col space-y-4 pt-6 text-base font-mono">
