@@ -2,14 +2,20 @@
  * KuroLabs Global Navigation & Utility Script
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initAll() {
   initMobileMenu();
   initActiveNavLinks();
   initCopyButtons();
   if (window.lucide) {
     window.lucide.createIcons();
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAll);
+} else {
+  initAll();
+}
 
 function initMobileMenu() {
   const toggleBtn = document.getElementById('mobile-menu-toggle');
@@ -18,26 +24,56 @@ function initMobileMenu() {
 
   if (!toggleBtn || !mobileMenu) return;
 
-  const toggle = (show) => {
-    const isExpanded = show ?? mobileMenu.classList.contains('hidden');
-    if (isExpanded) {
-      mobileMenu.classList.remove('hidden');
-      document.body.classList.add('overflow-hidden');
-      toggleBtn.setAttribute('aria-expanded', 'true');
+  const openMenu = () => {
+    mobileMenu.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+  };
+
+  const closeMenu = () => {
+    mobileMenu.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+  };
+
+  const toggleMenu = () => {
+    if (mobileMenu.classList.contains('hidden')) {
+      openMenu();
     } else {
-      mobileMenu.classList.add('hidden');
-      document.body.classList.remove('overflow-hidden');
-      toggleBtn.setAttribute('aria-expanded', 'false');
+      closeMenu();
     }
   };
 
-  toggleBtn.addEventListener('click', () => toggle());
-  if (closeBtn) closeBtn.addEventListener('click', () => toggle(false));
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeMenu();
+    });
+  }
+
+  // Close when clicking any nav link in the mobile drawer
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
 
   // Close on ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-      toggle(false);
+      closeMenu();
+    }
+  });
+
+  // Close when clicking on the backdrop area of the mobile menu
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) {
+      closeMenu();
     }
   });
 }
@@ -62,11 +98,15 @@ function initActiveNavLinks() {
   });
 }
 
-export function initCopyButtons() {
-  document.querySelectorAll('[data-copy-target]').forEach(btn => {
+function initCopyButtons() {
+  document.querySelectorAll('[data-copy-target], [data-copy-text]').forEach(btn => {
+    // Avoid double-binding listeners
+    if (btn.dataset.copyBound === 'true') return;
+    btn.dataset.copyBound = 'true';
+
     btn.addEventListener('click', async () => {
       const targetId = btn.getAttribute('data-copy-target');
-      const targetEl = document.getElementById(targetId);
+      const targetEl = targetId ? document.getElementById(targetId) : null;
       const textToCopy = targetEl ? (targetEl.innerText || targetEl.textContent) : btn.getAttribute('data-copy-text');
 
       if (!textToCopy) return;
@@ -87,3 +127,7 @@ export function initCopyButtons() {
     });
   });
 }
+
+// Expose on window for module scripts or direct invocations
+window.initCopyButtons = initCopyButtons;
+window.initMobileMenu = initMobileMenu;

@@ -122,27 +122,35 @@
       </button>
     </div>
 
-    <!-- Mobile Drawer -->
-    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-50 bg-bg/95 backdrop-blur-md p-6 flex flex-col justify-between">
-      <div>
-        <div class="flex items-center justify-between pb-6 border-b border-border">
-          <span class="font-mono font-bold text-lg text-primary">KURO<span class="text-accent">LABS</span></span>
-          <button id="mobile-menu-close" type="button" class="p-2 text-secondary hover:text-primary" aria-label="Close menu">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-          </button>
-        </div>
-        <nav class="flex flex-col space-y-4 pt-6 text-base font-mono">
-          <a href="../about.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">About Organization</a>
-          <a href="./index.html" class="text-accent py-2 border-b border-border/40">Projects Directory</a>
-          <a href="../hub/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Capability Hub</a>
-          <a href="../community.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Community &amp; Open Source</a>
-          <a href="./kurocodeagent/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">KuroCodeAgent Overview</a>
-          <a href="./kurocodeagent/installation.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Installation Guide</a>
-          <a href="./kurocodeagent/docs/index.html" class="text-secondary hover:text-accent py-2">Documentation</a>
-        </nav>
-      </div>
-    </div>
   </header>
+ 
+   <!-- Mobile Drawer -->
+   <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-50 bg-bg/95 backdrop-blur-md p-6 overflow-y-auto">
+     <div class="min-h-full flex flex-col justify-between">
+       <div>
+         <div class="flex items-center justify-between pb-6 border-b border-border">
+           <span class="font-mono font-bold text-lg text-primary">KURO<span class="text-accent">LABS</span></span>
+           <button id="mobile-menu-close" type="button" class="p-2 text-secondary hover:text-primary rounded hover:bg-surface-elevated" aria-label="Close menu">
+             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+           </button>
+         </div>
+         <nav class="flex flex-col space-y-4 pt-6 text-base font-mono">
+           <a href="../about.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">About Organization</a>
+           <a href="./index.html" class="text-accent py-2 border-b border-border/40">Projects Directory</a>
+           <a href="../hub/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Capability Hub</a>
+           <a href="../community.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Community &amp; Open Source</a>
+           <a href="./kurocodeagent/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">KuroCodeAgent Overview</a>
+           <a href="./kurocodeagent/installation.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Installation Guide</a>
+           <a href="./kurocodeagent/docs/index.html" class="text-secondary hover:text-accent py-2">Documentation</a>
+         </nav>
+       </div>
+       <div class="pt-6 border-t border-border flex flex-col gap-3 mt-8">
+         <a href="https://github.com/kuroLabs-ai" target="_blank" rel="noopener noreferrer" class="btn-secondary w-full text-center font-mono text-sm">
+           GitHub Organization
+         </a>
+       </div>
+     </div>
+   </div>
 
   <main class="flex-grow py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
