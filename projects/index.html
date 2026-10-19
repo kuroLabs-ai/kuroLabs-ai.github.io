@@ -117,32 +117,92 @@
         </a>
       </div>
 
-      <button id="mobile-menu-toggle" type="button" class="md:hidden p-2 rounded text-secondary hover:text-primary hover:bg-surface-elevated" aria-label="Toggle mobile menu" aria-expanded="false">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      <button id="mobile-menu-toggle" type="button" onclick="window.toggleMobileMenu && window.toggleMobileMenu()" class="md:hidden p-2 rounded text-secondary hover:text-primary hover:bg-surface-elevated" aria-label="Toggle mobile menu" aria-expanded="false">
+        <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
 
-    <!-- Mobile Drawer -->
-    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-50 bg-bg/95 backdrop-blur-md p-6 flex flex-col justify-between">
-      <div>
-        <div class="flex items-center justify-between pb-6 border-b border-border">
-          <span class="font-mono font-bold text-lg text-primary">KURO<span class="text-accent">LABS</span></span>
-          <button id="mobile-menu-close" type="button" class="p-2 text-secondary hover:text-primary" aria-label="Close menu">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-          </button>
-        </div>
-        <nav class="flex flex-col space-y-4 pt-6 text-base font-mono">
-          <a href="../about.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">About Organization</a>
-          <a href="./index.html" class="text-accent py-2 border-b border-border/40">Projects Directory</a>
-          <a href="../hub/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Capability Hub</a>
-          <a href="../community.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Community &amp; Open Source</a>
-          <a href="./kurocodeagent/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">KuroCodeAgent Overview</a>
-          <a href="./kurocodeagent/installation.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Installation Guide</a>
-          <a href="./kurocodeagent/docs/index.html" class="text-secondary hover:text-accent py-2">Documentation</a>
-        </nav>
-      </div>
-    </div>
   </header>
+ 
+   <!-- Mobile Drawer -->
+   <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-[100] bg-bg/95 backdrop-blur-md p-6 overflow-y-auto" style="display: none;">
+     <div class="min-h-full flex flex-col justify-between">
+       <div>
+         <div class="flex items-center justify-between pb-6 border-b border-border">
+           <span class="font-mono font-bold text-lg text-primary">KURO<span class="text-accent">LABS</span></span>
+           <button id="mobile-menu-close" type="button" onclick="window.closeMobileMenu && window.closeMobileMenu()" class="p-2 text-secondary hover:text-primary rounded hover:bg-surface-elevated" aria-label="Close menu">
+             <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+           </button>
+         </div>
+         <nav class="flex flex-col space-y-4 pt-6 text-base font-mono">
+           <a href="../about.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">About Organization</a>
+           <a href="./index.html" class="text-accent py-2 border-b border-border/40">Projects Directory</a>
+           <a href="../hub/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Capability Hub</a>
+           <a href="../community.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Community &amp; Open Source</a>
+           <a href="./kurocodeagent/index.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">KuroCodeAgent Overview</a>
+           <a href="./kurocodeagent/installation.html" class="text-secondary hover:text-accent py-2 border-b border-border/40">Installation Guide</a>
+           <a href="./kurocodeagent/docs/index.html" class="text-secondary hover:text-accent py-2">Documentation</a>
+         </nav>
+       </div>
+       <div class="pt-6 border-t border-border flex flex-col gap-3 mt-8">
+         <a href="https://github.com/kuroLabs-ai" target="_blank" rel="noopener noreferrer" class="btn-secondary w-full text-center font-mono text-sm">
+           GitHub Organization
+         </a>
+       </div>
+     </div>
+   </div>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('mobile-menu-toggle');
+      var menu = document.getElementById('mobile-menu');
+      var closeBtn = document.getElementById('mobile-menu-close');
+      if (!btn || !menu) return;
+
+      function openNav() {
+        menu.classList.remove('hidden');
+        menu.style.display = 'block';
+        document.body.classList.add('overflow-hidden');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeNav() {
+        menu.classList.add('hidden');
+        menu.style.display = 'none';
+        document.body.classList.remove('overflow-hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+
+      function toggleNav() {
+        var isClosed = menu.classList.contains('hidden') || menu.style.display === 'none';
+        if (isClosed) { openNav(); } else { closeNav(); }
+      }
+
+      btn.onclick = function (e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        toggleNav();
+      };
+
+      if (closeBtn) {
+        closeBtn.onclick = function (e) {
+          if (e) { e.preventDefault(); e.stopPropagation(); }
+          closeNav();
+        };
+      }
+
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.onclick = function () { closeNav(); };
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeNav();
+      });
+
+      menu.onclick = function (e) {
+        if (e.target === menu) closeNav();
+      };
+    })();
+  </script>
 
   <main class="flex-grow py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -212,7 +272,7 @@
     </div>
   </footer>
 
-  <script src="../js/navigation.js"></script>
+  <script src="../js/nav.js?v=2.0.2"></script>
   <script src="../js/projects.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 import { getCapabilityById } from './registry.js';
-import { initCopyButtons } from './navigation.js';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   initItemDetail();
@@ -111,7 +111,9 @@ async function initItemDetail() {
     renderPayloadSection(item);
 
     // Initialize copy buttons
-    initCopyButtons();
+    if (typeof window.initCopyButtons === 'function') {
+      window.initCopyButtons();
+    }
     if (window.lucide) window.lucide.createIcons();
   }
 

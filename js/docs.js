@@ -23,16 +23,42 @@ function initDocsSidebar() {
       sidebar.classList.remove('-translate-x-full');
       if (backdrop) backdrop.classList.remove('hidden');
       document.body.classList.add('overflow-hidden', 'md:overflow-auto');
+      toggleBtn.setAttribute('aria-expanded', 'true');
     } else {
       sidebar.classList.add('-translate-x-full');
       if (backdrop) backdrop.classList.add('hidden');
       document.body.classList.remove('overflow-hidden', 'md:overflow-auto');
+      toggleBtn.setAttribute('aria-expanded', 'false');
     }
   };
 
-  toggleBtn.addEventListener('click', () => toggle(true));
-  if (closeBtn) closeBtn.addEventListener('click', () => toggle(false));
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggle();
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggle(false);
+  });
+
   if (backdrop) backdrop.addEventListener('click', () => toggle(false));
+
+  // Close sidebar on link click on mobile screens
+  sidebar.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 768) {
+        toggle(false);
+      }
+    });
+  });
+
+  // Close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !sidebar.classList.contains('-translate-x-full')) {
+      toggle(false);
+    }
+  });
 }
 
 function initDocsSearch() {
